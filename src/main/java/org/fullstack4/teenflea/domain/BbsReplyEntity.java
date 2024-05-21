@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Table(name="flea_board_reply")
-public class BoardReplyEntity
+public class BbsReplyEntity
 {
     @Id // 필수
     @GeneratedValue(strategy = GenerationType.IDENTITY)

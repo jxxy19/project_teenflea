@@ -9,9 +9,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@MappedSuperclass // 공통으로 사용되는 칼럼을 지정, 해당 클래스를 상속하여 사용
+@MappedSuperclass
 @EntityListeners(value={AuditingEntityListener.class})
-abstract class BaseEntity { //VO를 대체하고 table명하고 동일 (테이블 기본 명세)
+abstract class BaseEntity {
 
     @CreatedDate
     @Column(name="reg_date", updatable = false)

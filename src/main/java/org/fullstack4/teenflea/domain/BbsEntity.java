@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Table(name="flea_board")
-public class BoardEntity extends BaseEntity
+public class BbsEntity extends BaseEntity
 {
     @Id // 필수
     @GeneratedValue(strategy = GenerationType.IDENTITY)

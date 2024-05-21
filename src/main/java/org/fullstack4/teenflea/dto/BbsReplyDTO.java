@@ -1,7 +1,10 @@
 package org.fullstack4.teenflea.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,29 +16,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BoardDTO {
+public class BbsReplyDTO {
+    private int replyIdx;
+
+    @NotNull
     private int bbsIdx;
 
     @NotEmpty
     private String userId;
+
     @NotEmpty
-    @Size(min=1,max=100)
-    private String title;
-    @NotEmpty
-    @Size(min=1,max=300)
     private String content;
-    private String displayDate;
-    @NotEmpty
-    private String category1;
-
-    private String category2;
-    @NotEmpty
-    private String img;
-    
-    private int read_cnt; // 조회 수
-
-    private int reply_cnt; //댓글 수
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime regDate;
+    @JsonIgnore
     private LocalDateTime modifyDate;
 }
