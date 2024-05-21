@@ -21,28 +21,19 @@ public class BbsEntity extends BaseEntity {
     private String userId;
     @Column(length=100,nullable=false)
     private String title;
-    @Column(length=2000,nullable=false)
+    @Column(nullable=false, columnDefinition="LONGTEXT")
     private String content;
-    @Column(length=10,nullable=true)
-    private String displayDate;
     @Column(length=10,nullable = true)
     private int readCnt;
     @Column(length =5 ,nullable=false)
     private String category1;
     @Column(length =5 ,nullable=true)
     private String category2;
-    @Column(length =100 ,nullable=false)
-    private String img;
 
-    public void modify(String title,String content,String display_date,int read_cnt,String category1,String category2,String img){
-
+    public void modify(String title,String content,String category2){
         this.title=title;
         this.content=content;
-        this.displayDate=display_date;
-        this.readCnt=read_cnt;
-        this.category1=category1;
         this.category2=category2;
-        this.img=img;
         super.setModify_date(LocalDateTime.now());
     }
 

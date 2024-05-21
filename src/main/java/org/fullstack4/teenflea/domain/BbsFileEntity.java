@@ -21,8 +21,6 @@ public class BbsFileEntity extends BaseEntity{
     @Column(unique = true, nullable = false)
     private int bbsFileIdx;
     private int bbsIdx;
-    @Column(length = 20, nullable = false)
-    private String category;
     @Column(length = 100, nullable = false)
     private String directory;
     @Column(length = 100, nullable = false)

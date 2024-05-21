@@ -22,12 +22,9 @@ public class BbsDTO {
     private String title;
     @NotEmpty
     private String content;
-    private String displayDate;
     @NotEmpty
     private String category1;
     private String category2;
-    @NotEmpty
-    private String img;
     private int read_cnt;
     private int reply_cnt;
 
