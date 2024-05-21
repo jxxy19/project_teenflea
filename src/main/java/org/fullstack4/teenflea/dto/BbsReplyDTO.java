@@ -18,17 +18,12 @@ import java.time.LocalDateTime;
 @Builder
 public class BbsReplyDTO {
     private int replyIdx;
-
     @NotNull
     private int bbsIdx;
-
     @NotEmpty
     private String userId;
-
     @NotEmpty
     private String content;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime regDate;
-    @JsonIgnore
     private LocalDateTime modifyDate;
 }
