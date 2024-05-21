@@ -6,9 +6,9 @@ public interface MemberServiceIf {
 
     int regist(MemberDTO memberDTO);
 
-    MemberDTO view(String user_id);
+    MemberDTO view(String userId);
 
-    void modify(MemberDTO memberDTO);
+    MemberDTO modify(MemberDTO memberDTO);
 
-    void delete(int idx);
+    int delete(String userId);
 }

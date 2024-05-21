@@ -40,17 +40,15 @@ public class MemberEntity extends BaseEntity {
     private String addr2;
     @Column(length =10 ,nullable=false) // 우편번호
     private String zipCode;
-    @CreatedDate
-    @Column(length =5 ,nullable=false) //회원상태
+    @Column(length =10 ,nullable=false) //회원상태
     private String userState;
     @LastModifiedDate
     @Column(name="leave_date",insertable = false ,updatable = false,nullable = true) //탈퇴일자
     private LocalDateTime leaveDate;
 
-    public void modify(String pwd,String name,String email,String phone_number,String addr1,String addr2,String zip_code,String user_state){
+    public void modify(String pwd,String email,String phone_number,String addr1,String addr2,String zip_code,String user_state){
 
         this.pwd=pwd;
-        this.name=name;
         this.email=email;
         this.phoneNumber=phone_number;
         this.addr1=addr1;

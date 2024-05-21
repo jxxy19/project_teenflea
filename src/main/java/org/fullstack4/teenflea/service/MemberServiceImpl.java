@@ -4,35 +4,51 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.fullstack4.teenflea.domain.MemberEntity;
 import org.fullstack4.teenflea.dto.MemberDTO;
+import org.fullstack4.teenflea.repository.MemberRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Log4j2
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberServiceIf{
     private final ModelMapper modelMapper;
-    /*private final MemberRepository memberRepository;*/
+    private final MemberRepository memberRepository;
     @Override
     public int regist(MemberDTO memberDTO) {
-       /* MemberEntity board = modelMapper.map(boardDTO,BoardEntity.class);
-        int idx = boardRepository.save(board).getIdx();*/
+        MemberEntity member = modelMapper.map(memberDTO,MemberEntity.class);
+        int idx = memberRepository.save(member).getMemberIdx();
 
-        return 1;
+        return idx;
     }
 
     @Override
-    public MemberDTO view(String user_id) {
-        return null;
+    public MemberDTO view(String userId) {
+        Optional<MemberEntity> result = memberRepository.findByUserId(userId);
+        MemberEntity member = result.orElse(null);
+        MemberDTO memberDTO = modelMapper.map(member,MemberDTO.class);
+
+        return memberDTO;
     }
 
     @Override
-    public void modify(MemberDTO memberDTO) {
+    public MemberDTO modify(MemberDTO memberDTO) {
+        Optional<MemberEntity> result = memberRepository.findByUserId(memberDTO.getUserId());
+        MemberEntity member = result.orElse(null);
+        member.modify(memberDTO.getPwd(), memberDTO.getEmail(),memberDTO.getAddr1(),memberDTO.getAddr2(),memberDTO.getPhoneNumber(),memberDTO.getUserState(),memberDTO.getZipCode());
+        memberRepository.save(member);
+        MemberDTO memberUpdateDTO = modelMapper.map(member,MemberDTO.class);
+        return memberUpdateDTO;
+
 
     }
 
     @Override
-    public void delete(int idx) {
+    public int delete(String userId) {
+        int result = memberRepository.deleteByUserId(userId);
 
+        return result;
     }
 }
