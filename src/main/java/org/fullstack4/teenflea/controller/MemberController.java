@@ -29,7 +29,8 @@ public class MemberController {
     public void view(){
     }*/
     @GetMapping("/regist")
-    public void registGET(){
+    public void registGET(Model model){
+        model.addAttribute("menu", "회원가입");
     }
     @PostMapping("/regist")
     public String registPOST(@Valid MemberDTO memberDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
@@ -47,6 +48,11 @@ public class MemberController {
         else{
           return "/member/regist";
        }
+    }
+
+    @GetMapping("/complete")
+    public void completeGET(Model model){
+        model.addAttribute("menu", "회원가입 완료");
     }
 
     //아이디 중복체크
@@ -94,11 +100,12 @@ public class MemberController {
     }
 
 
-    @GetMapping("/view")
-    public void viewGET(@RequestParam("userId") String userId,Model model){
-
-        MemberDTO memberDTO = memberServiceIf.view(userId);
-        model.addAttribute("memberDTO",memberDTO);
+    @GetMapping("/modify")
+    public void viewGET(@RequestParam(name = "userId", defaultValue = "") String userId,Model model){
+        model.addAttribute("menu", "내 정보 수정");
+//
+//        MemberDTO memberDTO = memberServiceIf.view(userId);
+//        model.addAttribute("memberDTO",memberDTO);
     }
     @PostMapping("/delete")
     public String deletePOST(String user_id, HttpServletRequest request){

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+    <!-- Start login -->
+  <section class="login registration section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+          <div class="mt-1 bg-white rounded-2 shadow text-center p-4 d-flex flex-column gap-3">
+            <h3>반가워요 <span class="badge bg-primary">회원이름</span>님!!</h3>
+            <p>우리 앞으로 함께 플리해요!💖💖💖</p>
+            <p>TeenFlea 💜 <span class="badge border border-primary text-primary">회원이름</span>님</p>
+            <p>플리가 되신것을 다시 한번 축하드립니다!</p>
+            <br>
+            <button class="btn btn-outline-primary" onclick="location.replace('/login/login')">로그인 하러가기</button>
+          </div><!-- End Contact Form -->
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- End login -->
+  </div>
+  </body>
+</html>

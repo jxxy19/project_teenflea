@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>TeenFlea</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Web Font -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/css/animate.css" />
+    <link rel="stylesheet" href="/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <!--  썸머노트  -->
+<!--    <link rel="stylesheet" href="/assets/summernote/summernote-lite.min.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+    <!--  제이쿼리  -->
+    <script src="/assets/jquery/jquery-3.7.1.js"></script>
+    <script src="/assets/jquery/jquery-ui.js"></script>
+    <link href="/assets/jquery/jquery-ui.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<!-- /End Preloader -->
+
+<!-- Start Header Area -->
+<header class="header navbar-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <div class="nav-inner">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                            <img class="mt-4" src="/assets/images/logo/logo.png" alt="Logo" />
+                        </a>
+                        <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class=" active dd-menu collapsed" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class=" dd-menu collapsed" href="/goods/list"
+                                       data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
+                                       aria-controls="navbarSupportedContent" aria-expanded="false"
+                                       aria-label="Toggle navigation">중고플리</a>
+                                    <ul class="sub-menu collapse" id="submenu-1-3">
+                                        <li class="nav-item"><a href="/goods/list?category=all">전체</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=digital">디지털기기</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=furniture">가구/인테리어</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=cloth">의류</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=acc">잡화</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=appliance">생활가전</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=sports">스포츠/레저</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=hobby">취미</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=beauty">뷰티</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=book">도서</a></li>
+                                        <li class="nav-item"><a href="/goods/list?category=etc">기타</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/notice/list" aria-label="Toggle navigation">공지사항</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/board/list" aria-label="Toggle navigation">자유게시판</a>
+                                </li>
+                            </ul>
+                        </div> <!-- navbar collapse -->
+                        <div class="login-button">
+                            <ul>
+                                <li>
+                                    <a href="/login/login"><i class="lni lni-enter"></i> 로그인</a>
+                                </li>
+                                <li>
+                                    <a href="/login/logout"><i class="lni lni-exit"></i> 로그아웃</a>
+                                </li>
+                                <li>
+                                    <a href="/member/regist"><i class="lni lni-user"></i> 회원가입</a>
+                                </li>
+                                <li>
+                                    <a href="/member/modify"><i class="lni lni-user"></i> 내 정보 수정</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="button header-button">
+                            <a href="/goods/regist" class="btn">새 중고 올리기</a>
+                        </div>
+                    </nav> <!-- navbar -->
+                </div>
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</header>
+<!-- End Header Area -->
+
+<!-- Start content Area -->
+<th:block th:if="${menu != null and !menu.toString().equals('메인')}">
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title" th:text="${menu}">메뉴명</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <ul class="breadcrumb-nav">
+                    <li><a href="/">Home</a></li>
+                    <li th:text="${menu}">메뉴명</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+</th:block>
+<div layout:fragment="content">
+
+</div>
+<!-- /End content Area -->
+
+<!-- Start Footer Area -->
+<footer class="footer">
+    <!-- Start Footer Top -->
+    <div class="footer-top pt-2 pb-3">
+        <div class="container">
+            <div class="row">
+                <!-- Single Widget -->
+                <div class="single-footer d-flex f-contact justify-content-center col-lg-3 col-md-12 col-sm-12">
+                    <img width="200px" src="/assets/images/logo/logo-w.png">
+                </div>
+                <!-- Single Widget -->
+                <div class="single-footer f-contact col-lg-9 col-md-12 col-sm-12">
+                    <h3>This Project Made By</h3>
+                    <ul class="p-0 m-0 d-flex justify-content-between">
+                        <li>👑 Juyeon Jeon <img class="w-15px" src="/assets/images/icon/github.svg"></li>
+                        <li>JaeSeon Lee <img class="w-15px" src="/assets/images/icon/github.svg"></li>
+                        <li>JongYun Chae <img class="w-15px" src="/assets/images/icon/github.svg"></li>
+                        <li>Jeehyun Jang <img class="w-15px" src="/assets/images/icon/github.svg"></li>
+                    </ul>
+                </div>
+                <!-- End Single Widget -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--/ End Footer Middle -->
+    <!-- Start Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content">
+                            <p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/"
+                                                                                   rel="nofollow" target="_blank">GrayGrids</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Middle -->
+</footer>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ========================= JS here ========================= -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/tiny-slider.js"></script>
+<script src="/assets/js/glightbox.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/commonUtil.js"></script>
+<script src="/assets/summernote/summernote-lite.min.js"></script>
+<th:block layout:fragment="script">
+
+</th:block>
+</body>
+
+</html>

@@ -1,119 +1,10 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>TeenFlea</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="/src/main/resources/static/assets/images/favicon.svg" />
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- Web Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/animate.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css" />
-
-</head>
-
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-    <!-- /End Preloader -->
-
-    <!-- Start Header Area -->
-    <header class="header navbar-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="nav-inner">
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
-                                <img class="mt-4" src="/src/main/resources/static/assets/images/logo/logo.png" alt="Logo" />
-                            </a>
-                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ms-auto">
-                                    <li class="nav-item">
-                                        <a class=" active dd-menu collapsed" href="#">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                      <a class=" dd-menu collapsed" href="javascript:void(0)"
-                                          data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
-                                          aria-controls="navbarSupportedContent" aria-expanded="false"
-                                          aria-label="Toggle navigation">중고플리</a>
-                                      <ul class="sub-menu collapse" id="submenu-1-3">
-                                          <li class="nav-item"><a href="javascript:void(0)">전체</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">디지털기기</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">가구/인테리어</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">의류</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">잡화</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">생활가전</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">스포츠/레저</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">취미</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">뷰티</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">도서</a></li>
-                                          <li class="nav-item"><a href="javascript:void(0)">기타</a></li>
-                                      </ul>
-                                  </li>
-                                    <li class="nav-item">
-                                        <a href="#" aria-label="Toggle navigation">공지사항</a>
-                                    </li>
-                                    <li class="nav-item">
-                                      <a href="#" aria-label="Toggle navigation">자유게시판</a>
-                                    </li>
-                                </ul>
-                            </div> <!-- navbar collapse -->
-                            <div class="login-button">
-                                <ul>
-                                    <li>
-                                        <a href="javascript:void(0)"><i class="lni lni-enter"></i> 로그인</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"><i class="lni lni-exit"></i> 로그아웃</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"><i class="lni lni-user"></i> 회원가입</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"><i class="lni lni-user"></i> 내 정보 수정</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="button header-button">
-                                <a href="javascript:void(0)" class="btn">새 글 올리기</a>
-                            </div>
-                        </nav> <!-- navbar -->
-                    </div>
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </header>
-    <!-- End Header Area -->
-
+<div layout:fragment="content">
     <!-- Start Hero Area -->
     <section class="hero-area overlay">
         <div class="container">
@@ -204,7 +95,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/laptop.svg" alt="#">
+                                  <img src="/assets/images/categories/laptop.svg" alt="#">
                               </div>
                               <h3>디지털기기</h3>
                               <h5 class="total">00</h5>
@@ -213,7 +104,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/furniture.svg" alt="#">
+                                  <img src="/assets/images/categories/furniture.svg" alt="#">
                               </div>
                               <h3>가구/인테리어</h3>
                               <h5 class="total">00</h5>
@@ -222,7 +113,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/tshirt.svg" alt="#">
+                                  <img src="/assets/images/categories/tshirt.svg" alt="#">
                               </div>
                               <h3>의류</h3>
                               <h5 class="total">00</h5>
@@ -231,7 +122,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/travel.svg" alt="#">
+                                  <img src="/assets/images/categories/travel.svg" alt="#">
                               </div>
                               <h3>잡화</h3>
                               <h5 class="total">00</h5>
@@ -240,7 +131,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/real-estate.svg" alt="#">
+                                  <img src="/assets/images/categories/real-estate.svg" alt="#">
                               </div>
                               <h3>생활가전</h3>
                               <h5 class="total">00</h5>
@@ -249,7 +140,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/car.svg" alt="#">
+                                  <img src="/assets/images/categories/car.svg" alt="#">
                               </div>
                               <h3>스포츠/레저</h3>
                               <h5 class="total">00</h5>
@@ -258,7 +149,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/controller.svg" alt="#">
+                                  <img src="/assets/images/categories/controller.svg" alt="#">
                               </div>
                               <h3>취미</h3>
                               <h5 class="total">00</h5>
@@ -267,7 +158,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/matrimony.svg" alt="#">
+                                  <img src="/assets/images/categories/matrimony.svg" alt="#">
                               </div>
                               <h3>뷰티</h3>
                               <h5 class="total">00</h5>
@@ -276,7 +167,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                               <div class="icon">
-                                  <img src="/src/main/resources/static/assets/images/categories/book.svg" alt="#">
+                                  <img src="/assets/images/categories/book.svg" alt="#">
                               </div>
                               <h3>도서</h3>
                               <h5 class="total">00</h5>
@@ -285,7 +176,7 @@
                           <!-- Start Single Category -->
                           <a href="category.html" class="single-cat">
                             <div class="icon">
-                                <img src="/src/main/resources/static/assets/images/categories/three-dots.svg" alt="#">
+                                <img src="/assets/images/categories/three-dots.svg" alt="#">
                             </div>
                             <h3>기타</h3>
                             <h5 class="total">00</h5>
@@ -316,7 +207,7 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/src/main/resources/static/assets/images/items-grid/img1.jpg" alt="#"></a>
+                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
@@ -340,7 +231,7 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/src/main/resources/static/assets/images/items-grid/img1.jpg" alt="#"></a>
+                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
@@ -364,7 +255,7 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/src/main/resources/static/assets/images/items-grid/img1.jpg" alt="#"></a>
+                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
@@ -388,7 +279,7 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/src/main/resources/static/assets/images/items-grid/img1.jpg" alt="#"></a>
+                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
@@ -412,7 +303,7 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/src/main/resources/static/assets/images/items-grid/img1.jpg" alt="#"></a>
+                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
@@ -436,7 +327,7 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/src/main/resources/static/assets/images/items-grid/img1.jpg" alt="#"></a>
+                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
@@ -502,66 +393,9 @@
         </div>
     </section>
     <!-- /End Why Choose Area -->
-
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <!-- Start Footer Top -->
-        <div class="footer-top pt-2 pb-3">
-            <div class="container">
-                <div class="row">
-                    <!-- Single Widget -->
-                    <div class="single-footer d-flex f-contact justify-content-center col-lg-3 col-md-12 col-sm-12">
-                        <img width="200px" src="/src/main/resources/static/assets/images/logo/logo-w.png">
-                    </div>
-                    <!-- Single Widget -->
-                    <div class="single-footer f-contact col-lg-9 col-md-12 col-sm-12">
-                        <h3>This Project Made By</h3>
-                        <ul class="p-0 m-0 d-flex justify-content-between">
-                            <li>👑 Juyeon Jeon <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                            <li>JaeSeon Lee <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                            <li>JongYun Chae <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                            <li>Jeehyun Jang <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                        </ul>
-                    </div>
-                    <!-- End Single Widget -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End Footer Middle -->
-        <!-- Start Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="inner">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="content">
-                                <p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/"
-                                        rel="nofollow" target="_blank">GrayGrids</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->
-
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top btn-hover">
-        <i class="lni lni-chevron-up"></i>
-    </a>
-
-    <!-- ========================= JS here ========================= -->
-    <script src="/src/main/resources/static/assets/js/bootstrap.min.js"></script>
-    <script src="/src/main/resources/static/assets/js/wow.min.js"></script>
-    <script src="/src/main/resources/static/assets/js/tiny-slider.js"></script>
-    <script src="/src/main/resources/static/assets/js/glightbox.min.js"></script>
-    <script src="/src/main/resources/static/assets/js/main.js"></script>
-    <script type="text/javascript">
-        //========= Category Slider 
+</div>
+    <script type="text/javascript" layout:fragment="script">
+        //========= Category Slider
         tns({
             container: '.category-slider',
             items: 3,

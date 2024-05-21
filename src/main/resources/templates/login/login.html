@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+    <!-- Start login -->
+  <section class="login section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+          <div class="form-head">
+            <div class="d-flex flex-column justify-content-center gap-1 mb-2">
+              <h4 class="title p-0 m-0">로그인</h4>
+              <small class="text-center">로그인해서 함께 플리 나눠요💖</small>
+            </div>
+            <form action="/login/login" method="post">
+              <div class="form-group">
+                <label>아이디</label>
+                <input name="email" type="email">
+              </div>
+              <div class="form-group">
+                <label>비밀번호</label>
+                <input name="password" type="password">
+              </div>
+              <div class="check-and-pass">
+                <div class="row align-items-center">
+                  <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input width-auto" id="exampleCheck1">
+                      <label class="form-check-label">아이디 저장</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="button">
+                <button type="submit" class="btn">로그인</button>
+              </div>
+              <p class="outer-link">헉! 아직 플리가 아니시라고요? <a href="/member/regist">당장 회원가입 하러가기</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- End login -->
+  </div>
+  </body>
+</html>

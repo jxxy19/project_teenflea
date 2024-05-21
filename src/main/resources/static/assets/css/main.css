@@ -891,7 +891,7 @@ ol {
   position: relative;
   padding-bottom: 10px;
   padding-top: 140px;
-  background: url(/src/main/resources/static/assets/images/hero/hero-bg.jpg) center center;
+  background: url(/assets/images/hero/hero-bg.jpg) center center;
   background-color: #00000010;
   z-index: 2;
   text-align: left;
@@ -7224,4 +7224,470 @@ blockquote .shape {
 
 .bg-teenflea-dark {
   background-color: #310f47 !important;
+}
+
+/*======================================
+    Login CSS
+========================================*/
+.login {
+  background-color: #f9f9f9;
+}
+
+.login .form-head {
+  padding: 50px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.login .form-head .title {
+  font-size: 30px;
+  line-height: 1.42;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.login .form-head form .form-group {
+  margin-bottom: 25px;
+}
+
+.login .form-head form .form-group label {
+  display: block;
+  margin-bottom: .5rem;
+  color: #888;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.login .form-head form .form-group input {
+  width: 100%;
+  min-height: 56px;
+  padding: 3px 20px;
+  color: #081828;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  outline: 0;
+  background-color: #fff;
+  font-size: 15px;
+}
+
+.login .form-head form .check-and-pass .form-check {
+  float: left;
+}
+
+.login .form-head form .check-and-pass .form-check a {
+  color: #5830E0;
+}
+
+.login .form-head form .check-and-pass .form-check .form-check-input:checked {
+  background-color: #5830E0;
+  border-color: #5830E0;
+}
+
+.login .form-head form .check-and-pass .form-check-label a:hover {
+  text-decoration: underline;
+}
+
+.login .form-head form .check-and-pass .lost-pass {
+  float: right;
+  color: #777;
+  position: relative;
+  top: -2px;
+}
+
+.login .form-head form .check-and-pass .lost-pass:hover {
+  color: #5830E0;
+  text-decoration: underline;
+}
+
+.login .form-head form .button {
+  margin-top: 25px;
+}
+
+.login .form-head form .button .btn {
+  width: 100%;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.login .form-head form .button .btn:hover {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.login .form-head form .outer-link {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 30px;
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+}
+
+.login .form-head form .outer-link a {
+  color: #5830E0;
+}
+
+.login .form-head form .outer-link a:hover {
+  text-decoration: underline;
+}
+
+.login .form-head .alt-option {
+  margin: 30px 0;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.login .form-head .alt-option span {
+  font-size: 15px;
+  background: #fff;
+  color: #888;
+  padding: 5px 15px;
+}
+
+.login .form-head .alt-option::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  width: 100%;
+  background: #eee;
+  content: "";
+  z-index: -1;
+}
+
+.login .form-head .socila-login ul li {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.login .form-head .socila-login ul li:last-child {
+  margin: 0;
+}
+
+.login .form-head .socila-login ul li a {
+  padding: 15px 20px;
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  display: block;
+  color: #888;
+  font-size: 15px;
+}
+
+.login .form-head .socila-login ul li a.facebook:hover {
+  color: #fff;
+  background: #3b5999;
+  border-color: transparent;
+}
+
+.login .form-head .socila-login ul li a.facebook:hover i {
+  color: #fff;
+}
+
+.login .form-head .socila-login ul li a.facebook i {
+  color: #3b5999;
+}
+
+.login .form-head .socila-login ul li a.google:hover {
+  color: #fff;
+  background: #dd4b39;
+  border-color: transparent;
+}
+
+.login .form-head .socila-login ul li a.google:hover i {
+  color: #fff;
+}
+
+.login .form-head .socila-login ul li a.google i {
+  color: #dd4b39;
+}
+
+.login .form-head .socila-login ul li a i {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 15px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+/* Post Ad Tab */
+.post-ad-tab {
+  padding: 0px 30px;
+}
+
+.post-ad-tab nav .nav-tabs {
+  border-bottom: 2px solid #eee;
+}
+
+.post-ad-tab nav button {
+  padding: 20px 40px;
+  border: none !important;
+  text-align: left;
+  position: relative;
+  padding-left: 100px;
+  border-radius: 0 !important;
+  border-radius: 6px 6px 0 0 !important;
+  margin: 0 !important;
+  width: 33.33333333333333%;
+  position: relative;
+  bottom: -1px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #081828;
+}
+
+.post-ad-tab nav button .serial {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  text-align: center;
+  color: #888;
+  font-size: 19px;
+  font-weight: 600;
+  display: block;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.post-ad-tab nav button.active {
+  color: #fff !important;
+}
+
+.post-ad-tab nav button.active .serial {
+  border-color: transparent;
+  background: #fff;
+  color: #5830E0;
+}
+
+.post-ad-tab nav button.active .sub-title {
+  color: #fff;
+}
+
+.post-ad-tab nav button .sub-title {
+  display: block;
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.post-ad-tab nav button:hover {
+  border: none !important;
+}
+
+.post-ad-tab nav button.active {
+  background: #5830E0 !important;
+  border: none !important;
+}
+
+.post-ad-tab .step-two-content .upload-input {
+  position: relative;
+  height: 240px;
+}
+
+.post-ad-tab .step-two-content .upload-input input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(124, 134, 154, 0.25);
+  text-indent: -9999px;
+  z-index: 2;
+  border-radius: 6px;
+}
+
+.post-ad-tab .step-two-content .upload-input .plus-icon {
+  height: 80px;
+  width: 80px;
+  color: #fff;
+  background: #88888859;
+  display: inline-block;
+  line-height: 80px;
+  font-size: 18px;
+  border-radius: 5px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.post-ad-tab .step-two-content .upload-input:hover .plus-icon {
+  background-color: #5830E0;
+}
+
+.post-ad-tab .step-two-content .upload-input .content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+.post-ad-tab .step-two-content .video-label {
+  display: inline-block;
+}
+
+.post-ad-tab .step-two-content .video-label span {
+  color: #888;
+  display: inline-block;
+  margin-left: 12px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.post-ad-tab .step-two-content .add-video {
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #888;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.post-ad-tab .step-two-content .add-video:hover {
+  color: #5830E0;
+}
+
+.post-ad-tab .step-two-content .add-video i {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.post-ad-tab .step-two-content .tag-label {
+  display: inline-block;
+}
+
+.post-ad-tab .step-two-content .tag-label span {
+  color: #888;
+  display: inline-block;
+  margin-left: 12px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.post-ad-tab .step-three-content .google-map {
+  margin-bottom: 30px;
+}
+
+.post-ad-tab .step-three-content .form-check {
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Default Form Style */
+.default-form-style {
+  margin-top: 30px;
+}
+
+.default-form-style .form-group {
+  margin-bottom: 30px;
+}
+
+.default-form-style .form-group.button .btn {
+  padding: 13px 30px;
+  margin-left: 10px;
+}
+
+.default-form-style .form-group.button .btn.alt-btn {
+  background: #081828;
+  color: #fff;
+}
+
+.default-form-style .form-group.button .btn.alt-btn:hover {
+  color: #fff;
+  background: #5830E0;
+}
+
+.default-form-style .form-group.button .btn:first-child {
+  margin: 0;
+}
+
+.default-form-style .form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 10px;
+  color: #081828;
+}
+
+.default-form-style .form-group input {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  color: #081828;
+  background: #fff;
+  padding: 0px 20px;
+}
+
+.default-form-style .form-group select {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  color: #081828;
+  background: #fff;
+  padding: 0px 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+}
+
+.default-form-style .form-group select:focus {
+  outline: none !important;
+}
+
+.default-form-style .form-group .selector-head {
+  position: relative;
+}
+
+.default-form-style .form-group .arrow {
+  position: absolute;
+  color: #888;
+  right: 20px;
+  top: 50%;
+  z-index: 2;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 12px;
+}
+
+.default-form-style .form-group textarea {
+  height: 130px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  color: #081828;
+  width: 100%;
+}
+
+
+.regist-label {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+  color: #081828;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
 }

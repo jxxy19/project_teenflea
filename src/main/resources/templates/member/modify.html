@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+    <!-- Start login -->
+  <section class="login registration section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+          <div class="form-head">
+            <div class="d-flex flex-column justify-content-center gap-1 mb-2">
+              <h4 class="title p-0 m-0">내 정보 수정</h4>
+              <small class="text-center">수정 사항이 있나요?</small>
+            </div>
+            <form action="/member/modify" method="post">
+              <div class="form-group">
+                <label>이름</label>
+                <input name="name" type="text" value="이름">
+              </div>
+              <div class="form-group">
+                <label>아이디</label>
+                <input class="bg-light" name="userId" type="text" value="아이디" disabled>
+              </div>
+              <div class="form-group">
+                <label>비밀번호</label>
+                <input name="pwd" type="password">
+              </div>
+              <div class="form-group">
+                <label>비밀번호 확인</label>
+                <input name="pwdCheck" type="password">
+              </div>
+              <div class="form-group">
+                <label>생년월일</label>
+                <input class="bg-light" name="birthday" type="date" value="1996-10-17" disabled>
+              </div>
+              <div class="form-group">
+                <label>이메일</label>
+                <input name="email" type="email" value="test@test.test">
+              </div>
+              <div class="form-group">
+                <label>주소</label>
+                <div>
+                  <div class="mb-3">
+                    <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" name="zip_code" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2" value="우편번호" onclick="sample4_execDaumPostcode()" readonly>
+                      <button class="btn btn-outline-primary"  type="button" id="button-addon2" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="addr1" class="form-control" data-name="주소" value="주소1" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="addr2" data-name="상세주소" value="상세주소"  class="form-control" id="sample4_detailAddress"  placeholder="상세주소">
+                  </div>
+                  <span id="guide" style="color:#999;display:none"></span>
+                </div>
+              </div>
+              <div class="d-grid gap-5">
+                <button type="submit" class="btn btn-outline-primary">수정하기</button>
+                <div class="d-flex flex-column justify-content-center">
+                  <small class="align-self-center">설마....떠나시는건 아니겠죠...?😰😢</small>
+                  <button type="button" class="btn btn-outline-secondary">탈퇴하기</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- End login -->
+  </div>
+<th:block layout:fragment="script">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" ></script>
+  <script>
+    // 이용약관 전체동의
+    const agreeAll = document.getElementById('agreeAll');
+    agreeAll.addEventListener('change', ()=>{
+      let checkYN = agreeAll.checked;
+      let terms = document.querySelectorAll('.terms');
+      if(checkYN) {
+        for (let term of terms) {
+          term.checked = true;
+        }
+      } else {
+        for (let term of terms) {
+          term.checked = false;
+        }
+      }
+    })
+
+    // 다음 우편번호 서비스
+    function sample4_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+          // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var roadAddr = data.roadAddress; // 도로명 주소 변수
+          var extraRoadAddr = ''; // 참고 항목 변수
+
+          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+            extraRoadAddr += data.bname;
+          }
+          // 건물명이 있고, 공동주택일 경우 추가한다.
+          if(data.buildingName !== '' && data.apartment === 'Y'){
+            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+          }
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById('sample4_postcode').value = data.zonecode;
+          document.getElementById("sample4_roadAddress").value = roadAddr;
+
+          var guideTextBox = document.getElementById("guide");
+          // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+          if(data.autoRoadAddress) {
+            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+            guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+            guideTextBox.style.display = 'block';
+
+          } else if(data.autoJibunAddress) {
+            var expJibunAddr = data.autoJibunAddress;
+            guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+            guideTextBox.style.display = 'block';
+          } else {
+            guideTextBox.innerHTML = '';
+            guideTextBox.style.display = 'none';
+          }
+        }
+      }).open();
+    }
+  </script>
+</th:block>
+  </body>
+</html>

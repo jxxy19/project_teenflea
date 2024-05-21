@@ -11,29 +11,67 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.util.UrlPathHelper;
 
 import java.util.List;
 
 @Log4j2
 @Controller
 @RequiredArgsConstructor
+@RequestMapping({"/goods", "/board", "/notice"})
 public class BbsController {
     private final BbsServiceIf bbsServiceIf;
     @GetMapping("/list")
-    public void list(PageRequestDTO pageRequestDTO, Model model){
+    public String list(PageRequestDTO pageRequestDTO, Model model,
+                     HttpServletRequest request){
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+
         PageResponseDTO<BbsDTO> pageResponseDTO = bbsServiceIf.list(pageRequestDTO);
         model.addAttribute("pageResponseDTO" , pageResponseDTO);
+        if(originalURL.contains("board")) {
+            model.addAttribute("menu", "자유게시판");
+        } else if(originalURL.contains("notice")) {
+            model.addAttribute("menu", "공지사항");
+        } else if(originalURL.contains("goods")) {
+            model.addAttribute("menu", "중고플리");
+            return "/goods/list";
+        }
+        return "/board/list";
     }
 
     @GetMapping("/view")
-    public void view(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
-        BbsDTO resultbbsDTO = bbsServiceIf.view(bbsDTO);
-        model.addAttribute("bbsDTO",resultbbsDTO);
+    public String view(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            model.addAttribute("menu", "자유게시판");
+        } else if(originalURL.contains("notice")) {
+            model.addAttribute("menu", "공지사항");
+        } else if(originalURL.contains("goods")) {
+            model.addAttribute("menu", "중고플리");
+            return "/goods/view";
+        }
+//        BbsDTO resultbbsDTO = bbsServiceIf.view(bbsDTO);
+//        model.addAttribute("bbsDTO",resultbbsDTO);
+        return "/board/view";
     }
 
     @GetMapping("/regist")
-    public void regist(){
+    public String regist(Model model, HttpServletRequest request){
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            model.addAttribute("menu", "자유게시판");
+        } else if(originalURL.contains("notice")) {
+            model.addAttribute("menu", "공지사항");
+        } else if(originalURL.contains("goods")) {
+            model.addAttribute("menu", "중고플리");
+            return "/goods/regist";
+        }
+        return "/board/regist";
     }
     @Transactional
     @PostMapping("/regist")
@@ -48,11 +86,22 @@ public class BbsController {
     }
 
     @GetMapping("/modify")
-    public void modifyGet(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model){
+    public String modifyGet(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            model.addAttribute("menu", "자유게시판");
+        } else if(originalURL.contains("notice")) {
+            model.addAttribute("menu", "공지사항");
+        } else if(originalURL.contains("goods")) {
+            model.addAttribute("menu", "중고플리");
+            return "/goods/modify";
+        }
         BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
         List<BbsFileDTO> fileDTO = bbsServiceIf.listFile(pageRequestDTO, bbsDTO.getBbsIdx());
         model.addAttribute("bbsDTO",viewDTO);
         model.addAttribute("fileDTO",fileDTO);
+        return "/board/modify";
     }
     @Transactional
     @PostMapping("/modify")

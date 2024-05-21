@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,10 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Log4j2
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/login")
 public class LoginController {
     private final LoginServiceIf loginServiceIf;
     @GetMapping("/login")
     public void loginGET(HttpServletRequest req, Model model){
+        model.addAttribute("menu", "로그인");
         String acc_url = req.getHeader("referer");
         model.addAttribute("acc_url", acc_url);
     }

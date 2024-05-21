@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+    <!-- Start form -->
+  <!-- Start Dashboard Section -->
+  <section class="dashboard section pt-2">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="main-content rounded p-3 bg-white border shadow-sm mt-5">
+            <!-- Start Post Ad Block Area -->
+            <div class="dashboard-block mt-0">
+              <div class="inner-block">
+                <!-- Start Post Ad Tab -->
+                <div class="post-ad-ta  b">
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane active show" id="nav-item-details" role="tabpanel"
+                         aria-labelledby="nav-item-details-tab">
+                      <!-- Start Post Ad Step Two Content -->
+                      <div class="step-two-content">
+                        <form class="default-form-style m-0" method="post" action="/goods/regist">
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>상품명 <strong class="text-danger">*</strong></label>
+                                <input name="title" type="text" maxlength="100">
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>카테고리 <strong class="text-danger">*</strong></label>
+                                <div class="selector-head">
+                                  <span class="arrow"><i class="lni lni-chevron-down"></i></span>
+                                  <select name="category" class="user-chosen-select">
+                                    <option value="">선택</option>
+                                    <option value="none">디지털기기</option>
+                                    <option value="none">가구/인테리어</option>
+                                    <option value="none">의류</option>
+                                    <option value="none">잡화</option>
+                                    <option value="none">생활가전</option>
+                                    <option value="none">스포츠/레저</option>
+                                    <option value="none">취미</option>
+                                    <option value="none">뷰티</option>
+                                    <option value="none">도서</option>
+                                    <option value="none">기타</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>지역 <strong class="text-danger">*</strong></label>
+                                <div class="selector-head">
+                                  <span class="arrow"><i class="lni lni-chevron-down"></i></span>
+                                  <select name="location" class="user-chosen-select">
+                                    <option value="">선택</option>
+                                    <option value="none">서울특별시</option>
+                                    <option value="none">부산광역시</option>
+                                    <option value="none">대구광역시</option>
+                                    <option value="none">인천광역시</option>
+                                    <option value="none">광주광역시</option>
+                                    <option value="none">대전광역시</option>
+                                    <option value="none">울산광역시</option>
+                                    <option value="none">세종특별자치시</option>
+                                    <option value="none">경기도</option>
+                                    <option value="none">강원특별자치도</option>
+                                    <option value="none">전라남도</option>
+                                    <option value="none">경상북도</option>
+                                    <option value="none">경상남도</option>
+                                    <option value="none">제주특별자치도</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <label class="regist-label">이미지 첨부파일</label>
+                                <div class="">
+                                  <div class="form-group">
+                                    <input type="file" class="form-control p-1 h-auto" id="file"  multiple="multiple" onchange="fileList(this)" accept=image/*>
+                                  </div>
+                                </div>
+                              <div class="ml-5">
+                                <label class="regist-label">파일 리스트</label>
+                                <ul id="file-list" class="form-group col-12 d-flex flex-column m-0 p-0" style="gap:5px">
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group mt-30">
+                                <label>상세내용 <strong class="text-danger">*</strong></label>
+                                <textarea name="content" id="summernote"></textarea>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group button mb-0 d-flex justify-content-between">
+                                <button type="submit" class="btn alt-btn">취소</button>
+                                <button type="submit" class="btn ">저장</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- Start Post Ad Step Two Content -->
+                    </div>
+                  </div>
+                </div>
+                <!-- End Post Ad Tab -->
+              </div>
+            </div>
+            <!-- End Post Ad Block Area -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Dashboard Section -->
+    <!-- End form -->
+</div>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/js/regist.js" layout:fragment="script">
+    </script>
+  </body>
+</html>
