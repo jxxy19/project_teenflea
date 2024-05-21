@@ -11,13 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name="flea_board")
-public class BbsEntity extends BaseEntity
-{
-    @Id // 필수
+@Table(name="flea_bbs")
+public class BbsEntity extends BaseEntity {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique=true, nullable=false)
-
     private int bbsIdx;
     @Column(length=20,nullable=false)
     private String userId;
@@ -27,11 +25,11 @@ public class BbsEntity extends BaseEntity
     private String content;
     @Column(length=10,nullable=true)
     private String displayDate;
-    @Column(length=10,nullable = true) // 조회수 미정
+    @Column(length=10,nullable = true)
     private int readCnt;
-    @Column(length =5 ,nullable=false) //카테고리 1
+    @Column(length =5 ,nullable=false)
     private String category1;
-    @Column(length =5 ,nullable=true)  // 카테고리 2
+    @Column(length =5 ,nullable=true)
     private String category2;
     @Column(length =100 ,nullable=false)
     private String img;
@@ -47,6 +45,5 @@ public class BbsEntity extends BaseEntity
         this.img=img;
         super.setModify_date(LocalDateTime.now());
     }
-
 
 }
