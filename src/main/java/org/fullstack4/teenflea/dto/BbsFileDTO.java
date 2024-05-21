@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 public class BbsFileDTO {
     private int bbsFileIdx;
     private int bbsIdx;
-    private String category;
     private String directory;
     private String fileName;
     private String userId;
