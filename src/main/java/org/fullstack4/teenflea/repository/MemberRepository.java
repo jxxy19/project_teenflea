@@ -10,4 +10,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
 
   Optional<MemberEntity> findByUserId(String userId);
   int deleteByUserId(String userId);
+
+  //아이디 중복검사
+  boolean existsByUserId(String UserId);
 }

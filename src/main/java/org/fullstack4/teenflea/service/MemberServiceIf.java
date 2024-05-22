@@ -11,4 +11,7 @@ public interface MemberServiceIf {
     MemberDTO modify(MemberDTO memberDTO);
 
     int delete(String userId);
+
+    //아이디중복체크
+    Boolean idCheck(String user_id);
 }

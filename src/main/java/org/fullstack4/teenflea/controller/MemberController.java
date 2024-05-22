@@ -2,22 +2,23 @@ package org.fullstack4.teenflea.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.fullstack4.teenflea.dto.MemberDTO;
 import org.fullstack4.teenflea.service.MemberServiceIf;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -61,28 +62,34 @@ public class MemberController {
     }
 
     //아이디 중복체크
-//    @GetMapping("/duplecheck")
-//    public void duplecheckGET(HttpServletRequest request, HttpServletResponse response){
-//        String user_id = request.getParameter("user_id");
-//        int count = 0;
-//        if(memberServiceIf.idCheck(user_id) >0){
-//            count = memberServiceIf.idCheck(user_id);
-//        }
-//        if(count > 0) {
-//            try {
-//                response.getWriter().print("N");
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//        }else {
-//            try {
-//                response.getWriter().print("Y");
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
+    @GetMapping("/duplecheck")
+    @ResponseBody
+    public ResponseEntity<?> duplecheckGET(@RequestParam("userId") String userId,HttpServletRequest request,HttpServletResponse response,
+                              Model model) {
+        System.out.println("usrId idcheck getcontroller : " + userId);
+        Boolean result = false;
+        result = memberServiceIf.idCheck(userId);
+        System.out.println("result controller : " + result) ;
+
+        //아이디 중복으로 있으면 (true)
+        if(result){
+            Map<String, Object> resp = new HashMap<>();
+            resp.put("success", false);
+            resp.put("message","중복된 아이디입니다.");
+
+            return ResponseEntity.ok().body(resp);
+
+        }
+        else{
+            Map<String, Object> resp = new HashMap<>();
+            resp.put("success", true);
+
+
+            return ResponseEntity.ok().body(resp);
+
+        }
+
+    }
 
     /*@GetMapping("/modify")
     public void modifyGET(){
@@ -92,7 +99,11 @@ public class MemberController {
 
     @PostMapping("/modify")
     public String modifyPOST(@Valid MemberDTO memberDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes,HttpServletRequest request){
+
+
+        System.out.println("memberDTO : " + memberDTO);
         if(bindingResult.hasErrors()){
+            System.out.println("bindingResult.getAllErrors() " + bindingResult.getAllErrors());
             log.info("bindingResult Errors : " +memberDTO);
             redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
             redirectAttributes.addFlashAttribute("info","alert(`회원 정보 수정 실패 올바른 값을 입력해 주세요.`);");
@@ -101,7 +112,7 @@ public class MemberController {
         MemberDTO modifyDTO = memberServiceIf.modify(memberDTO);
         request.getSession().setAttribute("memberDTO",modifyDTO);
         redirectAttributes.addFlashAttribute("info","alert(`회원 정보 수정 성공`);");
-        return "redirect:/member/view";
+        return "redirect:/member/modify";
     }
 
 
@@ -112,18 +123,23 @@ public class MemberController {
 //        MemberDTO memberDTO = memberServiceIf.view(userId);
 //        model.addAttribute("memberDTO",memberDTO);
     }
-    @PostMapping("/delete")
-    public String deletePOST(String user_id, HttpServletRequest request){
+    @GetMapping("/delete")
+    public String deletePOST(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberDTO dto = (MemberDTO)session.getAttribute("memberDTO");
+        String userId = dto.getUserId();
+        System.out.println("user_id " +userId);
         log.info("============================");
         log.info("MemberController deletePOST");
         log.info("============================");
-        int result = memberServiceIf.delete(user_id);
+        int result = memberServiceIf.delete(userId);
+        System.out.println("result controller : " + result);
         if(result > 0 ){
             request.getSession().invalidate();
             return "redirect:/login/logout";
         }
         else{
-            return "/member/view?user_id="+user_id;
+            return "/member/modify";
         }
     }
 }

@@ -42,11 +42,16 @@ public class LoginController {
         HttpSession session = req.getSession();
         /*loginDTO.setPwd(commonUtil.encryptPwd(loginDTO.getPwd())); */
         String save_id = "";
-        System.out.println("loginDTO " +loginDTO);
+
         MemberDTO LoginMemberDTO = loginServiceIf.login_info(loginDTO);
 
-        if(LoginMemberDTO.getUserId() != null) {
+        if(LoginMemberDTO !=null && LoginMemberDTO.getUserId() != null ) {
 
+            if(LoginMemberDTO.getUserState().equals("N")){
+
+                redirectAttributes.addFlashAttribute("errorAlert","없는 회원입니다.");
+                return "redirect:/login/login";
+            }
             //아이디 저장
             if(loginDTO.getSave_id()!=null) {
                 save_id=loginDTO.getUserId();
@@ -71,7 +76,7 @@ public class LoginController {
         }
 
         redirectAttributes.addFlashAttribute("errors","사용자 정보가 일치하지 않습니다.");
-        redirectAttributes.addFlashAttribute("errorAlert","<script> alert('사용자 정보가 일치하지 않습니다.') </script>");
+
         return "redirect:/login/login";
     }
 

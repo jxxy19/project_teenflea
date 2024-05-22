@@ -57,6 +57,12 @@ public class MemberEntity extends BaseEntity {
         this.userState=user_state;
 
     }
+    public void delete(String user_state){
+
+
+        this.userState=user_state;
+
+    }
 
 }
 

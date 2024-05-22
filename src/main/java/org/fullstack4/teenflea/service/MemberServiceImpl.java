@@ -39,7 +39,8 @@ public class MemberServiceImpl implements MemberServiceIf{
     public MemberDTO modify(MemberDTO memberDTO) {
         Optional<MemberEntity> result = memberRepository.findByUserId(memberDTO.getUserId());
         MemberEntity member = result.orElse(null);
-        member.modify(memberDTO.getPwd(), memberDTO.getEmail(),memberDTO.getAddr1(),memberDTO.getAddr2(),memberDTO.getPhoneNumber(),memberDTO.getUserState(),memberDTO.getZipCode());
+        member.modify(memberDTO.getPwd(), memberDTO.getEmail(),memberDTO.getPhoneNumber(),memberDTO.getAddr1(),memberDTO.getAddr2(),memberDTO.getZipCode(),memberDTO.getUserState());
+
         memberRepository.save(member);
         MemberDTO memberUpdateDTO = modelMapper.map(member,MemberDTO.class);
         return memberUpdateDTO;
@@ -49,7 +50,19 @@ public class MemberServiceImpl implements MemberServiceIf{
 
     @Override
     public int delete(String userId) {
-        int result = memberRepository.deleteByUserId(userId);
+        Optional<MemberEntity> result = memberRepository.findByUserId(userId);
+        MemberEntity member = result.orElse(null);
+        System.out.println("service Imple member " + member);
+        member.delete("N");
+        memberRepository.save(member);
+
+        return 1;
+    }
+
+    @Override
+    public Boolean idCheck(String userId) {
+        boolean result = memberRepository.existsByUserId(userId);
+        System.out.println("idcheck result값 : " + result);
 
         return result;
     }

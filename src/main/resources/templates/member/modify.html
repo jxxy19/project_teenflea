@@ -15,30 +15,36 @@
               <h4 class="title p-0 m-0">내 정보 수정</h4>
               <small class="text-center">수정 사항이 있나요?</small>
             </div>
-            <form action="/member/modify" method="post">
+            <form id="frm" name="frm" action="/member/modify" method="post">
+              <input type="hidden" name="userState" id="userState" value="Y">
               <div class="form-group">
                 <label>이름</label>
-                <input name="name" type="text" value="이름">
+                <input name="name" type="text" th:value="${session.memberDTO.name}" readonly>
               </div>
               <div class="form-group">
                 <label>아이디</label>
-                <input class="bg-light" name="userId" type="text" value="아이디" disabled>
+                <input class="bg-light" name="userId" type="text" th:value="${session.memberDTO.userId}" readonly>
               </div>
               <div class="form-group">
                 <label>비밀번호</label>
-                <input name="pwd" type="password">
+                <input name="pwd" type="password" id="pwd">
               </div>
               <div class="form-group">
                 <label>비밀번호 확인</label>
-                <input name="pwdCheck" type="password">
+                <input name="pwdCheck" type="password" id="confirm_pwd">
+                <div  id="pwd_mismatch_msg" style="display:none;color:red; font-size: 12px;">비밀번호가 일치하지 않습니다.</div>
+              </div>
+              <div class="form-group">
+                <label>휴대폰번호</label>
+                <input name="phoneNumber" type="text" th:value="${session.memberDTO.phoneNumber}">
               </div>
               <div class="form-group">
                 <label>생년월일</label>
-                <input class="bg-light" name="birthday" type="date" value="1996-10-17" disabled>
+                <input class="bg-light" name="birthday" type="date" th:value="${session.memberDTO.birthday}" readonly>
               </div>
               <div class="form-group">
                 <label>이메일</label>
-                <input name="email" type="email" value="test@test.test">
+                <input name="email" type="email" th:value="${session.memberDTO.email}">
               </div>
               <div class="form-group">
                 <label>주소</label>
@@ -46,25 +52,26 @@
                   <div class="mb-3">
                     <div class="form-group">
                     <div class="input-group">
-                      <input type="text" name="zip_code" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2" value="우편번호" onclick="sample4_execDaumPostcode()" readonly>
+                      <input type="text" name="zipCode" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2" th:value="${session.memberDTO.zipCode}" onclick="sample4_execDaumPostcode()" readonly>
                       <button class="btn btn-outline-primary"  type="button" id="button-addon2" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
                     </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="addr1" class="form-control" data-name="주소" value="주소1" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+                    <input type="text" name="addr1" class="form-control" data-name="주소" th:value="${session.memberDTO.addr1}" id="sample4_roadAddress" placeholder="도로명주소" readonly>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="addr2" data-name="상세주소" value="상세주소"  class="form-control" id="sample4_detailAddress"  placeholder="상세주소">
+                    <input type="text" name="addr2" data-name="상세주소" th:value="${session.memberDTO.addr2}"  class="form-control" id="sample4_detailAddress"  placeholder="상세주소">
                   </div>
                   <span id="guide" style="color:#999;display:none"></span>
                 </div>
               </div>
-              <div class="d-grid gap-5">
-                <button type="submit" class="btn btn-outline-primary">수정하기</button>
+              <div class="d-grid gap-3">
+                <button type="submit" id="submit_button" class="btn btn-outline-primary">수정하기</button>
+                <button type="button" class="btn btn-outline-primary" onclick="location.href='/main/main'" style="border-color:red; color:red;">취소하기</button>
                 <div class="d-flex flex-column justify-content-center">
                   <small class="align-self-center">설마....떠나시는건 아니겠죠...?😰😢</small>
-                  <button type="button" class="btn btn-outline-secondary">탈퇴하기</button>
+                  <button type="button" id="delete_button" class="btn btn-outline-secondary">탈퇴하기</button>
                 </div>
               </div>
             </form>
@@ -78,7 +85,7 @@
 <th:block layout:fragment="script">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" ></script>
   <script>
-    // 이용약관 전체동의
+ /*   // 이용약관 전체동의
     const agreeAll = document.getElementById('agreeAll');
     agreeAll.addEventListener('change', ()=>{
       let checkYN = agreeAll.checked;
@@ -92,7 +99,7 @@
           term.checked = false;
         }
       }
-    })
+    })*/
 
     // 다음 우편번호 서비스
     function sample4_execDaumPostcode() {
@@ -137,6 +144,57 @@
         }
       }).open();
     }
+
+    const delete_button = document.querySelector("#delete_button");
+    delete_button.addEventListener("click",function (e){
+      e.preventDefault();
+      const confirm_msg = "정말로 탈퇴하시겠습니까?"
+      if(confirm(confirm_msg)){
+        alert("탈퇴되었습니다.")
+        location.href='/member/delete';
+
+      }
+
+    });
+    const submit_button =document.querySelector("#submit_button");
+    submit_button.addEventListener("click",function (e){
+      e.preventDefault();
+      const pwd= document.querySelector("#pwd");
+      const confirm_pwd= document.querySelector("#confirm_pwd");
+
+
+      //비밀번호 일치
+      if(!passwordMatch(confirm_pwd,pwd)){
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+      }
+
+      const confirm_msg ="정말로 수정하시겠습니까?";
+      if(confirm(confirm_msg)){
+        alert("정보가 수정되었습니다.");
+        document.frm.submit();
+      }
+
+
+ });
+
+ //비밀번호 확인가이드
+ let confirm_pwd = document.querySelector("#confirm_pwd");
+ confirm_pwd.addEventListener("keyup",function (e){
+   let pwd = document.querySelector("#pwd");
+   let mismatchMsg = document.getElementById("pwd_mismatch_msg");
+   e.preventDefault();
+   if(!passwordMatch (confirm_pwd,pwd) ){
+     mismatchMsg.style.display="block";
+   }
+   if(passwordMatch (confirm_pwd,pwd) ){
+
+     mismatchMsg.style.display="none";
+
+   }
+
+ });
+
   </script>
 </th:block>
   </body>
