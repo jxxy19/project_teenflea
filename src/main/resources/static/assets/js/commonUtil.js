@@ -1,3 +1,10 @@
+// 링크 이동용 함수
+function goToThisLink(str, element) {
+    let url = str + element.dataset.idx;
+    location.href = url;
+}
+
+
 // --------------------------------------------------- 체크용 함수 (boolean 값 리턴)
 // 공란 or 띄어쓰기만 들어간 값 체크 (null 체크용)
 function nullCheck(str) {

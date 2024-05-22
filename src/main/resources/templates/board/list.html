@@ -51,23 +51,33 @@
             </div>
             <!-- End List Title -->
             <!-- Start Single List -->
-
-          <div class="single-item-list cursor-pointer" th:each="dto:${pageResponseDTO.dtoList}">
-              <div class="row align-items-center p-3" onclick="location.href = '/board/view?bbsIdx=1'">
-                  <div class="col-lg-5 col-md-5 col-12">
-                      <p class="title">[[${dto.title}]]</p>
+              <th:block th:if="${pageResponseDTO.dtoList.size() > 0}">
+                  <div class="single-item-list cursor-pointer" th:each="dto:${pageResponseDTO.dtoList}">
+                      <div class="row align-items-center p-3" th:data-idx="${dto.bbsIdx}" onclick="goToThisLink('/board/view?bbsIdx=',this)">
+                          <div class="col-lg-5 col-md-5 col-12">
+                              <p class="title">[[${dto.title}]]</p>
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-12">
+                              <p>[[${dto.category2}]]</p>
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-12">
+                              <p>[[${dto.userId}]]</p>
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-12 align-right">
+                              <p>[[${#strings.substring(dto.regDate,0,10)}]]</p>
+                          </div>
+                      </div>
                   </div>
-                  <div class="col-lg-3 col-md-3 col-12">
-                      <p>[[${dto.category2}]]</p>
+              </th:block>
+              <th:block th:unless="${pageResponseDTO.dtoList.size() > 0}">
+                  <div class="single-item-list" >
+                      <div class="row align-items-center p-3" >
+                          <div class="col-12">
+                              <p class="title text-center">게시글이 없습니다.</p>
+                          </div>
+                      </div>
                   </div>
-                  <div class="col-lg-2 col-md-2 col-12">
-                      <p>[[${dto.userId}]]</p>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-12 align-right">
-                      <p>[[${#strings.substring(dto.regDate,0,10)}]]</p>
-                  </div>
-              </div>
-          </div>
+              </th:block>
           <div class="row">
               <div class="col-12">
                   <!-- Pagination -->
