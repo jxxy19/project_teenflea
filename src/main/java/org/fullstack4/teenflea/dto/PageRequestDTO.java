@@ -39,6 +39,7 @@ public class PageRequestDTO {
     private String search_type; //t=제목 c=내용 u=아이디
     private String[] search_types;
     private String search_word;
+    private String location;
     private String category1;
     private String category2;
     private String linkParams;
@@ -89,6 +90,9 @@ public class PageRequestDTO {
             }
             if(reg_date_end !=null){
                 sb.append("&reg_date_end="+this.reg_date_end);
+            }
+            if(location !=null){
+                sb.append("&location="+this.location);
             }
             linkParams = sb.toString();
         }

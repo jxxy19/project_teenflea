@@ -2,6 +2,8 @@ package org.fullstack4.teenflea.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DialectOverride;
 
 import java.time.LocalDateTime;
 
@@ -25,12 +27,15 @@ public class BbsEntity extends BaseEntity {
     private String content;
     @Column(length=10,nullable = true)
     private int readCnt;
-    @Column(length =5 ,nullable=false)
+    @Column(length =10 ,nullable=false)
     private String category1;
-    @Column(length =5 ,nullable=true)
+    @Column(length =30 ,nullable=true)
     private String category2;
     @Column(length =100 ,nullable=true)
     private String location;
+    @Column(length = 15,nullable=true)
+    @ColumnDefault("0")
+    private int price;
 
     public void modify(String title,String content,String category2){
         this.title=title;

@@ -65,8 +65,13 @@ public class BbsServiceImpl implements BbsServiceIf{
         PageRequest pageable = pageRequestDTO.getPageable();
         Page<BbsEntity> result = null;
         String category = pageRequestDTO.getCategory1();
+        String category2 = pageRequestDTO.getCategory2();
         String search_word = pageRequestDTO.getSearch_word();
-        if(pageRequestDTO.getSearch_word()!=null && !pageRequestDTO.getSearch_word().isEmpty()) {
+        String location = pageRequestDTO.getLocation();
+        if(location != null || category2 != null){
+            result = bbsRepository.findAllByCategory2ContainsAndLocationContainsAndTitleContains(pageable,category2,location,search_word);
+        }
+        else if(pageRequestDTO.getSearch_word()!=null && !pageRequestDTO.getSearch_word().isEmpty()) {
             result = bbsRepository.findAllByCategory1AndTitleContainsOrContentContainsAndCategory1ContainsOrUserIdContainsAndCategory1ContainsOrderByBbsIdxDesc(
                     pageable, category, search_word,search_word,category,search_word,category
             );
@@ -138,4 +143,17 @@ public class BbsServiceImpl implements BbsServiceIf{
         return PageResponseDTO.<BbsReplyDTO>withAll().pageRequestDTO(pageRequestDTO)
                 .dtoList(dtoList).total_count((int) result.getTotalElements()).build();
     }
+
+    @Override
+    public int countCategoryTwo(String category2) {
+        bbsRepository.countByCategory2(category2);
+        if(bbsRepository.countByCategory2(category2)!=0) {
+            return bbsRepository.countByCategory2(category2);
+        }
+        else{
+            return 0;
+        }
+    }
+
+
 }

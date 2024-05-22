@@ -27,37 +27,37 @@
                 <h3>카테고리</h3>
                 <ul class="list">
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-menu"></i> 전체<span>15</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-menu"></i> 전체<span>[[${categoryTwoTotalCount}]]</span></a>
                   </li>
                   <li>
-                    <a href="#"><i class="lni lni-laptop"></i> 디지털기기<span>15</span></a>
+                    <a href="#"><i class="lni lni-laptop"></i> 디지털기기<span>[[${categoryTwoCount[0]}]]</span></a>
                   </li>
                   <li>
-                    <a href="#"><i class="lni lni-home"></i> 가구/인테리어 <span>20</span></a>
+                    <a href="#"><i class="lni lni-home"></i> 가구/인테리어 <span>[[${categoryTwoCount[1]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-tshirt"></i> 의류 <span>55</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-tshirt"></i> 의류 <span>[[${categoryTwoCount[2]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-diamond-alt"></i> 잡화<span>35</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-diamond-alt"></i> 잡화<span>[[${categoryTwoCount[3]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-display"></i> 생활가전 <span>60</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-display"></i> 생활가전 <span>[[${categoryTwoCount[4]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-basketball"></i> 스포츠/레저 <span>55</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-basketball"></i> 스포츠/레저 <span>[[${categoryTwoCount[5]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-game"></i> 취미 <span>45</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-game"></i> 취미 <span>[[${categoryTwoCount[6]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-spray"></i> 뷰티 <span>45</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-spray"></i> 뷰티 <span>[[${categoryTwoCount[7]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-book"></i> 도서 <span>45</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-book"></i> 도서 <span>[[${categoryTwoCount[8]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-more-alt"></i> 기타 <span>45</span></a>
+                    <a href="javascript:void(0)"><i class="lni lni-more-alt"></i> 기타 <span>[[${categoryTwoCount[9]}]]</span></a>
                   </li>
                 </ul>
               </div>
@@ -79,190 +79,22 @@
                   <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
                       <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12">
+                        <div class="col-lg-4 col-md-6 col-12" th:each="dto:${pageResponseDTO.dtoList}">
                           <!-- Start Single Item -->
                           <div class="single-item-grid">
                             <div class="image">
                               <a href="/goods/view?bbsIdx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
                             </div>
                             <div class="content">
-                              <a href="/goods/view?bbsIdx=1" class="tag">카테고리1</a>
+                              <a href="/goods/view?bbsIdx=1" class="tag">[[${dto.category2}]]</a>
                               <h3 class="title">
-                                <a href="/goods/view?bbsIdx=1">상품명</a>
+                                <a href="/goods/view?bbsIdx=1">[[${dto.title}]]</a>
                               </h3>
                               <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
+                                <a href="/goods/view?bbsIdx=1"><i class="lni lni-map-marker"> </i>[[${dto.location}]]</a>
                               </p>
                               <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a href="/goods/view?idx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                            </div>
-                            <div class="content">
-                              <a href="/goods/view?idx=1" class="tag">카테고리1</a>
-                              <h3 class="title">
-                                <a href="/goods/view?idx=1">상품명</a>
-                              </h3>
-                              <p class="location">
-                                <a href="/goods/view?idx=1"><i class="lni lni-map-marker"> </i>서울특별시</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">10,000원</li>
+                                <li class="price">[[${dto.price}]]</li>
                               </ul>
                             </div>
                           </div>
@@ -274,17 +106,17 @@
                           <!-- Pagination -->
                           <div class="pagination center">
                             <ul class="pagination-list">
-                              <li>
-                                <a href="#"><i class="lni lni-chevron-left"></i></a>
+                              <li th:if="${pageResponseDTO.prev_page_flag}">
+                                <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_start -10})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-left"></i></a>
                               </li>
-                              <li><a href="#">1</a></li>
-                              <li class="active">
-                                <a href="#">2</a>
-                              </li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#">4</a></li>
-                              <li>
-                                <a href="#"><i class="lni lni-chevron-right"></i></a>
+                              <th:block th:each="i:${#numbers.sequence(pageResponseDTO.page_block_start,pageResponseDTO.page_block_end)}">
+                                <li th:class="${pageResponseDTO.getPage() == i} ? 'page-item active' : 'page-item'">
+                                  <a th:href="|/${category1}@{/list(page=${i})}${pageResponseDTO.linkParams}|" class="page-link" th:data-num="${i}">[[${i}]]</a>
+                                </li>
+
+                              </th:block>
+                              <li th:if="${pageResponseDTO.next_page_flag}">
+                                <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_end +1})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-right"></i></a>
                               </li>
                             </ul>
                           </div>

@@ -27,6 +27,7 @@ public class PageResponseDTO<E> {
     private String search_word;
     private String category;
     private String category2;
+    private String location;
     private String linkParams;
     private String orderby;
     private LocalDate reg_date_start;
@@ -57,6 +58,7 @@ public class PageResponseDTO<E> {
         this.search_type = pageRequestDTO.getSearch_type();
         this.search_types = pageRequestDTO.getSearch_types();
         this.search_word = pageRequestDTO.getSearch_word();
+        this.location = pageRequestDTO.getLocation();
         this.reg_date_start = pageRequestDTO.getReg_date_start();
         this.reg_date_end = pageRequestDTO.getReg_date_end();
         this.linkParams = pageRequestDTO.getLinkParams();
