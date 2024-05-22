@@ -8,6 +8,13 @@
     <!-- Start Item Details -->
     <section class="item-details section">
       <div class="container">
+        <div class="d-flex justify-content-between mb-2">
+          <div><button type="button" class="btn btn-outline-primary">목록</button></div>
+          <div class="d-flex gap-1">
+            <button type="button" class="btn btn-outline-primary">삭제</button>
+            <button type="button" class="btn btn-primary">수정</button>
+          </div>
+        </div>
         <div class="top-area">
           <div class="row h-100">
             <div class="col-lg-6 col-md-12 col-12 h-100">
@@ -18,11 +25,10 @@
                   </div>
                   <div class="img-inner">
                         <div class="goods-slider">
-                          <img class="img" src="/assets/images/item-details/test.jpg" title="1" alt="#" />
-                          <img class="img" src="/assets/images/item-details/test.jpg" title="2" alt="#" />
-                          <img class="img" src="/assets/images/item-details/test.jpg" title="3" alt="#" />
-                          <img class="img" src="/assets/images/item-details/test.jpg" title="4" alt="#" />
-                          <img class="img" src="/assets/images/item-details/test.jpg" title="5" alt="#" />
+                          <img class="img h-fixed" src="/assets/images/item-details/test.jpg" title="1" alt="#" />
+                          <img class="img h-fixed" src="/assets/images/item-details/test1.jpg" title="2" alt="#" />
+                          <img class="img h-fixed" src="/assets/images/item-details/test2.jpg" title="3" alt="#" />
+                          <img class="img h-fixed " src="/assets/images/item-details/test3.jpg" title="4" alt="#" />
                         </div>
                   </div>
                 </main>
@@ -148,21 +154,20 @@
         gutter: 0,
         nav: false,
         controls: true,
+        loop: false,
+        swipeAngle: false,
         controlsText: ['<i class="lni lni-chevron-left user-page"></i>', '<i class="lni lni-chevron-right user-page"></i>'],
-        // responsive: {
-        //   0: {
-        //     items: 1,
-        //   },
-        //   10: {
-        //     items: 2,
-        //   },
-        //   20: {
-        //     items: 4,
-        //   },
-        //   30: {
-        //     items: 5,
-        //   }
-        // }
+        responsive: {
+          0: {
+            items: 1,
+          },
+          200: {
+            items: 2,
+          },
+          400: {
+            items: 3,
+          }
+        }
       });
     </script>
   </body>
