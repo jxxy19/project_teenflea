@@ -37,11 +37,11 @@
                                 <div class="selector-head">
                                   <span class="arrow"><i class="lni lni-chevron-down"></i></span>
                                   <select name="category2" class="user-chosen-select">
-                                    <option value="">선택</option>
-                                    <option value="문의">문의</option>
+                                    <option value="" >선택</option>
+                                    <option value="문의" >문의</option>
                                     <option value="소통">소통</option>
-                                    <option value="삽니다">삽니다</option>
-                                    <option value="기타">기타</option>
+                                    <option value="삽니다" >삽니다</option>
+                                    <option value="기타" >기타</option>
                                   </select>
                                 </div>
                               </div>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-12">
                               <div class="form-group button mb-0 d-flex justify-content-between">
-                                <button type="submit" class="btn alt-btn">취소</button>
+                                <a th:href="|/${category1}/list|" type="submit" class="btn alt-btn">취소</a>
                                 <button type="submit" class="btn ">저장</button>
                               </div>
                             </div>

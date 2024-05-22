@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface BbsReplyRepository extends JpaRepository<BbsReplyEntity, Integer> {
-    Page<BbsReplyEntity> findAllByBbsIdxOrderByReplyIdxDesc(Pageable pageable,int bbsIdx);
+    List<BbsReplyEntity> findAllByBbsIdxOrderByReplyIdxDesc(int bbsIdx);
 }

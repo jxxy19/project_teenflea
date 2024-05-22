@@ -14,8 +14,12 @@
               <!-- Start Single Widget -->
               <div class="single-widget search">
                 <h3>키워드</h3>
-                <form action="#">
-                  <input type="text" placeholder="흠냐 뭘 검색할까?" />
+                <form th:action="|/${category1}/list|">
+                  <input type="hidden" name="category1" th:value="${category1}" />
+                  <input type="hidden" name="search_type" value="t" />
+                  <input type="hidden" name="search_type" value="c" />
+                  <input type="hidden" name="search_type" value="u" />
+                  <input type="text" name="search_word" placeholder="제목&내용&등록자" />
                   <button type="submit">
                     <i class="lni lni-search-alt"></i>
                   </button>
@@ -27,37 +31,37 @@
                 <h3>카테고리</h3>
                 <ul class="list">
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-menu"></i> 전체<span>[[${categoryTwoTotalCount}]]</span></a>
+                    <a href="/goods/list"><i class="lni lni-menu"></i> 전체<span>[[${categoryTwoTotalCount}]]</span></a>
                   </li>
                   <li>
-                    <a href="#"><i class="lni lni-laptop"></i> 디지털기기<span>[[${categoryTwoCount[0]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=디지털기기&location="><i class="lni lni-laptop"></i> 디지털기기<span>[[${categoryTwoCount[0]}]]</span></a>
                   </li>
                   <li>
-                    <a href="#"><i class="lni lni-home"></i> 가구/인테리어 <span>[[${categoryTwoCount[1]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=가구/인테리어&location="><i class="lni lni-home"></i> 가구/인테리어 <span>[[${categoryTwoCount[1]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-tshirt"></i> 의류 <span>[[${categoryTwoCount[2]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=의류&location="><i class="lni lni-tshirt"></i> 의류 <span>[[${categoryTwoCount[2]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-diamond-alt"></i> 잡화<span>[[${categoryTwoCount[3]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=잡화&location="><i class="lni lni-diamond-alt"></i> 잡화<span>[[${categoryTwoCount[3]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-display"></i> 생활가전 <span>[[${categoryTwoCount[4]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=생활가전&location="><i class="lni lni-display"></i> 생활가전 <span>[[${categoryTwoCount[4]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-basketball"></i> 스포츠/레저 <span>[[${categoryTwoCount[5]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=스포츠/레저&location="><i class="lni lni-basketball"></i> 스포츠/레저 <span>[[${categoryTwoCount[5]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-game"></i> 취미 <span>[[${categoryTwoCount[6]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=취미&location="><i class="lni lni-game"></i> 취미 <span>[[${categoryTwoCount[6]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-spray"></i> 뷰티 <span>[[${categoryTwoCount[7]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=뷰티&location="><i class="lni lni-spray"></i> 뷰티 <span>[[${categoryTwoCount[7]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-book"></i> 도서 <span>[[${categoryTwoCount[8]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=도서&location="><i class="lni lni-book"></i> 도서 <span>[[${categoryTwoCount[8]}]]</span></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="lni lni-more-alt"></i> 기타 <span>[[${categoryTwoCount[9]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=기타&location="><i class="lni lni-more-alt"></i> 기타 <span>[[${categoryTwoCount[9]}]]</span></a>
                   </li>
                 </ul>
               </div>
@@ -121,170 +125,6 @@
                             </ul>
                           </div>
                           <!--/ End Pagination -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
-                      <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="row align-items-center">
-                              <div class="col-lg-5 col-md-7 col-12">
-                                <div class="image">
-                                  <a href="item-details.html"><img class="w-100" src="/assets/images/items-grid/img2.jpg" alt="#" /></a>
-                                  <i class="cross-badge lni lni-bolt"></i>
-                                  <span class="flat-badge sale">Sale</span>
-                                </div>
-                              </div>
-                              <div class="col-lg-7 col-md-5 col-12">
-                                <div class="content">
-                                  <a href="javascript:void(0)" class="tag">Others</a>
-                                  <h3 class="title">
-                                    <a href="item-details.html">Travel Kit</a>
-                                  </h3>
-                                  <p class="location">
-                                    <a href="javascript:void(0)"><i class="lni lni-map-marker"> </i>San Francisco</a>
-                                  </p>
-                                  <ul class="info">
-                                    <li class="price">$580.00</li>
-                                    <li class="like">
-                                      <a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="row align-items-center">
-                              <div class="col-lg-5 col-md-7 col-12">
-                                <div class="image">
-                                  <a href="item-details.html"><img class="w-100" src="/assets/images/items-grid/img3.jpg" alt="#" /></a>
-                                  <i class="cross-badge lni lni-bolt"></i>
-                                  <span class="flat-badge sale">Sale</span>
-                                </div>
-                              </div>
-                              <div class="col-lg-7 col-md-5 col-12">
-                                <div class="content">
-                                  <a href="javascript:void(0)" class="tag">Electronic</a>
-                                  <h3 class="title">
-                                    <a href="item-details.html">Nikon DSLR Camera</a>
-                                  </h3>
-                                  <p class="location">
-                                    <a href="javascript:void(0)"><i class="lni lni-map-marker"> </i>Alaska, USA</a>
-                                  </p>
-                                  <ul class="info">
-                                    <li class="price">$560.00</li>
-                                    <li class="like">
-                                      <a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="row align-items-center">
-                              <div class="col-lg-5 col-md-7 col-12">
-                                <div class="image">
-                                  <a href="item-details.html"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
-                                  <i class="cross-badge lni lni-bolt"></i>
-                                  <span class="flat-badge sale">Sale</span>
-                                </div>
-                              </div>
-                              <div class="col-lg-7 col-md-5 col-12">
-                                <div class="content">
-                                  <a href="javascript:void(0)" class="tag">Mobile</a>
-                                  <h3 class="title">
-                                    <a href="item-details.html">Apple Iphone X</a>
-                                  </h3>
-                                  <p class="location">
-                                    <a href="javascript:void(0)"><i class="lni lni-map-marker"> </i>Boston</a>
-                                  </p>
-                                  <ul class="info">
-                                    <li class="price">$890.00</li>
-                                    <li class="like">
-                                      <a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="row align-items-center">
-                              <div class="col-lg-5 col-md-7 col-12">
-                                <div class="image">
-                                  <a href="item-details.html"><img class="w-100" src="/assets/images/items-grid/img4.jpg" alt="#" /></a>
-                                  <i class="cross-badge lni lni-bolt"></i>
-                                  <span class="flat-badge sale">Sale</span>
-                                </div>
-                              </div>
-                              <div class="col-lg-7 col-md-5 col-12">
-                                <div class="content">
-                                  <a href="javascript:void(0)" class="tag">Furniture</a>
-                                  <h3 class="title">
-                                    <a href="item-details.html">Poster Paint</a>
-                                  </h3>
-                                  <p class="location">
-                                    <a href="javascript:void(0)"><i class="lni lni-map-marker"> </i>Las Vegas</a>
-                                  </p>
-                                  <ul class="info">
-                                    <li class="price">$85.00</li>
-                                    <li class="like">
-                                      <a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-12">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="row align-items-center">
-                              <div class="col-lg-5 col-md-7 col-12">
-                                <div class="image">
-                                  <a href="item-details.html"><img class="w-100" src="/assets/images/items-grid/img6.jpg" alt="#" /></a>
-                                  <i class="cross-badge lni lni-bolt"></i>
-                                  <span class="flat-badge rent">Rent</span>
-                                </div>
-                              </div>
-                              <div class="col-lg-7 col-md-5 col-12">
-                                <div class="content">
-                                  <a href="javascript:void(0)" class="tag">Books & Magazine</a>
-                                  <h3 class="title">
-                                    <a href="item-details.html">Story Book</a>
-                                  </h3>
-                                  <p class="location">
-                                    <a href="javascript:void(0)"><i class="lni lni-map-marker"> </i>New York, USA</a>
-                                  </p>
-                                  <ul class="info">
-                                    <li class="price">$120.00</li>
-                                    <li class="like">
-                                      <a href="javascript:void(0)"><i class="lni lni-heart"></i></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- End Single Item -->
                         </div>
                       </div>
                     </div>
