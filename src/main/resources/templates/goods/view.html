@@ -16,12 +16,14 @@
                   <div class="main-img">
                     <img class="img" src="/assets/images/item-details/test.jpg" id="current" alt="#" />
                   </div>
-                  <div class="images">
-                    <img class="img" src="/assets/images/item-details/test.jpg" alt="#" />
-                    <img class="img" src="/assets/images/item-details/test.jpg" alt="#" />
-                    <img class="img" src="/assets/images/item-details/test.jpg" alt="#" />
-                    <img class="img" src="/assets/images/item-details/test.jpg" alt="#" />
-                    <img class="img" src="/assets/images/item-details/test.jpg" alt="#" />
+                  <div class="img-inner">
+                        <div class="goods-slider">
+                          <img class="img" src="/assets/images/item-details/test.jpg" title="1" alt="#" />
+                          <img class="img" src="/assets/images/item-details/test.jpg" title="2" alt="#" />
+                          <img class="img" src="/assets/images/item-details/test.jpg" title="3" alt="#" />
+                          <img class="img" src="/assets/images/item-details/test.jpg" title="4" alt="#" />
+                          <img class="img" src="/assets/images/item-details/test.jpg" title="5" alt="#" />
+                        </div>
                   </div>
                 </main>
               </div>
@@ -135,6 +137,32 @@
           //opacity
           e.target.style.opacity = opacity;
         });
+      });
+
+      tns({
+        container: '.goods-slider',
+        items: 3,
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        nav: false,
+        controls: true,
+        controlsText: ['<i class="lni lni-chevron-left user-page"></i>', '<i class="lni lni-chevron-right user-page"></i>'],
+        // responsive: {
+        //   0: {
+        //     items: 1,
+        //   },
+        //   10: {
+        //     items: 2,
+        //   },
+        //   20: {
+        //     items: 4,
+        //   },
+        //   30: {
+        //     items: 5,
+        //   }
+        // }
       });
     </script>
   </body>
