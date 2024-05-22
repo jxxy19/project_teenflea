@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+    <!-- Start Error Area -->
+    <div class="error-area">
+      <div class="d-table">
+        <div class="d-table-cell">
+          <div class="container">
+            <div class="error-content">
+              <h1 th:text="${status}">에러코드</h1>
+              <h2>잘못된 요청입니다.😰</h2>
+              <p>다시 메인으로 돌아가 다시 시도해주세요</p>
+              <div class="button">
+                <a href="/" class="btn">메인으로</a>
+              </div>
+              <div class="overflow-y-scroll h-300px border rounded p-2 mt-3">
+                <ul class="w-100 list-unstyled text-start">
+                  <li th:text="|timestamp: ${timestamp}|"></li>
+                  <li th:text="|path: ${path}|"></li>
+                  <li th:text="|status: ${status}|"></li>
+                  <li th:text="|message: ${message}|"></li>
+                  <li th:text="|error: ${error}|"></li>
+                  <li th:text="|exception: ${exception}|"></li>
+                  <li th:text="|errors: ${errors}|"></li>
+                  <li th:text="|trace: ${trace}|"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <!-- End Error Area -->
+    <script layout:fragment="script">
+      window.onload = function () {
+        window.setTimeout(fadeout, 500);
+      };
+
+      function fadeout() {
+        document.querySelector(".preloader").style.opacity = "0";
+        document.querySelector(".preloader").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
