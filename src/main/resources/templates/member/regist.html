@@ -16,6 +16,7 @@
               <small class="text-center">저희와 함께해주시는건가요?😍</small>
             </div>
             <form action="/member/regist" method="post">
+              <input type="hidden" name="userState" id="userState" value="Y">
               <div class="form-group">
                 <label>이름</label>
                 <input name="name" type="text">
@@ -37,6 +38,10 @@
                 <input name="pwdCheck" type="password">
               </div>
               <div class="form-group">
+                <label>휴대폰번호</label>
+                <input name="phoneNumber" type="text">
+              </div>
+              <div class="form-group">
                 <label>생년월일</label>
                 <input name="birthday" type="date">
               </div>
@@ -50,7 +55,7 @@
                   <div class="mb-3">
                     <div class="form-group">
                     <div class="input-group">
-                      <input type="text" name="zip_code" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2"  onclick="sample4_execDaumPostcode()" readonly>
+                      <input type="text" name="zipCode" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2"  onclick="sample4_execDaumPostcode()" readonly>
                       <button class="btn btn-outline-primary"  type="button" id="button-addon2" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
                     </div>
                     </div>
@@ -490,6 +495,8 @@
         }
       }).open();
     }
+
+    //아이디 중복 체크
   </script>
 </th:block>
   </body>

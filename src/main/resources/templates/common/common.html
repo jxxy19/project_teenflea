@@ -98,13 +98,18 @@
                         </div> <!-- navbar collapse -->
                         <div class="login-button">
                             <ul>
-                                <li>
+                                <li th:if="${session.memberDTO != null}">
+                                    <span th:text="${session.memberDTO.name}">사용자 이름</span>
+                                </li>
+
+                                <li th:if="${session.memberDTO == null || session.memberDTO.userId == null}">
                                     <a href="/login/login"><i class="lni lni-enter"></i> 로그인</a>
                                 </li>
-                                <li>
+                                <li th:if="${session.memberDTO != null && session.memberDTO.userId != null}">
                                     <a href="/login/logout"><i class="lni lni-exit"></i> 로그아웃</a>
+
                                 </li>
-                                <li>
+                                <li th:if="${session.memberDTO == null || session.memberDTO.userId == null}">
                                     <a href="/member/regist"><i class="lni lni-user"></i> 회원가입</a>
                                 </li>
                                 <li>
