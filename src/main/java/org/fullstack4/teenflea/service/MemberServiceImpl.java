@@ -19,7 +19,9 @@ public class MemberServiceImpl implements MemberServiceIf{
     @Override
     public int regist(MemberDTO memberDTO) {
         MemberEntity member = modelMapper.map(memberDTO,MemberEntity.class);
+
         int idx = memberRepository.save(member).getMemberIdx();
+
 
         return idx;
     }

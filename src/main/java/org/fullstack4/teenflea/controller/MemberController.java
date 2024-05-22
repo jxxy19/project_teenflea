@@ -34,16 +34,21 @@ public class MemberController {
     }
     @PostMapping("/regist")
     public String registPOST(@Valid MemberDTO memberDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
+
+
+
        /* memberDTO.setPassword(commonUtil.encryptPwd(memberDTO.getPassword()));*/
         if(bindingResult.hasErrors()){
+
             model.addAttribute("errors",bindingResult.getAllErrors());
             model.addAttribute("memberDTO",memberDTO);
             return "/member/regist";
         }
         int result = memberServiceIf.regist(memberDTO);
+        System.out.println("result : " + result );
         if(result > 0 ){
            redirectAttributes.addFlashAttribute("info","alert(`가입이 완료되었습니다.`);");
-            return "redirect:/login";
+            return "redirect:/login/login";
         }
         else{
           return "/member/regist";

@@ -42,6 +42,7 @@ public class LoginController {
         HttpSession session = req.getSession();
         /*loginDTO.setPwd(commonUtil.encryptPwd(loginDTO.getPwd())); */
         String save_id = "";
+        System.out.println("loginDTO " +loginDTO);
         MemberDTO LoginMemberDTO = loginServiceIf.login_info(loginDTO);
 
         if(LoginMemberDTO.getUserId() != null) {
