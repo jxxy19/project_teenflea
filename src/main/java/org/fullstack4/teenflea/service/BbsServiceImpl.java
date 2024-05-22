@@ -101,7 +101,6 @@ public class BbsServiceImpl implements BbsServiceIf{
             }
         }
     }
-
     @Transactional
     @Override
     public void deleteFile(BbsFileDTO bbsFileDTO) {
@@ -126,6 +125,17 @@ public class BbsServiceImpl implements BbsServiceIf{
         bbsReplyRepository.save(bbsReplyEntity);
     }
 
+    @Override
+    public void modifyReply(BbsReplyDTO bbsReplyDTO) {
+        log.info("getReplyIdx: " +bbsReplyDTO.getReplyIdx());
+        Optional<BbsReplyEntity> result = bbsReplyRepository.findById(bbsReplyDTO.getReplyIdx());
+        BbsReplyEntity bbsReplyEntity =result.orElse(null);
+        if (bbsReplyEntity != null) {
+            bbsReplyEntity.modify(bbsReplyDTO.getContent());
+            bbsReplyRepository.save(bbsReplyEntity);
+        }
+
+    }
 
     @Override
     public void deleteReply(BbsReplyDTO bbsReplyDTO) {
@@ -134,14 +144,12 @@ public class BbsServiceImpl implements BbsServiceIf{
     }
 
     @Override
-    public PageResponseDTO<BbsReplyDTO> listReply(PageRequestDTO pageRequestDTO,int bbsIdx) {
-        PageRequest pageable = pageRequestDTO.getPageable();
-        Page<BbsReplyEntity> result = bbsReplyRepository.findAllByBbsIdxOrderByReplyIdxDesc(pageable,bbsIdx);
+    public List<BbsReplyDTO> listReply(PageRequestDTO pageRequestDTO,int bbsIdx) {
+        List<BbsReplyEntity> result = bbsReplyRepository.findAllByBbsIdxOrderByReplyIdxDesc(bbsIdx);
         List<BbsReplyDTO> dtoList = result.stream()
                 .map(board->modelMapper.map(board,BbsReplyDTO.class))
                 .collect(Collectors.toList());
-        return PageResponseDTO.<BbsReplyDTO>withAll().pageRequestDTO(pageRequestDTO)
-                .dtoList(dtoList).total_count((int) result.getTotalElements()).build();
+        return dtoList;
     }
 
     @Override

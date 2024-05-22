@@ -27,4 +27,8 @@ public class BbsReplyEntity extends BaseEntity
     @Column(length=2000,nullable=false)
     private String content;
 
+    public void modify(String content){
+        this.content=content;
+        super.setModify_date(LocalDateTime.now());
+    }
 }

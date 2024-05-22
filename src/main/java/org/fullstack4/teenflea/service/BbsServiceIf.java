@@ -17,8 +17,9 @@ public interface BbsServiceIf {
     List<BbsFileDTO> listFile(PageRequestDTO pageRequestDTO, int bbsIdx);
 
     void registReply(BbsReplyDTO bbsReplyDTO);
+    void modifyReply(BbsReplyDTO bbsReplyDTO);
     void deleteReply(BbsReplyDTO bbsReplyDTO);
-    PageResponseDTO<BbsReplyDTO> listReply(PageRequestDTO pageRequestDTO,int bbsIdx);
+    List<BbsReplyDTO> listReply(PageRequestDTO pageRequestDTO,int bbsIdx);
 
     int countCategoryTwo(String category2);
 }

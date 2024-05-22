@@ -9,10 +9,10 @@
   <section class="category-page section">
     <div class="container">
       <div class="d-flex justify-content-between mb-2">
-        <div><button type="button" class="btn btn-outline-primary">목록</button></div>
+        <div><a th:href="|/${category1}/list|" type="button" class="btn btn-outline-primary">목록</a></div>
         <div class="d-flex gap-1">
-          <button type="button" class="btn btn-outline-primary">삭제</button>
-          <button type="button" class="btn btn-primary">수정</button>
+          <a th:href="|/board/delete?category1=${category1}&bbsIdx=${bbsDTO.getBbsIdx()}|" type="button" class="btn btn-outline-primary">삭제</a>
+          <a th:href="|/board/modify?category1=${category1}&bbsIdx=${bbsDTO.getBbsIdx()}|" type="button" class="btn btn-primary">수정</a>
         </div>
       </div>
       <div class="row m-0 mt-3">
@@ -24,7 +24,7 @@
                 <p class="p-0 m-0 text-white text-center">제목</p>
               </div>
               <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border">
-                <p>저는 제목이라고 하는데요???</p>
+                <p>[[${bbsDTO.title}]]</p>
               </div>
             </div>
             <div class="row align-items-center">
@@ -32,7 +32,7 @@
                 <p class="p-0 m-0 text-white text-center">카테고리</p>
               </div>
               <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border">
-                <p>카테고리1</p>
+                <p>[[${bbsDTO.category2}]]</p>
               </div>
             </div>
             <div class="row align-items-center justify-content-between">
@@ -42,7 +42,7 @@
                   <p class="p-0 m-0 text-white text-center">작성자</p>
                 </div>
                 <div class="col-lg-10 col-md-10 col-12 p-3 border">
-                  <p>장지현</p>
+                  <p>[[${bbsDTO.userId}]]</p>
                 </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                   <p class="p-0 m-0 text-white text-center">등록일</p>
                 </div>
                 <div class="col-lg-10 col-md-10 col-12 p-3 rounded-end border">
-                  <p>2024-05-22</p>
+                  <p>[[${#strings.substring(bbsDTO.regDate,0,10)}]]</p>
                 </div>
                 </div>
               </div>
@@ -62,18 +62,14 @@
                 <p class="p-0 m-0 text-white text-center">첨부파일</p>
               </div>
               <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border overflow-y-scroll" style="max-height: 300px">
-                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
-                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
-                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
-                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
+                <p class="p-1 border rounded" th:each="dto:${bbsFileDTOList}"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a th:href="|/board/downloadfile?fileName=${dto.fileName}|">[[${dto.fileName}]]</a></p>
               </div>
             </div>
             <div class="row align-items-stretch">
               <div class="col-lg-1 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 rounded-start border-primary text-center">
                 <p class="p-0 m-0 text-white text-center">내용</p>
               </div>
-              <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border overflow-y-scroll" style="height: 500px">
-                <p>안녕? 내 이름은 장지현</p><p>거꾸로 해도 장지현은 아니고 현지장!</p><p><br></p><p>요즘 너무 배고파서 머리가 안돌아가!!</p><p>뭐? 너도 그렇다고??</p><p><br></p><p>그렇담 우리는 친구야! 칭구칭구~</p>
+              <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border overflow-y-scroll" style="height: 500px" th:utext="${bbsDTO.content}">
               </div>
             </div>
           </div>
@@ -83,9 +79,10 @@
       <div class="row m-0 mt-3">
       <div class="post-comments">
         <h3 class="comment-title"><span>댓글</span></h3>
-        <form class="m-0 mb-5 row">
+        <form class="m-0 mb-5 row" action="/board/registreply" method="post">
           <div class="col-lg-11 col-12 p-0">
-            <textarea class="form-control" rows="3"></textarea>
+            <input type="hidden" name="bbsIdx" th:value="${bbsDTO.bbsIdx}">
+            <textarea class="form-control" name="content" rows="3"></textarea>
           </div>
           <div class="col-lg-1 col-12 p-0" >
             <button class="btn btn-primary w-100 h-100">등록</button>
@@ -93,37 +90,25 @@
         </form>
         <ul class="comments-list">
           <li>
-            <div class="comment-desc">
-              <div class="desc-top d-flex justify-content-between w-100">
-                <div>
-                <h6>장지현</h6>
-                <span class="date">2024-05-22 11:43</span>
+            <div class="comment-desc" th:each="dto:${bbsReplyDTOList}">
+              <form action="/board/modifyreply" method="post">
+                <input type="hidden" name="replyIdx" th:value="${dto.getReplyIdx()}">
+                <input type="hidden" name="bbsIdx" th:value="${dto.getBbsIdx()}">
+                <div class="desc-top d-flex justify-content-between w-100">
+                  <div>
+                  <h6>[[${dto.userId}]]</h6>
+                  <span class="date" >등록일시 : [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm')}]] </span>
+                  <span class="date" th:if="${dto.modifyDate}!=null">수정일시 : [[${#temporals.format(dto.modifyDate, 'yyyy-MM-dd HH:mm')}]] </span>
+                  </div>
+                  <div class="d-flex gap-1 align-items-center">
+                    <a class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
+                    <a th:href="@{/board/deletereply(replyIdx=${dto.replyIdx},bbsIdx=${dto.getBbsIdx()})}" class="reply-link position-sticky"><i class="lni lni-eraser"></i>삭제</a>
+                  </div>
                 </div>
-                <div class="d-flex gap-1 align-items-center">
-                  <a href="#" class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
-                  <a href="#" class="reply-link position-sticky" onclick="removeThis(this)"><i class="lni lni-eraser"></i>삭제</a>
-                </div>
-              </div>
-              <p class="text-area">
-                제가 한번 댓글을 달아보겠습니다?!<br>잘 보이시나요??
-              </p>
-            </div>
-          </li>
-          <li>
-            <div class="comment-desc">
-              <div class="desc-top d-flex justify-content-between w-100">
-                <div>
-                  <h6>장지현</h6>
-                  <span class="date">2024-05-22 11:43</span>
-                </div>
-                <div class="d-flex gap-1 align-items-center">
-                  <a href="#" class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
-                  <a href="#" class="reply-link position-sticky" onclick="removeThis(this)"><i class="lni lni-eraser"></i>삭제</a>
-                </div>
-              </div>
-              <p class="text-area">
-                제가 한번 댓글을 달아보겠습니다?!<br>잘 보이시나요??
-              </p>
+                <p class="text-area">
+                  [[${dto.content}]]
+                </p>
+              </form>
             </div>
           </li>
         </ul>
@@ -138,8 +123,8 @@
     event.preventDefault();
     event.stopPropagation();
     let textArea = element.parentElement.parentElement.parentElement.querySelector('.text-area');
-    textArea.outerHTML = `<textarea class="form-control" rows="3" wrap="hard" >${textArea.innerText}</textarea>`;
-    element.outerHTML = `<a href="#" class="reply-link position-sticky" onclick="changeToView(this)"><i class="lni lni-save"></i>저장</a>`
+    textArea.outerHTML = `<textarea name="content" class="form-control" rows="3" wrap="hard" >${textArea.innerText}</textarea>`;
+    element.outerHTML = `<button type="submit" class="reply-link position-sticky"><i class="lni lni-save"></i>저장</button>`
   }
 
   function changeToView(element) {

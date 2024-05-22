@@ -67,7 +67,7 @@ public class BbsServiceTests {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
         pageRequestDTO.setCategory1("자유게시판");
         pageRequestDTO.setPage(2);
-        PageResponseDTO<BbsReplyDTO> bbsDTOList = bbsServiceIf.listReply(pageRequestDTO,2);
+        List<BbsReplyDTO> bbsDTOList = bbsServiceIf.listReply(pageRequestDTO,2);
         System.out.println("replylist test= " +bbsDTOList);
     }
     @Test
