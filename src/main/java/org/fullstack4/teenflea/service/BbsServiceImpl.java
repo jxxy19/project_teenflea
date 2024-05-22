@@ -38,6 +38,7 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     @Override
     public BbsDTO view(BbsDTO bbsDTO) {
+        log.info("bbsDTO.getBbsIdx() ; " +bbsDTO.getBbsIdx());
         Optional<BbsEntity> result = bbsRepository.findById(bbsDTO.getBbsIdx());
         BbsEntity bbsEntity =result.orElse(null);
         return modelMapper.map(bbsEntity, BbsDTO.class);
@@ -62,7 +63,22 @@ public class BbsServiceImpl implements BbsServiceIf{
     @Override
     public PageResponseDTO<BbsDTO> list(PageRequestDTO pageRequestDTO) {
         PageRequest pageable = pageRequestDTO.getPageable();
-        Page<BbsEntity> result = bbsRepository.findAllByCategory1OrderByBbsIdxDesc(pageable, pageRequestDTO.getCategory1());
+        Page<BbsEntity> result = null;
+        String category = pageRequestDTO.getCategory1();
+        String category2 = pageRequestDTO.getCategory2();
+        String search_word = pageRequestDTO.getSearch_word();
+        String location = pageRequestDTO.getLocation();
+        if(location != null || category2 != null){
+            result = bbsRepository.findAllByCategory2ContainsAndLocationContainsAndTitleContains(pageable,category2,location,search_word);
+        }
+        else if(pageRequestDTO.getSearch_word()!=null && !pageRequestDTO.getSearch_word().isEmpty()) {
+            result = bbsRepository.findAllByCategory1AndTitleContainsOrContentContainsAndCategory1ContainsOrUserIdContainsAndCategory1ContainsOrderByBbsIdxDesc(
+                    pageable, category, search_word,search_word,category,search_word,category
+            );
+        }
+        else{
+            result = bbsRepository.findAllByCategory1OrderByBbsIdxDesc(pageable, pageRequestDTO.getCategory1());
+        }
         List<BbsDTO> dtoList = result.stream()
                 .map(board->modelMapper.map(board,BbsDTO.class))
                 .collect(Collectors.toList());
@@ -73,7 +89,7 @@ public class BbsServiceImpl implements BbsServiceIf{
     @Transactional
     @Override
     public void registFile(BbsFileDTO bbsFileDTO, MultipartHttpServletRequest files) {
-        String saveDirectory = "D:\\java4\\studyforest\\studyforest\\src\\main\\resources\\static\\img\\upload";
+        String saveDirectory = "D:\\java4\\teenflea\\src\\main\\resources\\static\\upload";
         List<String> filenames = null;
         filenames = commonFileUtil.fileuploads(files,saveDirectory);;
         if(filenames!=null) {
@@ -127,4 +143,17 @@ public class BbsServiceImpl implements BbsServiceIf{
         return PageResponseDTO.<BbsReplyDTO>withAll().pageRequestDTO(pageRequestDTO)
                 .dtoList(dtoList).total_count((int) result.getTotalElements()).build();
     }
+
+    @Override
+    public int countCategoryTwo(String category2) {
+        bbsRepository.countByCategory2(category2);
+        if(bbsRepository.countByCategory2(category2)!=0) {
+            return bbsRepository.countByCategory2(category2);
+        }
+        else{
+            return 0;
+        }
+    }
+
+
 }

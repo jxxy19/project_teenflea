@@ -17,34 +17,35 @@
                             <p class="wow fadeInUp" data-wow-delay=".5s">
                               10대들만을 위한 우리들의 플리마켓!
                               <br>
-                              총 000건의 거래가 이루어지고 있어요! 저희와 함께 틴플리해요!
+                              총 [[${categoryTwoTotalCount}]]건의 거래가 이루어지고 있어요! 저희와 함께 틴플리해요!
                             </p>
                         </div>
                         <!-- End Search Form -->
                         <!-- Start Search Form -->
                         <div class="search-form wow fadeInUp" data-wow-delay=".7s">
+                            <form action="/goods/list" method="get">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-12 p-0">
                                     <div class="search-input">
                                         <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                                        <input type="text" name="keyword" id="keyword" placeholder="무엇을 찾아볼까요?">
+                                        <input type="text" name="search_word" id="keyword" placeholder="무엇을 찾아볼까요?">
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-12 p-0">
                                     <div class="search-input">
                                         <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
-                                        <select name="category" id="category">
-                                            <option value="all">카테고리 전체</option>
-                                            <option value="none">디지털기기</option>
-                                            <option value="none">가구/인테리어</option>
-                                            <option value="none">의류</option>
-                                            <option value="none">잡화</option>
-                                            <option value="none">생활가전</option>
-                                            <option value="none">스포츠/레저</option>
-                                            <option value="none">취미</option>
-                                            <option value="none">뷰티</option>
-                                            <option value="none">도서</option>
-                                            <option value="none">기타</option>
+                                        <select name="category2" id="category">
+                                            <option value="">카테고리 전체</option>
+                                            <option value="디지털기기">디지털기기</option>
+                                            <option value="가구/인테리어">가구/인테리어</option>
+                                            <option value="의류">의류</option>
+                                            <option value="잡화">잡화</option>
+                                            <option value="생활가전">생활가전</option>
+                                            <option value="스포츠/레저">스포츠/레저</option>
+                                            <option value="취미">취미</option>
+                                            <option value="뷰티">뷰티</option>
+                                            <option value="도서">도서</option>
+                                            <option value="기타">기타</option>
                                         </select>
                                     </div>
                                 </div>
@@ -52,30 +53,31 @@
                                     <div class="search-input">
                                         <label for="location"><i class="lni lni-map-marker theme-color"></i></label>
                                         <select name="location" id="location">
-                                            <option value="all">지역 전체</option>
-                                            <option value="none">서울특별시</option>
-                                            <option value="none">부산광역시</option>
-                                            <option value="none">대구광역시</option>
-                                            <option value="none">인천광역시</option>
-                                            <option value="none">광주광역시</option>
-                                            <option value="none">대전광역시</option>
-                                            <option value="none">울산광역시</option>
-                                            <option value="none">세종특별자치시</option>
-                                            <option value="none">경기도</option>
-                                            <option value="none">강원특별자치도</option>
-                                            <option value="none">전라남도</option>
-                                            <option value="none">경상북도</option>
-                                            <option value="none">경상남도</option>
-                                            <option value="none">제주특별자치도</option>
+                                            <option value="">지역 전체</option>
+                                            <option value="서울특별시">서울특별시</option>
+                                            <option value="부산광역시">부산광역시</option>
+                                            <option value="대구광역시">대구광역시</option>
+                                            <option value="인천광역시">인천광역시</option>
+                                            <option value="광주광역시">광주광역시</option>
+                                            <option value="대전광역시">대전광역시</option>
+                                            <option value="울산광역시">울산광역시</option>
+                                            <option value="세종특별자치시">세종특별자치시</option>
+                                            <option value="경기도">경기도</option>
+                                            <option value="강원특별자치도">강원특별자치도</option>
+                                            <option value="전라남도">전라남도</option>
+                                            <option value="경상북도">경상북도</option>
+                                            <option value="경상남도">경상남도</option>
+                                            <option value="제주특별자치도">제주특별자치도</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-12 p-0">
                                     <div class="search-btn button">
-                                        <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
+                                        <button class="btn" type="submit"><i class="lni lni-search-alt"></i> 검색</button>
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                         <!-- End Search Form -->
                     </div>
@@ -98,7 +100,7 @@
                                   <img src="/assets/images/categories/laptop.svg" alt="#">
                               </div>
                               <h3>디지털기기</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[0]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -107,7 +109,7 @@
                                   <img src="/assets/images/categories/furniture.svg" alt="#">
                               </div>
                               <h3>가구/인테리어</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[1]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -116,7 +118,7 @@
                                   <img src="/assets/images/categories/tshirt.svg" alt="#">
                               </div>
                               <h3>의류</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[2]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -125,7 +127,7 @@
                                   <img src="/assets/images/categories/travel.svg" alt="#">
                               </div>
                               <h3>잡화</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[3]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -134,7 +136,7 @@
                                   <img src="/assets/images/categories/real-estate.svg" alt="#">
                               </div>
                               <h3>생활가전</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[4]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -143,7 +145,7 @@
                                   <img src="/assets/images/categories/car.svg" alt="#">
                               </div>
                               <h3>스포츠/레저</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[5]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -152,7 +154,7 @@
                                   <img src="/assets/images/categories/controller.svg" alt="#">
                               </div>
                               <h3>취미</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[6]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -161,7 +163,7 @@
                                   <img src="/assets/images/categories/matrimony.svg" alt="#">
                               </div>
                               <h3>뷰티</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[7]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -170,7 +172,7 @@
                                   <img src="/assets/images/categories/book.svg" alt="#">
                               </div>
                               <h3>도서</h3>
-                              <h5 class="total">00</h5>
+                              <h5 class="total">[[${categoryTwoCount[8]}]]</h5>
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
@@ -179,7 +181,7 @@
                                 <img src="/assets/images/categories/three-dots.svg" alt="#">
                             </div>
                             <h3>기타</h3>
-                            <h5 class="total">00</h5>
+                            <h5 class="total">[[${categoryTwoCount[9]}]]</h5>
                         </a>
                         <!-- End Single Category -->
                         </div>
@@ -203,7 +205,7 @@
             </div>
             <div class="single-head">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12" th:each="dto:${pageResponseDTO.dtoList}">
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
@@ -211,137 +213,17 @@
                             </div>
                             <div class="content">
                                 <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">카테고리1</a>
+                                    <a href="javascript:void(0)" class="tag">[[${dto.category2}]]</a>
                                     <h3 class="title">
-                                        <a href="#">상품명</a>
+                                        <a href="#">[[${dto.title}]]</a>
                                     </h3>
                                     <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 서울특별시</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> YYYY-MM-DD HH:MM</a></li>
+                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> [[${dto.location}]]</a></li>
+                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm')}]]</a></li>
                                     </ul>
                                 </div>
                                 <div class="bottom-content">
-                                    <p class="price pb-2"><span>10,000</span>원</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Grid -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Grid -->
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
-                            <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">카테고리1</a>
-                                    <h3 class="title">
-                                        <a href="#">상품명</a>
-                                    </h3>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 서울특별시</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> YYYY-MM-DD HH:MM</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price pb-2"><span>10,000</span>원</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Grid -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Grid -->
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
-                            <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">카테고리1</a>
-                                    <h3 class="title">
-                                        <a href="#">상품명</a>
-                                    </h3>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 서울특별시</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> YYYY-MM-DD HH:MM</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price pb-2"><span>10,000</span>원</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Grid -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Grid -->
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
-                            <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">카테고리1</a>
-                                    <h3 class="title">
-                                        <a href="#">상품명</a>
-                                    </h3>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 서울특별시</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> YYYY-MM-DD HH:MM</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price pb-2"><span>10,000</span>원</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Grid -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Grid -->
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
-                            <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">카테고리1</a>
-                                    <h3 class="title">
-                                        <a href="#">상품명</a>
-                                    </h3>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 서울특별시</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> YYYY-MM-DD HH:MM</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price pb-2"><span>10,000</span>원</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Grid -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Grid -->
-                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
-                            <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img src="/assets/images/items-grid/img1.jpg" alt="#"></a>
-                            </div>
-                            <div class="content">
-                                <div class="top-content">
-                                    <a href="javascript:void(0)" class="tag">카테고리1</a>
-                                    <h3 class="title">
-                                        <a href="#">상품명</a>
-                                    </h3>
-                                    <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> 서울특별시</a></li>
-                                        <li><a href="javascript:void(0)"><i class="lni lni-timer"></i> YYYY-MM-DD HH:MM</a></li>
-                                    </ul>
-                                </div>
-                                <div class="bottom-content">
-                                    <p class="price pb-2"><span>10,000</span>원</p>
+                                    <p class="price pb-2"><span>[[${dto.price}]]</span>원</p>
                                 </div>
                             </div>
                         </div>

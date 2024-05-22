@@ -16,8 +16,12 @@
               <!-- Start Single Widget -->
               <div class="single-widget search">
                 <h3>키워드</h3>
-                <form action="#">
-                  <input type="text" placeholder="흠냐 뭘 검색할까?" />
+                <form th:action="|/${category1}/list|">
+                  <input type="hidden" name="category1" th:value="${category1}" />
+                  <input type="hidden" name="search_type" value="t" />
+                  <input type="hidden" name="search_type" value="c" />
+                  <input type="hidden" name="search_type" value="u" />
+                  <input type="text" name="search_word" placeholder="제목&내용&등록자" />
                   <button type="submit">
                     <i class="lni lni-search-alt"></i>
                   </button>
@@ -47,135 +51,55 @@
             </div>
             <!-- End List Title -->
             <!-- Start Single List -->
-            <div class="single-item-list cursor-pointer">
-                <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                    <div class="col-lg-5 col-md-5 col-12">
-                      <p class="title">게시글 1 입니다.</p>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-12">
-                      <p>문의</p>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-12">
-                      <p>장지현</p>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-12 align-right">
-                      <p>2024-05-21</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
+              <th:block th:if="${pageResponseDTO.dtoList.size() > 0}">
+                  <div class="single-item-list cursor-pointer" th:each="dto:${pageResponseDTO.dtoList}">
+                      <div class="row align-items-center p-3" th:data-idx="${dto.bbsIdx}" onclick="goToThisLink('/board/view?bbsIdx=',this)">
+                          <div class="col-lg-5 col-md-5 col-12">
+                              <p class="title">[[${dto.title}]]</p>
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-12">
+                              <p>[[${dto.category2}]]</p>
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-12">
+                              <p>[[${dto.userId}]]</p>
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-12 align-right">
+                              <p>[[${#strings.substring(dto.regDate,0,10)}]]</p>
+                          </div>
                       </div>
                   </div>
+              </th:block>
+              <th:block th:unless="${pageResponseDTO.dtoList.size() > 0}">
+                  <div class="single-item-list" >
+                      <div class="row align-items-center p-3" >
+                          <div class="col-12">
+                              <p class="title text-center">게시글이 없습니다.</p>
+                          </div>
+                      </div>
+                  </div>
+              </th:block>
+          <div class="row">
+              <div class="col-12">
+                  <!-- Pagination -->
+                  <div class="pagination center">
+                      <ul class="pagination-list">
+                          <li th:if="${pageResponseDTO.prev_page_flag}">
+                              <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_start -10})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-left"></i></a>
+                          </li>
+                          <th:block th:each="i:${#numbers.sequence(pageResponseDTO.page_block_start,pageResponseDTO.page_block_end)}">
+                              <li th:class="${pageResponseDTO.getPage() == i} ? 'page-item active' : 'page-item'">
+                                  <a th:href="|/${category1}@{/list(page=${i})}${pageResponseDTO.linkParams}|" class="page-link" th:data-num="${i}">[[${i}]]</a>
+                              </li>
+
+                          </th:block>
+                          <li th:if="${pageResponseDTO.next_page_flag}">
+                              <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_end +1})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-right"></i></a>
+                          </li>
+                      </ul>
+                  </div>
+                  <!--/ End Pagination -->
+              </div>
           </div>
-              <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-item-list cursor-pointer">
-                  <div class="row align-items-center p-3" onclick="location.href = '/board/view?idx=1'">
-                      <div class="col-lg-5 col-md-5 col-12">
-                          <p class="title">게시글 1 입니다.</p>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-12">
-                          <p>문의</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12">
-                          <p>장지현</p>
-                      </div>
-                      <div class="col-lg-2 col-md-2 col-12 align-right">
-                          <p>2024-05-21</p>
-                      </div>
-                  </div>
-              </div>
-            <!--/ End Pagination -->
         </div>
       </div>
       </div>

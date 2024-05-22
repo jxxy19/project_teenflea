@@ -22,7 +22,8 @@
                          aria-labelledby="nav-item-details-tab">
                       <!-- Start Post Ad Step Two Content -->
                       <div class="step-two-content">
-                        <form class="default-form-style m-0" method="post" action="/goods/regist">
+                        <form class="default-form-style m-0" method="post" action="/goods/regist" enctype="multipart/form-data">
+                          <input type="hidden" name="category1" value="중고플리">
                           <div class="row">
                             <div class="col-12">
                               <div class="form-group">
@@ -35,18 +36,18 @@
                                 <label>카테고리 <strong class="text-danger">*</strong></label>
                                 <div class="selector-head">
                                   <span class="arrow"><i class="lni lni-chevron-down"></i></span>
-                                  <select name="category" class="user-chosen-select">
+                                  <select name="category2" class="user-chosen-select">
                                     <option value="">선택</option>
-                                    <option value="none">디지털기기</option>
-                                    <option value="none">가구/인테리어</option>
-                                    <option value="none">의류</option>
-                                    <option value="none">잡화</option>
-                                    <option value="none">생활가전</option>
-                                    <option value="none">스포츠/레저</option>
-                                    <option value="none">취미</option>
-                                    <option value="none">뷰티</option>
-                                    <option value="none">도서</option>
-                                    <option value="none">기타</option>
+                                    <option value="디지털기기">디지털기기</option>
+                                    <option value="가구/인테리어">가구/인테리어</option>
+                                    <option value="의류">의류</option>
+                                    <option value="잡화">잡화</option>
+                                    <option value="생활가전">생활가전</option>
+                                    <option value="스포츠/레저">스포츠/레저</option>
+                                    <option value="취미">취미</option>
+                                    <option value="뷰티">뷰티</option>
+                                    <option value="도서">도서</option>
+                                    <option value="기타">기타</option>
                                   </select>
                                 </div>
                               </div>
@@ -58,20 +59,20 @@
                                   <span class="arrow"><i class="lni lni-chevron-down"></i></span>
                                   <select name="location" class="user-chosen-select">
                                     <option value="">선택</option>
-                                    <option value="none">서울특별시</option>
-                                    <option value="none">부산광역시</option>
-                                    <option value="none">대구광역시</option>
-                                    <option value="none">인천광역시</option>
-                                    <option value="none">광주광역시</option>
-                                    <option value="none">대전광역시</option>
-                                    <option value="none">울산광역시</option>
-                                    <option value="none">세종특별자치시</option>
-                                    <option value="none">경기도</option>
-                                    <option value="none">강원특별자치도</option>
-                                    <option value="none">전라남도</option>
-                                    <option value="none">경상북도</option>
-                                    <option value="none">경상남도</option>
-                                    <option value="none">제주특별자치도</option>
+                                    <option value="서울특별시">서울특별시</option>
+                                    <option value="부산광역시">부산광역시</option>
+                                    <option value="대구광역시">대구광역시</option>
+                                    <option value="인천광역시">인천광역시</option>
+                                    <option value="광주광역시">광주광역시</option>
+                                    <option value="대전광역시">대전광역시</option>
+                                    <option value="울산광역시">울산광역시</option>
+                                    <option value="세종특별자치시">세종특별자치시</option>
+                                    <option value="경기도">경기도</option>
+                                    <option value="강원특별자치도">강원특별자치도</option>
+                                    <option value="전라남도">전라남도</option>
+                                    <option value="경상북도">경상북도</option>
+                                    <option value="경상남도">경상남도</option>
+                                    <option value="제주특별자치도">제주특별자치도</option>
                                   </select>
                                 </div>
                               </div>
@@ -80,7 +81,7 @@
                               <label class="regist-label">이미지 첨부파일</label>
                                 <div class="">
                                   <div class="form-group">
-                                    <input type="file" class="form-control p-1 h-auto" id="file"  multiple="multiple" onchange="fileList(this)" accept=image/*>
+                                    <input type="file" class="form-control p-1 h-auto" name="file" id="file"  multiple="multiple" onchange="fileList(this)" accept=image/*>
                                   </div>
                                 </div>
                               <div class="ml-5">
@@ -97,7 +98,7 @@
                             </div>
                             <div class="col-12">
                               <div class="form-group button mb-0 d-flex justify-content-between">
-                                <button type="submit" class="btn alt-btn">취소</button>
+                                <button type="button" class="btn alt-btn">취소</button>
                                 <button type="submit" class="btn ">저장</button>
                               </div>
                             </div>

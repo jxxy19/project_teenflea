@@ -22,11 +22,14 @@ public class BbsDTO {
     private String title;
     @NotEmpty
     private String content;
+    private int price;
     @NotEmpty
     private String category1;
     private String category2;
     private int read_cnt;
     private int reply_cnt;
+    private String location;
+
 
     private LocalDateTime regDate;
     private LocalDateTime modifyDate;

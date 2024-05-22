@@ -1,346 +1,168 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Ads Details - ClassiGrids Classified Ads and Listing Website Template</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="/src/main/resources/static/assets/images/favicon.svg" />
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- Web Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
-
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/animate.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css" />
-  </head>
-
-  <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
-
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="preloader-inner">
-        <div class="preloader-icon">
-          <span></span>
-          <span></span>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+  <!-- Start Category -->
+  <section class="category-page section">
+    <div class="container">
+      <div class="d-flex justify-content-between mb-2">
+        <div><button type="button" class="btn btn-outline-primary">목록</button></div>
+        <div class="d-flex gap-1">
+          <button type="button" class="btn btn-outline-primary">삭제</button>
+          <button type="button" class="btn btn-primary">수정</button>
         </div>
+      </div>
+      <div class="row m-0 mt-3">
+        <div class="my-items bg-white rounded shadow-sm p-5">
+          <!-- Start List Title -->
+          <div class="d-flex flex-column gap-1">
+            <div class="row align-items-center">
+              <div class="col-lg-1 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 rounded-start border-primary text-center">
+                <p class="p-0 m-0 text-white text-center">제목</p>
+              </div>
+              <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border">
+                <p>저는 제목이라고 하는데요???</p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-lg-1 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 rounded-start border-primary text-center">
+                <p class="p-0 m-0 text-white text-center">카테고리</p>
+              </div>
+              <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border">
+                <p>카테고리1</p>
+              </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+              <div class="col-lg-6 col-12">
+                <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 rounded-start border-primary text-center">
+                  <p class="p-0 m-0 text-white text-center">작성자</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-12 p-3 border">
+                  <p>장지현</p>
+                </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12">
+                <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 border-primary text-center">
+                  <p class="p-0 m-0 text-white text-center">등록일</p>
+                </div>
+                <div class="col-lg-10 col-md-10 col-12 p-3 rounded-end border">
+                  <p>2024-05-22</p>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-stretch">
+              <div class="col-lg-1 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 rounded-start border-primary text-center">
+                <p class="p-0 m-0 text-white text-center">첨부파일</p>
+              </div>
+              <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border overflow-y-scroll" style="max-height: 300px">
+                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
+                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
+                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
+                <p class="p-1 border rounded"><button class="btn btn-secondary me-3"><img src="/assets/images/icon/file-earmark-arrow-down-fill.svg"></button><a href="#">첨부파일</a></p>
+              </div>
+            </div>
+            <div class="row align-items-stretch">
+              <div class="col-lg-1 col-md-2 col-12 d-flex align-items-center bg-teenflea p-3 rounded-start border-primary text-center">
+                <p class="p-0 m-0 text-white text-center">내용</p>
+              </div>
+              <div class="col-lg-11 col-md-10 col-12 p-3 rounded-end border overflow-y-scroll" style="height: 500px">
+                <p>안녕? 내 이름은 장지현</p><p>거꾸로 해도 장지현은 아니고 현지장!</p><p><br></p><p>요즘 너무 배고파서 머리가 안돌아가!!</p><p>뭐? 너도 그렇다고??</p><p><br></p><p>그렇담 우리는 친구야! 칭구칭구~</p>
+              </div>
+            </div>
+          </div>
+          <!-- End List Title -->
+        </div>
+      </div>
+      <div class="row m-0 mt-3">
+      <div class="post-comments">
+        <h3 class="comment-title"><span>댓글</span></h3>
+        <form class="m-0 mb-5 row">
+          <div class="col-lg-11 col-12 p-0">
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+          <div class="col-lg-1 col-12 p-0" >
+            <button class="btn btn-primary w-100 h-100">등록</button>
+          </div>
+        </form>
+        <ul class="comments-list">
+          <li>
+            <div class="comment-desc">
+              <div class="desc-top d-flex justify-content-between w-100">
+                <div>
+                <h6>장지현</h6>
+                <span class="date">2024-05-22 11:43</span>
+                </div>
+                <div class="d-flex gap-1 align-items-center">
+                  <a href="#" class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
+                  <a href="#" class="reply-link position-sticky" onclick="removeThis(this)"><i class="lni lni-eraser"></i>삭제</a>
+                </div>
+              </div>
+              <p class="text-area">
+                제가 한번 댓글을 달아보겠습니다?!<br>잘 보이시나요??
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="comment-desc">
+              <div class="desc-top d-flex justify-content-between w-100">
+                <div>
+                  <h6>장지현</h6>
+                  <span class="date">2024-05-22 11:43</span>
+                </div>
+                <div class="d-flex gap-1 align-items-center">
+                  <a href="#" class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
+                  <a href="#" class="reply-link position-sticky" onclick="removeThis(this)"><i class="lni lni-eraser"></i>삭제</a>
+                </div>
+              </div>
+              <p class="text-area">
+                제가 한번 댓글을 달아보겠습니다?!<br>잘 보이시나요??
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
       </div>
     </div>
-    <!-- /End Preloader -->
+  </section>
+  <!-- End Category -->
+</div>
+<script layout:fragment="script">
+  function changeToModifyForm(element) {
+    event.preventDefault();
+    event.stopPropagation();
+    let textArea = element.parentElement.parentElement.parentElement.querySelector('.text-area');
+    textArea.outerHTML = `<textarea class="form-control" rows="3" wrap="hard" >${textArea.innerText}</textarea>`;
+    element.outerHTML = `<a href="#" class="reply-link position-sticky" onclick="changeToView(this)"><i class="lni lni-save"></i>저장</a>`
+  }
 
-    <!-- Start Header Area -->
-    <header class="header navbar-area">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-12">
-            <div class="nav-inner">
-              <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="index.html">
-                  <img class="mt-4" src="/src/main/resources/static/assets/images/logo/logo.png" alt="Logo" />
-                </a>
-                <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="toggler-icon"></span>
-                  <span class="toggler-icon"></span>
-                  <span class="toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                  <ul id="nav" class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                      <a class="active dd-menu collapsed" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">중고플리</a>
-                      <ul class="sub-menu collapse" id="submenu-1-3">
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">전체</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">디지털기기</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">가구/인테리어</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">의류</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">잡화</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">생활가전</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">스포츠/레저</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">취미</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">뷰티</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">도서</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="javascript:void(0)">기타</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" aria-label="Toggle navigation">공지사항</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" aria-label="Toggle navigation">자유게시판</a>
-                    </li>
-                  </ul>
-                </div>
-                <!-- navbar collapse -->
-                <div class="login-button">
-                  <ul>
-                    <li>
-                      <a href="javascript:void(0)"><i class="lni lni-enter"></i> 로그인</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><i class="lni lni-exit"></i> 로그아웃</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)"><i class="lni lni-user"></i> 회원가입</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)"><i class="lni lni-user"></i> 내 정보 수정</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="button header-button">
-                  <a href="javascript:void(0)" class="btn">새 글 올리기</a>
-                </div>
-              </nav>
-              <!-- navbar -->
-            </div>
-          </div>
-        </div>
-        <!-- row -->
-      </div>
-      <!-- container -->
-    </header>
-    <!-- End Header Area -->
+  function changeToView(element) {
+    event.preventDefault();
+    event.stopPropagation();
+    let textArea = element.parentElement.parentElement.parentElement.querySelector('textarea');
+    let textAreaVal = textArea.value.replaceAll('\n', '<br>');
+    console.log("????????" +textAreaVal);
+    textArea.outerHTML = `<p class="text-area"></p>`;
+    element.parentElement.parentElement.parentElement.querySelector('.text-area').innerHTML = textAreaVal;
+    element.outerHTML = `<a href="#" class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>`
+  }
 
-    <!-- Start Breadcrumbs -->
-    <div class="breadcrumbs">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 col-md-6 col-12">
-            <div class="breadcrumbs-content">
-              <h1 class="page-title">중고플리</h1>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-12">
-            <ul class="breadcrumb-nav">
-              <li><a href="index.html">Home</a></li>
-              <li>중고플리</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Breadcrumbs -->
-
-    <!-- Start Item Details -->
-    <section class="item-details section">
-      <div class="container">
-        <div class="top-area">
-          <div class="row h-100">
-            <div class="col-lg-6 col-md-12 col-12 h-100">
-              <div class="product-images">
-                <main id="gallery">
-                  <div class="main-img">
-                    <img class="img" src="/src/main/resources/static/assets/images/item-details/test.jpg" id="current" alt="#" />
-                  </div>
-                  <div class="images">
-                    <img class="img" src="/src/main/resources/static/assets/images/item-details/test.jpg" class="img" alt="#" />
-                    <img class="img" src="/src/main/resources/static/assets/images/item-details/test.jpg" class="img" alt="#" />
-                    <img class="img" src="/src/main/resources/static/assets/images/item-details/test.jpg" class="img" alt="#" />
-                    <img class="img" src="/src/main/resources/static/assets/images/item-details/test.jpg" class="img" alt="#" />
-                    <img class="img" src="/src/main/resources/static/assets/images/item-details/test.jpg" class="img" alt="#" />
-                  </div>
-                </main>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-12 h-100 h-100">
-              <div class="product-info d-flex flex-column h-100 ps-md-0 ps-sm-0">
-                <div class="pb-5 pt-sm-5">
-                  <h2 class="title">귀여운 일러스트 이미지</h2>
-                  <p class="location"><i class="lni lni-map-marker"></i><a href="javascript:void(0)">서울특별시 금천구 마리오 아울렛 2관</a></p>
-                  <h3 class="price">10,000원</h3>
-                </div>
-                <div class="pt-lg-5 pt-md-1 pt-sm-1">
-                  <div class="contact-info">
-                    <ul>
-                      <li>
-                        <a href="tel:+002562352589" class="call">
-                          <i class="lni lni-phone-set"></i>
-                          <strong>연락하기</strong>
-                          <span class="ft-smaller">걱정No! 안심번호로 연락됩니다.</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="mailto:example@gmail.com" class="mail">
-                          <i class="lni lni-envelope"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="social-share">
-                    <h4>공유하기</h4>
-                    <ul>
-                      <li>
-                        <a href="#" class="link"><i class="lni lni-link"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item-details-blocks">
-          <div class="row">
-            <div class="col-lg-8 col-md-7 col-12">
-              <!-- Start Single Block -->
-              <div class="single-block description">
-                <h3>상세내용</h3>
-                <p>제가 정말정말 좋아하는 일러스트인데요! 제가 요즘 급전이 필요하여 판매합니다.</p>
-                <ul>
-                  <li>요 아이는 이러서 좋고요</li>
-                  <li>저래서도 좋고요</li>
-                  <li>여하튼 좋습니다</li>
-                  <li>잘해봅시다</li>
-                  <li>안녕히!</li>
-                </ul>
-                <p>자 다들 사세요</p>
-              </div>
-              <!-- End Single Block -->
-            </div>
-            <div class="col-lg-4 col-md-5 col-12">
-              <div class="item-details-sidebar">
-                <!-- Start Single Block -->
-                <div class="single-block">
-                  <h3>Location</h3>
-                  <div class="mapouter">
-                    <div class="gmap_canvas">
-                      <iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=마리오아울렛2관&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br />
-                      <style>
-                        .mapouter {
-                          position: relative;
-                          text-align: right;
-                          height: 300px;
-                          width: 100%;
-                        }</style
-                      ><a href="https://www.embedgooglemap.net">google map code for website</a>
-                      <style>
-                        .gmap_canvas {
-                          overflow: hidden;
-                          background: none !important;
-                          height: 300px;
-                          width: 100%;
-                        }
-                      </style>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Single Block -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Item Details -->
-
-    <!-- Start Footer Area -->
-    <footer class="footer">
-      <!-- Start Footer Top -->
-      <div class="footer-top pt-2 pb-3">
-          <div class="container">
-              <div class="row">
-                  <!-- Single Widget -->
-                  <div class="single-footer d-flex f-contact justify-content-center col-lg-3 col-md-12 col-sm-12">
-                      <img width="200px" src="/src/main/resources/static/assets/images/logo/logo-w.png">
-                  </div>
-                  <!-- Single Widget -->
-                  <div class="single-footer f-contact col-lg-9 col-md-12 col-sm-12">
-                      <h3>This Project Made By</h3>
-                      <ul class="p-0 m-0 d-flex justify-content-between">
-                          <li>👑 Juyeon Jeon <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                          <li>JaeSeon Lee <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                          <li>JongYun Chae <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                          <li>Jeehyun Jang <img class="w-15px" src="/src/main/resources/static/assets/images/icon/github.svg"></li>
-                      </ul>
-                  </div>
-                  <!-- End Single Widget -->
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!--/ End Footer Middle -->
-      <!-- Start Footer Bottom -->
-      <div class="footer-bottom">
-          <div class="container">
-              <div class="inner">
-                  <div class="row">
-                      <div class="col-12">
-                          <div class="content">
-                              <p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/"
-                                      rel="nofollow" target="_blank">GrayGrids</a>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->
-
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top btn-hover">
-      <i class="lni lni-chevron-up"></i>
-    </a>
-
-    <!-- ========================= JS here ========================= -->
-    <script src="/src/main/resources/static/assets/js/bootstrap.min.js"></script>
-    <script src="/src/main/resources/static/assets/js/wow.min.js"></script>
-    <script src="/src/main/resources/static/assets/js/tiny-slider.js"></script>
-    <script src="/src/main/resources/static/assets/js/glightbox.min.js"></script>
-    <script src="/src/main/resources/static/assets/js/main.js"></script>
-    <script type="text/javascript">
-      const current = document.getElementById("current");
-      const opacity = 0.6;
-      const imgs = document.querySelectorAll(".img");
-      imgs.forEach((img) => {
-        img.addEventListener("click", (e) => {
-          //reset opacity
-          imgs.forEach((img) => {
-            img.style.opacity = 1;
-          });
-          current.src = e.target.src;
-          //adding class
-          //current.classList.add("fade-in");
-          //opacity
-          e.target.style.opacity = opacity;
-        });
-      });
-    </script>
-  </body>
+  function removeThis(element) {
+    event.preventDefault();
+    event.stopPropagation();
+    let target = element.parentElement.parentElement.parentElement.parentElement;
+    $(target).remove();
+    let comments = document.querySelectorAll('ul.comments-list > li');
+    if(comments.length == 0) {
+      $('ul.comments-list').append(`<li>등록된 댓글이 없습니다.</li>`);
+    }
+  }
+</script>
+</body>
 </html>
