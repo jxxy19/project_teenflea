@@ -1452,13 +1452,19 @@ ol {
 .navbar-area.sticky {
   position: fixed;
   z-index: 99;
-  background: #A979D9;
+  background: #fff !important;
   -webkit-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
   box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-  background: #fff;
   padding: 0px 0;
+}
+
+.navbar-area.sticky .navbar-brand img {
+  margin-top: 0.5rem !important;
+  width: 120px !important;
+  -webkit-transition: all 0.5s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
 }
 
 .navbar-area.sticky .toolbar-area {
@@ -1472,12 +1478,21 @@ ol {
   transition: all 0.3s ease-out 0s;
 }
 
+.navbar-area.sticky .navbar-nav .nav-item a {
+  padding: 15px 0 !important;
+  -webkit-transition: all 0.5s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+
 .navbar-brand {
   padding: 0;
 }
 
 .navbar-brand img {
+  margin-top: 1.5rem !important;
   width: 190px;
+  -webkit-transition: all 0.5s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
 }
 
 .mobile-menu-btn {
@@ -4567,7 +4582,7 @@ blockquote .shape {
   }
 
   .navbar-area.sticky {
-    padding: 15px 0;
+    padding: 10px 0;
   }
 
   .navbar-brand img {
