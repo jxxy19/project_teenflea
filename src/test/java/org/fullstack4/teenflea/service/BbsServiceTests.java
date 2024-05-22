@@ -19,7 +19,7 @@ public class BbsServiceTests {
     @Test
     public void testRegist(){
         IntStream.rangeClosed(0,10).forEach(i-> {
-            BbsDTO bbsDTO = BbsDTO.builder().category1("자유게시판").title("제목"+i).content("내용"+i).userId("test").build();
+            BbsDTO bbsDTO = BbsDTO.builder().category1("공지사항").title("공지제목"+i).content("공지내용"+i).userId("test").build();
             bbsServiceIf.regist(bbsDTO);
         });
     }

@@ -18,8 +18,8 @@ public class CommonFileUtil {
 
     public List<String> fileuploads(MultipartHttpServletRequest files, String uploadFolder) {
         List<String> filenames = new ArrayList<>();
-        List<MultipartFile> list = files.getFiles("files");
-        if(files.getFile("files").getSize()<=0){
+        List<MultipartFile> list = files.getFiles("file");
+        if(files.getFile("file").getSize()<=0){
             return null;
         }
         for (MultipartFile file : list) {

@@ -22,7 +22,8 @@
                          aria-labelledby="nav-item-details-tab">
                       <!-- Start Post Ad Step Two Content -->
                       <div class="step-two-content">
-                        <form class="default-form-style m-0" method="post" action="/board/regist">
+                        <form class="default-form-style m-0" method="post" action="/board/regist" enctype="multipart/form-data">
+                          <input type="hidden" name="category1" th:value="${menu}">
                           <div class="row">
                             <div class="col-12">
                               <div class="form-group">
@@ -34,7 +35,7 @@
                               <label class="regist-label">이미지 첨부파일</label>
                               <div class="">
                                 <div class="form-group">
-                                  <input type="file" class="form-control p-1 h-auto" id="file"  multiple="multiple" onchange="fileList(this)" accept=image/*>
+                                  <input type="file" class="form-control p-1 h-auto" id="file" name="file" multiple="multiple" onchange="fileList(this)" accept=image/*>
                                 </div>
                               </div>
                               <div class="ml-5">

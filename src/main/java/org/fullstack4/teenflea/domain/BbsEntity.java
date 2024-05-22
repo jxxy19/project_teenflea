@@ -29,6 +29,8 @@ public class BbsEntity extends BaseEntity {
     private String category1;
     @Column(length =5 ,nullable=true)
     private String category2;
+    @Column(length =100 ,nullable=true)
+    private String location;
 
     public void modify(String title,String content,String category2){
         this.title=title;

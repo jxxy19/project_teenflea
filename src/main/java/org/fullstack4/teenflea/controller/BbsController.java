@@ -29,14 +29,24 @@ public class BbsController {
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
 
-        PageResponseDTO<BbsDTO> pageResponseDTO = bbsServiceIf.list(pageRequestDTO);
-        model.addAttribute("pageResponseDTO" , pageResponseDTO);
         if(originalURL.contains("board")) {
+            pageRequestDTO.setCategory1("자유게시판");
+            PageResponseDTO<BbsDTO> pageResponseDTO = bbsServiceIf.list(pageRequestDTO);
+            model.addAttribute("pageResponseDTO" , pageResponseDTO);
             model.addAttribute("menu", "자유게시판");
+            model.addAttribute("category1", "board");
         } else if(originalURL.contains("notice")) {
+            pageRequestDTO.setCategory1("공지사항");
+            PageResponseDTO<BbsDTO> pageResponseDTO = bbsServiceIf.list(pageRequestDTO);
+            model.addAttribute("pageResponseDTO" , pageResponseDTO);
             model.addAttribute("menu", "공지사항");
+            model.addAttribute("category1", "notice");
         } else if(originalURL.contains("goods")) {
+            pageRequestDTO.setCategory1("중고플리");
+            PageResponseDTO<BbsDTO> pageResponseDTO = bbsServiceIf.list(pageRequestDTO);
+            model.addAttribute("pageResponseDTO" , pageResponseDTO);
             model.addAttribute("menu", "중고플리");
+            model.addAttribute("category1", "goods");
             return "/goods/list";
         }
         return "/board/list";
@@ -47,15 +57,18 @@ public class BbsController {
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         if(originalURL.contains("board")) {
+            pageRequestDTO.setCategory1("자유게시판");
             model.addAttribute("menu", "자유게시판");
         } else if(originalURL.contains("notice")) {
+            pageRequestDTO.setCategory1("공지사항");
             model.addAttribute("menu", "공지사항");
         } else if(originalURL.contains("goods")) {
+            pageRequestDTO.setCategory1("중고플리");
             model.addAttribute("menu", "중고플리");
             return "/goods/view";
         }
-//        BbsDTO resultbbsDTO = bbsServiceIf.view(bbsDTO);
-//        model.addAttribute("bbsDTO",resultbbsDTO);
+        BbsDTO resultbbsDTO = bbsServiceIf.view(bbsDTO);
+        model.addAttribute("bbsDTO",resultbbsDTO);
         return "/board/view";
     }
 
@@ -76,6 +89,9 @@ public class BbsController {
     @Transactional
     @PostMapping("/regist")
     public String registPost(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, MultipartHttpServletRequest files){
+        //user_id ->세션으로 변경예정
+        bbsDTO.setUserId("test");
+
         int resultidx = bbsServiceIf.regist(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(resultidx).userId(bbsDTO.getUserId()).build();
