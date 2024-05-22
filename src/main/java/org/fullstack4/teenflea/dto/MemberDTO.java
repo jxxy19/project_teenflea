@@ -51,5 +51,6 @@ public class MemberDTO {
     private LocalDateTime modifyDate;
 
     //회원권한
-    private String role;
+    @Builder.Default
+    private String role="user";
 }

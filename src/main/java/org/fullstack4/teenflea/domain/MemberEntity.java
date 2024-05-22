@@ -47,7 +47,6 @@ public class MemberEntity extends BaseEntity {
     @Column(name="leave_date",insertable = false ,updatable = false,nullable = true) //탈퇴일자
     private LocalDateTime leaveDate;
     @Column(length = 10,nullable = true)
-    @ColumnDefault("user")
     private String role;
 
     public void modify(String pwd,String email,String phone_number,String addr1,String addr2,String zip_code,String user_state){
