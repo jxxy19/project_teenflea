@@ -7703,17 +7703,35 @@ blockquote .shape {
   position: absolute;
   top : 45%;
   left: 0;
-  z-index: 10000;
 }
 
 .img-inner .tns-controls button {
+  -webkit-box-shadow: 0 1rem 3rem rgba(35, 38, 45, 0.15) !important;
+  box-shadow: 0 1rem 3rem rgba(35, 38, 45, 0.15) !important;
+  z-index: 10000;
   border-radius: 50%;
   background-color: #A979D9;
+  border: 2px solid #A979D9;
   color: #fff;
-  border: none;
   width: 2em;
   height: 2em;
   text-align: center;
   margin-left: -15px;
   margin-right: -15px;
+}
+
+.img-inner .tns-controls button:hover:not(:disabled) {
+  border: 2px solid #310f47;
+  background-color: #310f47;
+}
+
+.img-inner .tns-controls button:disabled {
+  cursor: not-allowed;
+  background-color: #a3a3a3;
+  border: 2px solid #a3a3a3;
+  color: #fff;
+}
+
+.h-fixed {
+  height: 100px !important;
 }
