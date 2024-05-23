@@ -8,9 +8,14 @@ function goToThisLink2(url) {
     location.href = url;
 }
 
-function copyLink(e){
+async function copyLink(e){
     alert("링크가 복사되었습니다.");
-    navigator.clipboard.writeText(e);
+    console.log(e);
+    try {
+        await navigator.clipboard.writeText(e);
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
 

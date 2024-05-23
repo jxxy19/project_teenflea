@@ -56,10 +56,22 @@ public class BbsEntity extends BaseEntity {
         super.setModify_date(LocalDateTime.now());
     }
 
-    public void modifyGoods(String title,String content,String category2){
+    public void modifyGoods(String phoneNumber, String email, String zipCode, String addr1, String addr2, String title,int price,String category2,String content){
+        this.phoneNumber =phoneNumber;
+        this.email = email;
+        this.zipCode = zipCode;
+        this.addr1 = addr1;
+        this.addr2 = addr2;
         this.title=title;
+        this.price=price;
         this.content=content;
         this.category2=category2;
+        super.setModify_date(LocalDateTime.now());
+    }
+
+    public void modifyGoodsThumbnail(String thumbnailDirectory,String thumbnailFileName){
+        this.thumbnailDirectory=thumbnailDirectory;
+        this.thumbnailFileName=thumbnailFileName;
         super.setModify_date(LocalDateTime.now());
     }
 

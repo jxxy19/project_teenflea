@@ -8,8 +8,11 @@ import java.util.List;
 public interface BbsServiceIf {
     int regist(BbsDTO bbsDTO);
     BbsDTO registThumbnail(BbsDTO bbsDTO, MultipartHttpServletRequest files);
+    void modifyThumbnail(BbsDTO bbsDTO, MultipartHttpServletRequest files);
+    void deleteThumbnail(int bbsIdx);
     BbsDTO view(BbsDTO bbsDTO);
     void modify(BbsDTO bbsDTO);
+    void modifyGoods(BbsDTO bbsDTO);
     void delete(BbsDTO bbsDTO);
     PageResponseDTO<BbsDTO> list(PageRequestDTO pageRequestDTO);
 

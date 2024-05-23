@@ -58,6 +58,18 @@ public class BbsServiceImpl implements BbsServiceIf{
     }
 
     @Override
+    public void modifyGoods(BbsDTO bbsDTO) {
+        Optional<BbsEntity> result = bbsRepository.findById(bbsDTO.getBbsIdx());
+        BbsEntity bbsEntity =result.orElse(null);
+        if (bbsEntity != null) {
+            bbsEntity.modifyGoods(bbsDTO.getPhoneNumber(),bbsDTO.getEmail(),bbsDTO.getZipCode(),bbsDTO.getAddr1(),bbsDTO.getAddr2(),bbsDTO.getTitle(),bbsDTO.getPrice()
+            ,bbsDTO.getCategory2(),bbsDTO.getContent());
+            bbsRepository.save(bbsEntity);
+        }
+
+    }
+
+    @Override
     public void delete(BbsDTO bbsDTO) {
         bbsRepository.deleteById(bbsDTO.getBbsIdx());
     }
@@ -114,7 +126,7 @@ public class BbsServiceImpl implements BbsServiceIf{
     public BbsDTO registThumbnail(BbsDTO bbsDTO, MultipartHttpServletRequest files) {
         String saveDirectory = "D:\\java4\\teenflea\\src\\main\\resources\\static\\upload";
         List<String> filenames = null;
-        filenames = commonFileUtil.thumbnailUploads(files,saveDirectory);;
+        filenames = commonFileUtil.thumbnailUploads(files,saveDirectory);
         if(filenames!=null) {
             for (String filename : filenames) {
                 bbsDTO.setThumbnailFileName(filename);
@@ -122,6 +134,38 @@ public class BbsServiceImpl implements BbsServiceIf{
             }
         }
         return bbsDTO;
+    }
+
+    @Transactional
+    @Override
+    public void modifyThumbnail(BbsDTO bbsDTO,MultipartHttpServletRequest files) {
+        Optional<BbsEntity> result = bbsRepository.findById(bbsDTO.getBbsIdx());
+        BbsEntity bbsEntity =result.orElse(null);
+        String saveDirectory = "D:\\java4\\teenflea\\src\\main\\resources\\static\\upload";
+        List<String> filenames = null;
+        filenames = commonFileUtil.thumbnailUploads(files,saveDirectory);
+        if (bbsEntity != null) {
+            if(filenames!=null) {
+                if(bbsEntity.getThumbnailDirectory()!=null) {
+                    commonFileUtil.fileDelite(bbsEntity.getThumbnailDirectory(), bbsEntity.getThumbnailFileName());
+                }
+                for (String filename : filenames) {
+                    bbsEntity.modifyGoodsThumbnail(saveDirectory,filename);
+                }
+            }
+            bbsRepository.save(bbsEntity);
+        }
+
+    }
+    @Transactional
+    @Override
+    public void deleteThumbnail(int bbsIdx) {
+        Optional<BbsEntity> result = bbsRepository.findById(bbsIdx);
+        BbsEntity bbsEntity =result.orElse(null);
+        if (bbsEntity != null && bbsEntity.getThumbnailFileName()!=null) {
+            commonFileUtil.fileDelite(bbsEntity.getThumbnailDirectory(), bbsEntity.getThumbnailFileName());
+        }
+
     }
     @Transactional
     @Override

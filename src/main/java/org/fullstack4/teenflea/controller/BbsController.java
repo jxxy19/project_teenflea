@@ -171,17 +171,18 @@ public class BbsController {
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
         bbsDTO.setUserId(memberDTO.getUserId());
         if(files!=null) {
-            bbsDTO = bbsServiceIf.registThumbnail(bbsDTO,files);
+            bbsServiceIf.modifyThumbnail(bbsDTO,files);
         }
-        bbsServiceIf.modify(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(bbsDTO.getBbsIdx()).userId(bbsDTO.getUserId()).build();
             bbsServiceIf.registFile(bbsFileDTO, files);
         }
         if(bbsDTO.getCategory1().contains("중고플리")){
+            bbsServiceIf.modifyGoods(bbsDTO);
             return "redirect:/goods/view?bbsIdx="+bbsDTO.getBbsIdx();
         }
         else {
+            bbsServiceIf.modify(bbsDTO);
             return "redirect:/board/view?bbsIdx=" + bbsDTO.getBbsIdx();
         }
     }
@@ -189,9 +190,10 @@ public class BbsController {
     @Transactional
     @GetMapping("/delete")
     public String delete(BbsDTO bbsDTO, HttpServletRequest request){
-        bbsServiceIf.delete(bbsDTO);
         bbsServiceIf.deleteFileAll(bbsDTO.getBbsIdx());
+        bbsServiceIf.deleteThumbnail(bbsDTO.getBbsIdx());
         bbsServiceIf.deleteReplyAll(bbsDTO.getBbsIdx());
+        bbsServiceIf.delete(bbsDTO);
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         if(originalURL.contains("board")) {
