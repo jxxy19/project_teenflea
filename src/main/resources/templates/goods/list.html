@@ -78,59 +78,74 @@
           </div>
           <div class="col-lg-9 col-md-8 col-12">
             <div class="category-grid-list">
-              <div class="row">
-                <div class="col-12">
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
-                      <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12" th:each="dto:${pageResponseDTO.dtoList}">
-                          <!-- Start Single Item -->
-                          <div class="single-item-grid">
-                            <div class="image">
-                              <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
+              <th:block th:if="${pageResponseDTO.dtoList.size() > 0}">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-6 col-12" th:each="dto:${pageResponseDTO.dtoList}">
+                            <!-- Start Single Item -->
+                            <div class="single-item-grid">
+                              <div class="image">
+                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
+                              </div>
+                              <div class="content">
+                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|" class="tag">[[${dto.category2}]]</a>
+                                <h3 class="title">
+                                  <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|">[[${dto.title}]]</a>
+                                </h3>
+                                <p class="location">
+                                  <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><i class="lni lni-map-marker"> </i>[[${dto.location}]]</a>
+                                </p>
+                                <ul class="info">
+                                  <li class="price">[[${dto.price}]]</li>
+                                </ul>
+                              </div>
                             </div>
-                            <div class="content">
-                              <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|" class="tag">[[${dto.category2}]]</a>
-                              <h3 class="title">
-                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|">[[${dto.title}]]</a>
-                              </h3>
-                              <p class="location">
-                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><i class="lni lni-map-marker"> </i>[[${dto.location}]]</a>
-                              </p>
-                              <ul class="info">
-                                <li class="price">[[${dto.price}]]</li>
+                            <!-- End Single Item -->
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <!-- Pagination -->
+                            <div class="pagination center">
+                              <ul class="pagination-list">
+                                <li th:if="${pageResponseDTO.prev_page_flag}">
+                                  <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_start -10})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-left"></i></a>
+                                </li>
+                                <th:block th:each="i:${#numbers.sequence(pageResponseDTO.page_block_start,pageResponseDTO.page_block_end)}">
+                                  <li th:class="${pageResponseDTO.getPage() == i} ? 'page-item active' : 'page-item'">
+                                    <a th:href="|/${category1}@{/list(page=${i})}${pageResponseDTO.linkParams}|" class="page-link" th:data-num="${i}">[[${i}]]</a>
+                                  </li>
+
+                                </th:block>
+                                <li th:if="${pageResponseDTO.next_page_flag}">
+                                  <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_end +1})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-right"></i></a>
+                                </li>
                               </ul>
                             </div>
+                            <!--/ End Pagination -->
                           </div>
-                          <!-- End Single Item -->
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12">
-                          <!-- Pagination -->
-                          <div class="pagination center">
-                            <ul class="pagination-list">
-                              <li th:if="${pageResponseDTO.prev_page_flag}">
-                                <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_start -10})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-left"></i></a>
-                              </li>
-                              <th:block th:each="i:${#numbers.sequence(pageResponseDTO.page_block_start,pageResponseDTO.page_block_end)}">
-                                <li th:class="${pageResponseDTO.getPage() == i} ? 'page-item active' : 'page-item'">
-                                  <a th:href="|/${category1}@{/list(page=${i})}${pageResponseDTO.linkParams}|" class="page-link" th:data-num="${i}">[[${i}]]</a>
-                                </li>
-
-                              </th:block>
-                              <li th:if="${pageResponseDTO.next_page_flag}">
-                                <a th:href="|/${category1}@{/list(page=${pageResponseDTO.page_block_end +1})}${pageResponseDTO.linkParams}|"><i class="lni lni-chevron-right"></i></a>
-                              </li>
-                            </ul>
-                          </div>
-                          <!--/ End Pagination -->
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </th:block>
+              <th:block th:unless="${pageResponseDTO.dtoList.size() > 0}">
+                <div class="row">
+                  <div class="col-12 bg-white rounded shadow-sm">
+                    <div class="d-flex flex-column gap-3 align-items-center justify-content-center py-5">
+                      <h4>아직 등록된 상품이 없습니다.😰</h4>
+                      <small>틴플리의 첫 상품 등록해볼까요?</small>
+                      <div class="button header-button">
+                        <a href="/goods/regist" class="btn">첫 상품 등록하러 가기</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </th:block>
             </div>
           </div>
         </div>
