@@ -24,11 +24,58 @@
                       <div class="step-two-content">
                         <form class="default-form-style m-0" method="post" action="/goods/regist" enctype="multipart/form-data">
                           <input type="hidden" name="category1" value="중고플리">
-                          <div class="row">
+
+                          <div class="row mb-3">
+                            <h4 class="text-primary py-3">판매자 정보</h4>
+                            <span class="border-bottom border-primary w-25 mx-2 mt-2 mb-5"></span>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>연락처 <strong class="text-danger">*</strong></label>
+                                <input name="phoneNumber" type="tel" maxlength="100">
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>이메일 <strong class="text-danger">*</strong></label>
+                                <input name="email" type="email" maxlength="100">
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>거래주소<strong class="text-danger">*</strong></label>
+                                <div>
+                                  <div class="mb-3">
+                                    <div class="form-group">
+                                      <div class="input-group">
+                                        <input type="text" name="zipCode" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2"  onclick="sample4_execDaumPostcode()" readonly>
+                                        <button class="btn btn-outline-primary"  type="button" id="button-addon2" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" name="addr1" class="form-control" data-name="주소" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" name="addr2" data-name="상세주소"  class="form-control" id="sample4_detailAddress"  placeholder="상세주소">
+                                  </div>
+                                  <span id="guide" style="color:#999;display:none"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <h4 class="text-primary py-3">상품정보</h4>
+                            <span class="border-bottom border-primary w-25 mx-2 mt-2 mb-5"></span>
                             <div class="col-12">
                               <div class="form-group">
                                 <label>상품명 <strong class="text-danger">*</strong></label>
                                 <input name="title" type="text" maxlength="100">
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>가격 <strong class="text-danger">*</strong></label>
+                                <input name="price" type="text" maxlength="100">
                               </div>
                             </div>
                             <div class="col-12">
@@ -53,27 +100,10 @@
                               </div>
                             </div>
                             <div class="col-12">
-                              <div class="form-group">
-                                <label>지역 <strong class="text-danger">*</strong></label>
-                                <div class="selector-head">
-                                  <span class="arrow"><i class="lni lni-chevron-down"></i></span>
-                                  <select name="location" class="user-chosen-select">
-                                    <option value="">선택</option>
-                                    <option value="서울특별시">서울특별시</option>
-                                    <option value="부산광역시">부산광역시</option>
-                                    <option value="대구광역시">대구광역시</option>
-                                    <option value="인천광역시">인천광역시</option>
-                                    <option value="광주광역시">광주광역시</option>
-                                    <option value="대전광역시">대전광역시</option>
-                                    <option value="울산광역시">울산광역시</option>
-                                    <option value="세종특별자치시">세종특별자치시</option>
-                                    <option value="경기도">경기도</option>
-                                    <option value="강원특별자치도">강원특별자치도</option>
-                                    <option value="전라남도">전라남도</option>
-                                    <option value="경상북도">경상북도</option>
-                                    <option value="경상남도">경상남도</option>
-                                    <option value="제주특별자치도">제주특별자치도</option>
-                                  </select>
+                              <label class="regist-label">썸네일 첨부파일</label>
+                              <div class="">
+                                <div class="form-group">
+                                  <input type="file" class="form-control p-1 h-auto" name="thumbnail" id="file2" accept=image/*>
                                 </div>
                               </div>
                             </div>
@@ -96,6 +126,8 @@
                                 <textarea name="content" id="summernote"></textarea>
                               </div>
                             </div>
+                          </div>
+                          <div class="row">
                             <div class="col-12">
                               <div class="form-group button mb-0 d-flex justify-content-between">
                                 <a th:href="|/${category1}/list|" type="button" class="btn alt-btn">취소</a>
@@ -123,7 +155,55 @@
 </div>
 
     <!-- ========================= JS here ========================= -->
-    <script src="/assets/js/regist.js" layout:fragment="script">
-    </script>
+<th:block layout:fragment="script">
+  <script src="/assets/js/regist.js"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" ></script>
+  <script>
+    // 다음 우편번호 서비스
+    function sample4_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+          // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var roadAddr = data.roadAddress; // 도로명 주소 변수
+          var extraRoadAddr = ''; // 참고 항목 변수
+
+          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+            extraRoadAddr += data.bname;
+          }
+          // 건물명이 있고, 공동주택일 경우 추가한다.
+          if(data.buildingName !== '' && data.apartment === 'Y'){
+            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+          }
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById('sample4_postcode').value = data.zonecode;
+          document.getElementById("sample4_roadAddress").value = roadAddr;
+
+          var guideTextBox = document.getElementById("guide");
+          // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+          if(data.autoRoadAddress) {
+            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+            guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+            guideTextBox.style.display = 'block';
+
+          } else if(data.autoJibunAddress) {
+            var expJibunAddr = data.autoJibunAddress;
+            guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+            guideTextBox.style.display = 'block';
+          } else {
+            guideTextBox.innerHTML = '';
+            guideTextBox.style.display = 'none';
+          }
+        }
+      }).open();
+    }
+  </script>
+</th:block>
+
   </body>
 </html>
