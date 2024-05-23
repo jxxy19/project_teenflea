@@ -153,10 +153,13 @@ public class BbsController {
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         if(originalURL.contains("board")) {
             model.addAttribute("menu", "자유게시판");
+            model.addAttribute("category1", "board");
         } else if(originalURL.contains("notice")) {
             model.addAttribute("menu", "공지사항");
+            model.addAttribute("category1", "notice");
         } else if(originalURL.contains("goods")) {
             model.addAttribute("menu", "중고플리");
+            model.addAttribute("category1", "goods");
             return "/goods/modify";
         }
         return "/board/modify";
@@ -167,6 +170,9 @@ public class BbsController {
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
         bbsDTO.setUserId(memberDTO.getUserId());
+        if(files!=null) {
+            bbsDTO = bbsServiceIf.registThumbnail(bbsDTO,files);
+        }
         bbsServiceIf.modify(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(bbsDTO.getBbsIdx()).userId(bbsDTO.getUserId()).build();
