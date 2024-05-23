@@ -23,6 +23,7 @@
                       <!-- Start Post Ad Step Two Content -->
                       <div class="step-two-content">
                         <form class="default-form-style m-0" method="post" action="/goods/modify" enctype="multipart/form-data">
+                          <input type="hidden" name="userId" th:value="${bbsDTO.userId}">
                           <input type="hidden" name="bbsIdx" th:value="${bbsDTO.bbsIdx}">
                           <input type="hidden" name="category1" value="중고플리">
                           <div class="row mb-3">
@@ -138,8 +139,8 @@
                           <div class="row">
                             <div class="col-12">
                               <div class="form-group button mb-0 d-flex justify-content-between">
-                                <a th:href="|/${category1}/view?bbsIdx=${bbsDTO.bbsIdx}|" type="button" class="btn alt-btn">취소</a>
-                                <button type="submit" class="btn">저장</button>
+                                <a th:href="|/${category1}/view?bbsIdx=${bbsDTO.bbsIdx}|" type="button" class="btn alt-btn" onclick="goCancel()">취소</a>
+                                <button type="submit" class="btn" onclick="goSave()">수정</button>
                               </div>
                             </div>
                           </div>

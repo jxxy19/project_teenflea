@@ -110,7 +110,7 @@ public class BbsController {
         } else if(originalURL.contains("notice")) {
             model.addAttribute("menu", "공지사항");
             model.addAttribute("category1", "notice");
-        } else if(originalURL.contains("goods")) {
+        } else {
             model.addAttribute("menu", "중고플리");
             model.addAttribute("category1", "goods");
             return "/goods/regist";
@@ -133,9 +133,9 @@ public class BbsController {
         }
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
-        if(originalURL.contains("board")) {
+        if(bbsDTO.getCategory1().equals("자유게시판")) {
             return "redirect:/board/view?bbsIdx="+resultidx;
-        }else if(originalURL.contains("notice")){
+        }else if(bbsDTO.getCategory1().equals("공지사항")){
             return "redirect:/notice/view?bbsIdx="+resultidx;
         }
         else {
@@ -146,6 +146,11 @@ public class BbsController {
     @GetMapping("/modify")
     public String modifyGet(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
         BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
+        if(!memberDTO.getUserId().equals(viewDTO.getUserId()) && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         List<BbsFileDTO> fileDTOList = bbsServiceIf.listFile(pageRequestDTO, bbsDTO.getBbsIdx());
         model.addAttribute("bbsDTO",viewDTO);
         model.addAttribute("bbsFileDTOList",fileDTOList);
@@ -157,7 +162,7 @@ public class BbsController {
         } else if(originalURL.contains("notice")) {
             model.addAttribute("menu", "공지사항");
             model.addAttribute("category1", "notice");
-        } else if(originalURL.contains("goods")) {
+        } else {
             model.addAttribute("menu", "중고플리");
             model.addAttribute("category1", "goods");
             return "/goods/modify";
@@ -168,8 +173,10 @@ public class BbsController {
     @PostMapping("/modify")
     public String modifyPost(BbsDTO bbsDTO, MultipartHttpServletRequest files, HttpServletRequest request){
         HttpSession session = request.getSession();
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
-        bbsDTO.setUserId(memberDTO.getUserId());
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
+        if(!memberDTO.getUserId().equals(bbsDTO.getUserId()) && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         if(files!=null) {
             bbsServiceIf.modifyThumbnail(bbsDTO,files);
         }
@@ -181,15 +188,25 @@ public class BbsController {
             bbsServiceIf.modifyGoods(bbsDTO);
             return "redirect:/goods/view?bbsIdx="+bbsDTO.getBbsIdx();
         }
-        else {
+        else if(bbsDTO.getCategory1().contains("자유게시판")){
             bbsServiceIf.modify(bbsDTO);
             return "redirect:/board/view?bbsIdx=" + bbsDTO.getBbsIdx();
+        }
+        else {
+            bbsServiceIf.modify(bbsDTO);
+            return "redirect:/notice/view?bbsIdx=" + bbsDTO.getBbsIdx();
         }
     }
 
     @Transactional
     @GetMapping("/delete")
     public String delete(BbsDTO bbsDTO, HttpServletRequest request){
+        BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
+        if(!memberDTO.getUserId().equals(viewDTO.getUserId()) && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         bbsServiceIf.deleteFileAll(bbsDTO.getBbsIdx());
         bbsServiceIf.deleteThumbnail(bbsDTO.getBbsIdx());
         bbsServiceIf.deleteReplyAll(bbsDTO.getBbsIdx());
@@ -239,6 +256,12 @@ public class BbsController {
     @Transactional
     @PostMapping("/modifyreply")
     public String modifyReplyPost(BbsReplyDTO bbsReplyDTO, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
+        if(!memberDTO.getUserId().equals(bbsReplyDTO.getUserId()) && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
+
         bbsServiceIf.modifyReply(bbsReplyDTO);
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
@@ -252,6 +275,11 @@ public class BbsController {
 
     @GetMapping("/deletereply")
     public String deleteReply(BbsReplyDTO bbsReplyDTO, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
+        if(!memberDTO.getUserId().equals(bbsReplyDTO.getUserId()) && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         bbsServiceIf.deleteReply(bbsReplyDTO);
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);

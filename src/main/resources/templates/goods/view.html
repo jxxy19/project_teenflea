@@ -10,8 +10,8 @@
       <div class="container">
         <div class="d-flex justify-content-between mb-2">
           <div><a href="/goods/list" type="button" class="btn btn-outline-primary">목록</a></div>
-          <div class="d-flex gap-1">
-            <a th:href="|/goods/delete?bbsIdx=${bbsDTO.bbsIdx}|"type="button" class="btn btn-outline-primary">삭제</a>
+          <div class="d-flex gap-1" th:if="${session.memberDTO!=null && (session.memberDTO.userId==bbsDTO.userId || session.memberDTO.role.equals('admin'))}">
+            <a th:href="|/goods/delete?bbsIdx=${bbsDTO.bbsIdx}|"type="button" class="btn btn-outline-primary" onclick="goDelete()">삭제</a>
             <a th:href="|/goods/modify?bbsIdx=${bbsDTO.bbsIdx}|" type="button" class="btn btn-primary">수정</a>
           </div>
         </div>

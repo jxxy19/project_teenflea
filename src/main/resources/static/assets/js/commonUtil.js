@@ -7,6 +7,30 @@ function goToThisLink(str, element) {
 function goToThisLink2(url) {
     location.href = url;
 }
+function goDelete(){
+    if(confirm("정말로 삭제하시겠습니까?")){
+        return true
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    return false
+}
+function goCancel(){
+    if(confirm("취소하고 돌아가시겠습니까?")){
+        return true
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    return false
+}
+function goSave(){
+    if(confirm("저장을 하시겠습니까?")){
+        return true
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    return false
+}
 
 async function copyLink(e){
     alert("링크가 복사되었습니다.");
