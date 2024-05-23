@@ -9,4 +9,5 @@ import java.util.List;
 public interface BbsFileRepository extends JpaRepository<BbsFileEntity, Integer> {
 
     List<BbsFileEntity> findAllByBbsIdx(int bbsIdx);
+    void deleteAllByBbsIdx(int bbsIdx);
 }

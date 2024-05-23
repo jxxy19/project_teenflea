@@ -43,3 +43,36 @@ function deleteThisFile(element) {
         filelies[i].querySelector('#deleteButton').dataset.idx = i;
     }
 }
+function deleteThisFile2(element,bbsFileIdx) {
+    if(confirm("파일을 삭제하시겠습니까?")) {
+        element.parentElement.parentElement.remove();
+        const dataTransfer = new DataTransfer();
+        let target = element.dataset.idx;
+        let files = document.querySelector('#file').files;
+        let fileArray = Array.from(files);
+        fileArray.splice(target, 1);
+        fileArray.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+        document.querySelector('#file').files = dataTransfer.files;
+        let filelies = document.querySelectorAll('.fileListNodes');
+        for (let i = 0; i < filelies.length; i++) {
+            filelies[i].dataset.idx = i;
+            filelies[i].querySelector('#deleteButton').dataset.idx = i;
+        }
+        $.ajax({
+            url: '/board/deletefile',
+            type: 'GET',
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            data: {bbsFileIdx: bbsFileIdx},
+
+            success: function (response) {
+               alert("삭제가 성공하였습니다.");
+            },
+            error: function () {
+                alert("서버와의 통신 중 오류가 발생했습니다.");
+            }
+        });
+    }
+}

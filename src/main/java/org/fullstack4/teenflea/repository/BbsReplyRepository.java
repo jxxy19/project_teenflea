@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface BbsReplyRepository extends JpaRepository<BbsReplyEntity, Integer> {
     List<BbsReplyEntity> findAllByBbsIdxOrderByReplyIdxDesc(int bbsIdx);
+
+    void deleteAllByBbsIdx(int bbsIdx);
 }

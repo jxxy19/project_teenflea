@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/common.html}">
+<body>
+<div layout:fragment="content">
+  <!-- Start form -->
+  <!-- Start Dashboard Section -->
+  <section class="dashboard section pt-2">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="main-content rounded p-3 bg-white border shadow-sm mt-5">
+            <!-- Start Post Ad Block Area -->
+            <div class="dashboard-block mt-0">
+              <div class="inner-block">
+                <!-- Start Post Ad Tab -->
+                <div class="post-ad-ta  b">
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane active show" id="nav-item-details" role="tabpanel"
+                         aria-labelledby="nav-item-details-tab">
+                      <!-- Start Post Ad Step Two Content -->
+                      <div class="step-two-content">
+                        <form class="default-form-style m-0" method="post" action="/board/modify" enctype="multipart/form-data">
+                          <input type="hidden" name="category1" th:value="${bbsDTO.getCategory1()}">
+                          <input type="hidden" name="bbsIdx" th:value="${bbsDTO.getBbsIdx()}">
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>제목 <strong class="text-danger">*</strong></label>
+                                <input name="title" type="text" maxlength="100" th:value="${bbsDTO.title}">
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>카테고리 <strong class="text-danger">*</strong></label>
+                                <div class="selector-head">
+                                  <span class="arrow"><i class="lni lni-chevron-down"></i></span>
+                                  <select name="category2" class="user-chosen-select">
+                                    <option value="" >선택</option>
+                                    <option value="문의" th:selected="${bbsDTO.category2.contains('문의')}" >문의</option>
+                                    <option value="소통" th:selected="${bbsDTO.category2.contains('소통')}">소통</option>
+                                    <option value="삽니다" th:selected="${bbsDTO.category2.contains('삽니다')}">삽니다</option>
+                                    <option value="기타" th:selected="${bbsDTO.category2.contains('기타')}">기타</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="ml-5">
+                                <label class="regist-label">기존 파일 리스트</label>
+                                <ul id="file-list-" class="form-group col-12 d-flex flex-column m-0 p-0" style="gap:5px" th:each="dto:${bbsFileDTOList}">
+                                  <li class="card d-flex flex-row justify-content-between p-2 fileListNodes" data-idx="0"><span>[[${dto.fileName}]]</span><span><a id="deleteButton" class="text-danger font-weight-bold pr-2" href="#" th:onclick="|deleteThisFile2(this,${dto.bbsFileIdx})|">X</a></span></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-12 mt-30">
+                              <label class="regist-label">이미지 첨부파일</label>
+                                <div class="form-group">
+                                  <input type="file" class="form-control p-1 h-auto" id="file" name="file" multiple="multiple" onchange="fileList(this)" accept=image/*>
+                                </div>
+                              <div class="ml-5">
+                                <label class="regist-label">추가 파일 리스트</label>
+                                <ul id="file-list" class="form-group col-12 d-flex flex-column m-0 p-0" style="gap:5px">
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group mt-30">
+                                <label>상세내용 <strong class="text-danger">*</strong></label>
+                                <textarea name="content" id="summernote">[[${bbsDTO.content}]]</textarea>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group button mb-0 d-flex justify-content-between">
+                                <a th:href="|/${category1}/view?bbsIdx=${bbsDTO.getBbsIdx()}|" type="submit" class="btn alt-btn">취소</a>
+                                <button type="submit" class="btn ">저장</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- Start Post Ad Step Two Content -->
+                    </div>
+                  </div>
+                </div>
+                <!-- End Post Ad Tab -->
+              </div>
+            </div>
+            <!-- End Post Ad Block Area -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Dashboard Section -->
+  <!-- End form -->
+</div>
+
+<!-- ========================= JS here ========================= -->
+<script src="/assets/js/regist.js" layout:fragment="script">
+</script>
+</body>
+</html>

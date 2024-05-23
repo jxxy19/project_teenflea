@@ -4,6 +4,11 @@ function goToThisLink(str, element) {
     location.href = url;
 }
 
+function goToThisLink2(url) {
+    console.log(url);
+    location.href = url;
+}
+
 
 // --------------------------------------------------- 체크용 함수 (boolean 값 리턴)
 // 공란 or 띄어쓰기만 들어간 값 체크 (null 체크용)

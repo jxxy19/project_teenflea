@@ -112,7 +112,7 @@
                                 <li th:if="${session.memberDTO == null || session.memberDTO.userId == null}">
                                     <a href="/member/regist"><i class="lni lni-user"></i> 회원가입</a>
                                 </li>
-                                <li>
+                                <li th:if="${session.memberDTO != null && session.memberDTO.userId != null}">
                                     <a href="/member/modify"><i class="lni lni-user"></i> 내 정보 수정</a>
                                 </li>
                             </ul>
