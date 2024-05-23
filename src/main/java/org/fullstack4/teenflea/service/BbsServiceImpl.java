@@ -110,6 +110,16 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     }
 
+    @Transactional
+    @Override
+    public void deleteFileAll(int bbsIdx) {
+        List<BbsFileEntity> bbsFileEntityList = bbsFileRepository.findAllByBbsIdx(bbsIdx);
+        for(BbsFileEntity bbsFileEntity : bbsFileEntityList){
+            commonFileUtil.fileDelite(bbsFileEntity.getDirectory(),bbsFileEntity.getFileName());
+        }
+        bbsFileRepository.deleteAllByBbsIdx(bbsIdx);
+    }
+
     @Override
     public List<BbsFileDTO> listFile(PageRequestDTO pageRequestDTO, int bbsIdx) {
         List<BbsFileEntity> result = bbsFileRepository.findAllByBbsIdx(bbsIdx);
@@ -136,11 +146,14 @@ public class BbsServiceImpl implements BbsServiceIf{
         }
 
     }
-
     @Override
     public void deleteReply(BbsReplyDTO bbsReplyDTO) {
         BbsReplyEntity bbsReplyEntity = modelMapper.map(bbsReplyDTO, BbsReplyEntity.class);
         bbsReplyRepository.delete(bbsReplyEntity);
+    }
+    @Override
+    public void deleteReplyAll(int bbsIdx) {
+        bbsReplyRepository.deleteAllByBbsIdx(bbsIdx);
     }
 
     @Override

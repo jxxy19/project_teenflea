@@ -87,15 +87,15 @@
                           <!-- Start Single Item -->
                           <div class="single-item-grid">
                             <div class="image">
-                              <a href="/goods/view?bbsIdx=1"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
+                              <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
                             </div>
                             <div class="content">
-                              <a href="/goods/view?bbsIdx=1" class="tag">[[${dto.category2}]]</a>
+                              <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|" class="tag">[[${dto.category2}]]</a>
                               <h3 class="title">
-                                <a href="/goods/view?bbsIdx=1">[[${dto.title}]]</a>
+                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|">[[${dto.title}]]</a>
                               </h3>
                               <p class="location">
-                                <a href="/goods/view?bbsIdx=1"><i class="lni lni-map-marker"> </i>[[${dto.location}]]</a>
+                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><i class="lni lni-map-marker"> </i>[[${dto.location}]]</a>
                               </p>
                               <ul class="info">
                                 <li class="price">[[${dto.price}]]</li>

@@ -90,7 +90,7 @@
         </form>
         <ul class="comments-list">
           <li>
-            <div class="comment-desc" th:each="dto:${bbsReplyDTOList}">
+            <div class="comment-desc pb-5 mt-5 border-bottom" th:each="dto:${bbsReplyDTOList}">
               <form action="/board/modifyreply" method="post">
                 <input type="hidden" name="replyIdx" th:value="${dto.getReplyIdx()}">
                 <input type="hidden" name="bbsIdx" th:value="${dto.getBbsIdx()}">
@@ -98,11 +98,11 @@
                   <div>
                   <h6>[[${dto.userId}]]</h6>
                   <span class="date" >등록일시 : [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm')}]] </span>
-                  <span class="date" th:if="${dto.modifyDate}!=null">수정일시 : [[${#temporals.format(dto.modifyDate, 'yyyy-MM-dd HH:mm')}]] </span>
+                  <span class="date" th:if="${dto.modifyDate}!=null">| 수정일시 :  [[${#temporals.format(dto.modifyDate, 'yyyy-MM-dd HH:mm')}]] </span>
                   </div>
                   <div class="d-flex gap-1 align-items-center">
                     <a class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
-                    <a th:href="@{/board/deletereply(replyIdx=${dto.replyIdx},bbsIdx=${dto.getBbsIdx()})}" class="reply-link position-sticky"><i class="lni lni-eraser"></i>삭제</a>
+                    <a onclick="goDelete()" th:href="@{/board/deletereply(replyIdx=${dto.replyIdx},bbsIdx=${dto.getBbsIdx()})}" class="reply-link position-sticky"><i class="lni lni-eraser"></i>삭제</a>
                   </div>
                 </div>
                 <p class="text-area">
@@ -119,6 +119,14 @@
   <!-- End Category -->
 </div>
 <script layout:fragment="script">
+  function goDelete(){
+      if(confirm("정말로 삭제하시겠습니까?")){
+        return true
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      return false
+  }
   function changeToModifyForm(element) {
     event.preventDefault();
     event.stopPropagation();

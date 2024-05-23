@@ -14,11 +14,13 @@ public interface BbsServiceIf {
 
     void registFile(BbsFileDTO bbsFileDTO, MultipartHttpServletRequest files);
     void deleteFile(BbsFileDTO bbsFileDTO);
+    void deleteFileAll(int bbsIdx);
     List<BbsFileDTO> listFile(PageRequestDTO pageRequestDTO, int bbsIdx);
 
     void registReply(BbsReplyDTO bbsReplyDTO);
     void modifyReply(BbsReplyDTO bbsReplyDTO);
     void deleteReply(BbsReplyDTO bbsReplyDTO);
+    void deleteReplyAll(int bbsIdx);
     List<BbsReplyDTO> listReply(PageRequestDTO pageRequestDTO,int bbsIdx);
 
     int countCategoryTwo(String category2);

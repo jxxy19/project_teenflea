@@ -7,12 +7,14 @@ import lombok.extern.log4j.Log4j2;
 import org.fullstack4.teenflea.dto.*;
 import org.fullstack4.teenflea.service.BbsServiceIf;
 import org.fullstack4.teenflea.util.CommonFileUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.UrlPathHelper;
 
@@ -144,24 +146,33 @@ public class BbsController {
         BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
         List<BbsFileDTO> fileDTOList = bbsServiceIf.listFile(pageRequestDTO, bbsDTO.getBbsIdx());
         model.addAttribute("bbsDTO",viewDTO);
-        model.addAttribute("fileDTOList",fileDTOList);
-        return "/board/regist";
+        model.addAttribute("bbsFileDTOList",fileDTOList);
+        return "/board/modify";
     }
     @Transactional
     @PostMapping("/modify")
-    public String modifyPost(BbsDTO bbsDTO, Model model, MultipartHttpServletRequest files){
+    public String modifyPost(BbsDTO bbsDTO, MultipartHttpServletRequest files){
+        //user_id ->세션으로 변경예정
+        bbsDTO.setUserId("test");
         bbsServiceIf.modify(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(bbsDTO.getBbsIdx()).userId(bbsDTO.getUserId()).build();
             bbsServiceIf.registFile(bbsFileDTO, files);
         }
-        return "redirect:/board/view?bbsIdx="+bbsDTO.getBbsIdx();
+        if(bbsDTO.getCategory1().contains("중고플리")){
+            return "redirect:/goods/view?bbsIdx="+bbsDTO.getBbsIdx();
+        }
+        else {
+            return "redirect:/board/view?bbsIdx=" + bbsDTO.getBbsIdx();
+        }
     }
 
     @Transactional
     @GetMapping("/delete")
     public String delete(BbsDTO bbsDTO){
         bbsServiceIf.delete(bbsDTO);
+        bbsServiceIf.deleteFileAll(bbsDTO.getBbsIdx());
+        bbsServiceIf.deleteReplyAll(bbsDTO.getBbsIdx());
         if(bbsDTO.getCategory1().equals("board")){
             return "redirect:/board/list";
         }
@@ -178,10 +189,12 @@ public class BbsController {
         String saveDirectory = "D:\\java4\\teenflea\\src\\main\\resources\\static\\upload";
         commonFileUtil.fileDownload(saveDirectory,bbsFileDTO.getFileName(),response,request);
     }
+    @ResponseBody
     @GetMapping("/deletefile")
-    public String deleteFile(BbsFileDTO bbsFileDTO){
+    public HttpStatus deleteFile(BbsFileDTO bbsFileDTO){
         bbsServiceIf.deleteFile(bbsFileDTO);
-        return "redirect:/";
+
+        return HttpStatus.OK;
     }
     @Transactional
     @PostMapping("/registreply")
