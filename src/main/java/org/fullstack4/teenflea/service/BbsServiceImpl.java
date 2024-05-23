@@ -67,9 +67,12 @@ public class BbsServiceImpl implements BbsServiceIf{
         String category = pageRequestDTO.getCategory1();
         String category2 = pageRequestDTO.getCategory2();
         String search_word = pageRequestDTO.getSearch_word();
-        String location = pageRequestDTO.getLocation();
-        if(location != null || category2 != null){
-            result = bbsRepository.findAllByCategory2ContainsAndLocationContainsAndTitleContains(pageable,category2,location,search_word);
+        String addr1 = pageRequestDTO.getAddr1();
+        if(pageRequestDTO.getAddr1() !=null && pageRequestDTO.getAddr1().length()>2) {
+            addr1 = pageRequestDTO.getAddr1().substring(0, 2);
+        }
+        if(addr1 != null || category2 != null){
+            result = bbsRepository.findAllByCategory2ContainsAndAddr1ContainsAndTitleContains(pageable,category2,addr1,search_word);
         }
         else if(pageRequestDTO.getSearch_word()!=null && !pageRequestDTO.getSearch_word().isEmpty()) {
             result = bbsRepository.findAllByCategory1AndTitleContainsOrContentContainsAndCategory1ContainsOrUserIdContainsAndCategory1ContainsOrderByBbsIdxDesc(

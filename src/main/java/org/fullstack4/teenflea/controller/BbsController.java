@@ -2,6 +2,7 @@ package org.fullstack4.teenflea.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.fullstack4.teenflea.dto.*;
@@ -118,21 +119,31 @@ public class BbsController {
     }
     @Transactional
     @PostMapping("/regist")
-    public String registPost(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, MultipartHttpServletRequest files){
-        //user_id ->세션으로 변경예정
-        bbsDTO.setUserId("test");
-
+    public String registPost(BbsDTO bbsDTO, MultipartHttpServletRequest files, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
+        bbsDTO.setUserId(memberDTO.getUserId());
         int resultidx = bbsServiceIf.regist(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(resultidx).userId(bbsDTO.getUserId()).build();
             bbsServiceIf.registFile(bbsFileDTO, files);
         }
-
-        return "redirect:/";
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            return "redirect:/board/view?bbsIdx="+resultidx;
+        }
+        else {
+            return "redirect:/notice/view?bbsIdx="+resultidx;
+        }
     }
 
     @GetMapping("/modify")
     public String modifyGet(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
+        BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
+        List<BbsFileDTO> fileDTOList = bbsServiceIf.listFile(pageRequestDTO, bbsDTO.getBbsIdx());
+        model.addAttribute("bbsDTO",viewDTO);
+        model.addAttribute("bbsFileDTOList",fileDTOList);
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         if(originalURL.contains("board")) {
@@ -143,17 +154,14 @@ public class BbsController {
             model.addAttribute("menu", "중고플리");
             return "/goods/modify";
         }
-        BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
-        List<BbsFileDTO> fileDTOList = bbsServiceIf.listFile(pageRequestDTO, bbsDTO.getBbsIdx());
-        model.addAttribute("bbsDTO",viewDTO);
-        model.addAttribute("bbsFileDTOList",fileDTOList);
         return "/board/modify";
     }
     @Transactional
     @PostMapping("/modify")
-    public String modifyPost(BbsDTO bbsDTO, MultipartHttpServletRequest files){
-        //user_id ->세션으로 변경예정
-        bbsDTO.setUserId("test");
+    public String modifyPost(BbsDTO bbsDTO, MultipartHttpServletRequest files, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
+        bbsDTO.setUserId(memberDTO.getUserId());
         bbsServiceIf.modify(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(bbsDTO.getBbsIdx()).userId(bbsDTO.getUserId()).build();
@@ -198,24 +206,46 @@ public class BbsController {
     }
     @Transactional
     @PostMapping("/registreply")
-    public String registReplyPost(BbsReplyDTO bbsReplyDTO){
-        //user_id ->세션으로 변경예정
-        bbsReplyDTO.setUserId("test");
+    public String registReplyPost(BbsReplyDTO bbsReplyDTO,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
+        bbsReplyDTO.setUserId(memberDTO.getUserId());
 
         bbsServiceIf.registReply(bbsReplyDTO);
-        return "redirect:/board/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            return "redirect:/board/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        }
+        else {
+            return "redirect:/notice/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        }
     }
     @Transactional
     @PostMapping("/modifyreply")
-    public String modifyReplyPost(BbsReplyDTO bbsReplyDTO){
+    public String modifyReplyPost(BbsReplyDTO bbsReplyDTO, HttpServletRequest request){
         bbsServiceIf.modifyReply(bbsReplyDTO);
-        return "redirect:/board/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            return "redirect:/board/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        }
+        else {
+            return "redirect:/notice/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        }
     }
 
     @GetMapping("/deletereply")
-    public String deleteReply(BbsReplyDTO bbsReplyDTO){
+    public String deleteReply(BbsReplyDTO bbsReplyDTO, HttpServletRequest request){
         bbsServiceIf.deleteReply(bbsReplyDTO);
-        return "redirect:/board/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
+            return "redirect:/board/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        }
+        else {
+            return "redirect:/notice/view?bbsIdx="+bbsReplyDTO.getBbsIdx();
+        }
     }
 
 

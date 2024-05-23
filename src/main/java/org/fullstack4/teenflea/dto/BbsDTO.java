@@ -28,7 +28,12 @@ public class BbsDTO {
     private String category2;
     private int read_cnt;
     private int reply_cnt;
-    private String location;
+    private String thumbnail;
+    private String phoneNumber;
+    private String email;
+    private String addr1;
+    private String addr2;
+    private String zipCode;
 
 
     private LocalDateTime regDate;

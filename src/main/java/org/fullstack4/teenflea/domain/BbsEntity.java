@@ -31,13 +31,32 @@ public class BbsEntity extends BaseEntity {
     private String category1;
     @Column(length =30 ,nullable=true)
     private String category2;
-    @Column(length =100 ,nullable=true)
-    private String location;
     @Column(length = 15,nullable=true)
     @ColumnDefault("0")
     private int price;
+    @Column(length = 100)
+    private String thumbnailDirectory;
+    @Column(length = 100)
+    private String thumbnailFileName;
+    @Column(length=20)
+    private String phoneNumber;
+    @Column(length=30)
+    private String email;
+    @Column(length =50)
+    private String addr1;
+    @Column(length =30)
+    private String addr2;
+    @Column(length =10)
+    private String zipCode;
 
     public void modify(String title,String content,String category2){
+        this.title=title;
+        this.content=content;
+        this.category2=category2;
+        super.setModify_date(LocalDateTime.now());
+    }
+
+    public void modifyGoods(String title,String content,String category2){
         this.title=title;
         this.content=content;
         this.category2=category2;

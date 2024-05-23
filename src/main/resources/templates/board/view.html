@@ -79,19 +79,21 @@
       <div class="row m-0 mt-3">
       <div class="post-comments">
         <h3 class="comment-title"><span>댓글</span></h3>
-        <form class="m-0 mb-5 row" action="/board/registreply" method="post">
+        <form class="m-0 mb-5 row" th:action="|/${category1}/registreply|" method="post">
           <div class="col-lg-11 col-12 p-0">
             <input type="hidden" name="bbsIdx" th:value="${bbsDTO.bbsIdx}">
-            <textarea class="form-control" name="content" rows="3"></textarea>
+            <input type="hidden" name="category1" th:value="${bbsDTO.category1}">
+            <textarea class="form-control" name="content" rows="3" th:disabled="${session.memberDTO==null}"></textarea>
           </div>
           <div class="col-lg-1 col-12 p-0" >
-            <button class="btn btn-primary w-100 h-100">등록</button>
+            <button class="btn btn-primary w-100 h-100" th:if="${session.memberDTO==null}">로그인</button>
+            <button class="btn btn-primary w-100 h-100" th:if="${session.memberDTO!=null}">등록</button>
           </div>
         </form>
         <ul class="comments-list">
           <li>
             <div class="comment-desc pb-5 mt-5 border-bottom" th:each="dto:${bbsReplyDTOList}">
-              <form action="/board/modifyreply" method="post">
+              <form th:action="|/${category1}/modifyreply|" method="post">
                 <input type="hidden" name="replyIdx" th:value="${dto.getReplyIdx()}">
                 <input type="hidden" name="bbsIdx" th:value="${dto.getBbsIdx()}">
                 <div class="desc-top d-flex justify-content-between w-100">
@@ -102,7 +104,7 @@
                   </div>
                   <div class="d-flex gap-1 align-items-center">
                     <a class="reply-link position-sticky" onclick="changeToModifyForm(this)"><i class="lni lni-brush-alt"></i>수정</a>
-                    <a onclick="goDelete()" th:href="@{/board/deletereply(replyIdx=${dto.replyIdx},bbsIdx=${dto.getBbsIdx()})}" class="reply-link position-sticky"><i class="lni lni-eraser"></i>삭제</a>
+                    <a onclick="goDelete()" th:href="|/${category1}@{/deletereply(replyIdx=${dto.replyIdx},bbsIdx=${dto.getBbsIdx()})}|" class="reply-link position-sticky"><i class="lni lni-eraser"></i>삭제</a>
                   </div>
                 </div>
                 <p class="text-area">

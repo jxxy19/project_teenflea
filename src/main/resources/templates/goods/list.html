@@ -34,34 +34,34 @@
                     <a href="/goods/list"><i class="lni lni-menu"></i> 전체<span>[[${categoryTwoTotalCount}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=디지털기기&location="><i class="lni lni-laptop"></i> 디지털기기<span>[[${categoryTwoCount[0]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=디지털기기&addr1="><i class="lni lni-laptop"></i> 디지털기기<span>[[${categoryTwoCount[0]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=가구/인테리어&location="><i class="lni lni-home"></i> 가구/인테리어 <span>[[${categoryTwoCount[1]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=가구/인테리어&addr1="><i class="lni lni-home"></i> 가구/인테리어 <span>[[${categoryTwoCount[1]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=의류&location="><i class="lni lni-tshirt"></i> 의류 <span>[[${categoryTwoCount[2]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=의류&addr1="><i class="lni lni-tshirt"></i> 의류 <span>[[${categoryTwoCount[2]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=잡화&location="><i class="lni lni-diamond-alt"></i> 잡화<span>[[${categoryTwoCount[3]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=잡화&addr1="><i class="lni lni-diamond-alt"></i> 잡화<span>[[${categoryTwoCount[3]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=생활가전&location="><i class="lni lni-display"></i> 생활가전 <span>[[${categoryTwoCount[4]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=생활가전&addr1="><i class="lni lni-display"></i> 생활가전 <span>[[${categoryTwoCount[4]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=스포츠/레저&location="><i class="lni lni-basketball"></i> 스포츠/레저 <span>[[${categoryTwoCount[5]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=스포츠/레저&addr1="><i class="lni lni-basketball"></i> 스포츠/레저 <span>[[${categoryTwoCount[5]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=취미&location="><i class="lni lni-game"></i> 취미 <span>[[${categoryTwoCount[6]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=취미&addr1="><i class="lni lni-game"></i> 취미 <span>[[${categoryTwoCount[6]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=뷰티&location="><i class="lni lni-spray"></i> 뷰티 <span>[[${categoryTwoCount[7]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=뷰티&addr1="><i class="lni lni-spray"></i> 뷰티 <span>[[${categoryTwoCount[7]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=도서&location="><i class="lni lni-book"></i> 도서 <span>[[${categoryTwoCount[8]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=도서&addr1="><i class="lni lni-book"></i> 도서 <span>[[${categoryTwoCount[8]}]]</span></a>
                   </li>
                   <li>
-                    <a href="/goods/list?search_word=&category2=기타&location="><i class="lni lni-more-alt"></i> 기타 <span>[[${categoryTwoCount[9]}]]</span></a>
+                    <a href="/goods/list?search_word=&category2=기타&addr1="><i class="lni lni-more-alt"></i> 기타 <span>[[${categoryTwoCount[9]}]]</span></a>
                   </li>
                 </ul>
               </div>
@@ -96,7 +96,7 @@
                                   <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|">[[${dto.title}]]</a>
                                 </h3>
                                 <p class="location">
-                                  <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><i class="lni lni-map-marker"> </i>[[${dto.location}]]</a>
+                                  <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><i class="lni lni-map-marker"> </i>[[${dto.addr1}]]</a>
                                 </p>
                                 <ul class="info">
                                   <li class="price">[[${dto.price}]]</li>

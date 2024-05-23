@@ -51,8 +51,8 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-12 p-0">
                                     <div class="search-input">
-                                        <label for="location"><i class="lni lni-map-marker theme-color"></i></label>
-                                        <select name="location" id="location">
+                                        <label for="addr1"><i class="lni lni-map-marker theme-color"></i></label>
+                                        <select name="addr1" id="addr1">
                                             <option value="">지역 전체</option>
                                             <option value="서울특별시">서울특별시</option>
                                             <option value="부산광역시">부산광역시</option>
@@ -95,7 +95,7 @@
                     <div class="col-12 p-0">
                         <div class="category-slider">
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=디지털기기&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=디지털기기&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/laptop.svg" alt="#">
                               </div>
@@ -104,7 +104,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=가구/인테리어&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=가구/인테리어&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/furniture.svg" alt="#">
                               </div>
@@ -113,7 +113,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=의류&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=의류&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/tshirt.svg" alt="#">
                               </div>
@@ -122,7 +122,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=잡화&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=잡화&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/travel.svg" alt="#">
                               </div>
@@ -131,7 +131,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=생활가전&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=생활가전&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/real-estate.svg" alt="#">
                               </div>
@@ -140,7 +140,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=스포츠/레저&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=스포츠/레저&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/car.svg" alt="#">
                               </div>
@@ -149,7 +149,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=취미&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=취미&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/controller.svg" alt="#">
                               </div>
@@ -158,7 +158,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=뷰티&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=뷰티&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/matrimony.svg" alt="#">
                               </div>
@@ -167,7 +167,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=도서&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=도서&addr1=" class="single-cat">
                               <div class="icon">
                                   <img src="/assets/images/categories/book.svg" alt="#">
                               </div>
@@ -176,7 +176,7 @@
                           </a>
                           <!-- End Single Category -->
                           <!-- Start Single Category -->
-                          <a href="/goods/list?search_word=&category2=기타&location=" class="single-cat">
+                          <a href="/goods/list?search_word=&category2=기타&addr1=" class="single-cat">
                             <div class="icon">
                                 <img src="/assets/images/categories/three-dots.svg" alt="#">
                             </div>
@@ -220,7 +220,7 @@
                                         <a href="#">[[${dto.title}]]</a>
                                     </h3>
                                     <ul class="info-list">
-                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> [[${dto.location}]]</a></li>
+                                        <li><a href="javascript:void(0)"><i class="lni lni-map-marker"></i> [[${dto.addr1}]]</a></li>
                                         <li><a href="javascript:void(0)"><i class="lni lni-timer"></i>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm')}]]</a></li>
                                     </ul>
                                 </div>

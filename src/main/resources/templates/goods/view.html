@@ -21,8 +21,10 @@
               <div class="product-images">
                 <main id="gallery">
                   <div class="main-img">
+                    <!-- 섬네일 -->
                     <img class="img" src="/assets/images/item-details/test.jpg" id="current" alt="#" />
                   </div>
+                    <!-- 파일리스트 -->
                   <div class="img-inner">
                         <div class="goods-slider">
                           <img class="img h-fixed" src="/assets/images/item-details/test.jpg" title="1" alt="#" />
@@ -37,22 +39,22 @@
             <div class="col-lg-6 col-md-12 col-12 h-100 h-100">
               <div class="product-info d-flex flex-column h-100 ps-md-0 ps-sm-0">
                 <div class="pb-5 pt-sm-5">
-                  <h2 class="title">귀여운 일러스트 이미지</h2>
-                  <p class="location"><i class="lni lni-map-marker"></i><a href="javascript:void(0)">서울특별시 금천구 마리오 아울렛 2관</a></p>
-                  <h3 class="price">10,000원</h3>
+                  <h2 class="title">[[${bbsDTO.title}]]</h2>
+                  <p class="location"><i class="lni lni-map-marker"></i><a href="javascript:void(0)">[[${bbsDTO.addr1}]] [[${bbsDTO.addr2}]]</a></p>
+                  <h3 class="price">[[${bbsDTO.price}]]</h3>
                 </div>
                 <div class="pt-lg-5 pt-md-1 pt-sm-1">
                   <div class="contact-info">
                     <ul>
                       <li>
-                        <a href="tel:+002562352589" class="call">
+                        <a th:href="|tel:+${bbsDTO.phoneNumber}|" class="call">
                           <i class="lni lni-phone-set"></i>
                           <strong>연락하기</strong>
                           <span class="ft-smaller">걱정No! 안심번호로 연락됩니다.</span>
                         </a>
                       </li>
                       <li>
-                        <a href="mailto:example@gmail.com" class="mail">
+                        <a th:href="|mailto:[[${bbsDTO.email}]]|" class="mail">
                           <i class="lni lni-envelope"></i>
                         </a>
                       </li>
@@ -62,7 +64,7 @@
                     <h4>공유하기</h4>
                     <ul>
                       <li>
-                        <a href="#" class="link"><i class="lni lni-link"></i></a>
+                        <a onclick="this." href="" class="link"><i class="lni lni-link"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -77,15 +79,10 @@
               <!-- Start Single Block -->
               <div class="single-block description">
                 <h3>상세내용</h3>
-                <p>제가 정말정말 좋아하는 일러스트인데요! 제가 요즘 급전이 필요하여 판매합니다.</p>
-                <ul>
-                  <li>요 아이는 이러서 좋고요</li>
-                  <li>저래서도 좋고요</li>
-                  <li>여하튼 좋습니다</li>
-                  <li>잘해봅시다</li>
-                  <li>안녕히!</li>
-                </ul>
-                <p>자 다들 사세요</p>
+                <div class="row align-items-stretch">
+                  <div class="col-lg-12 col-md-10 col-12 p-3 rounded-end border overflow-y-scroll" style="height: 500px" th:utext="${bbsDTO.content}">
+                  </div>
+                </div>
               </div>
               <!-- End Single Block -->
             </div>
