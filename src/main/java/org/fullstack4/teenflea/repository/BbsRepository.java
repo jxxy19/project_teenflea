@@ -10,7 +10,7 @@ public interface BbsRepository extends JpaRepository<BbsEntity, Integer> {
     Page<BbsEntity> findAllByCategory1OrderByBbsIdxDesc(Pageable pageable, String category1);
     Page<BbsEntity> findAllByCategory1AndTitleContainsOrContentContainsAndCategory1ContainsOrUserIdContainsAndCategory1ContainsOrderByBbsIdxDesc(
             Pageable pageable,String category1, String title, String content,String category2, String userId, String category3);
-    Page<BbsEntity> findAllByCategory2ContainsAndAddr1ContainsAndTitleContains(Pageable pageable,String category2, String addr1,String title);
+    Page<BbsEntity> findAllByCategory2ContainsAndAddr1ContainsAndTitleContainsOrderByBbsIdx(Pageable pageable,String category2, String addr1,String title);
 
     int countByCategory2(String category2);
 }

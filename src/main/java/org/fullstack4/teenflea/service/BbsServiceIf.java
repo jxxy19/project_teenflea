@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface BbsServiceIf {
     int regist(BbsDTO bbsDTO);
+    BbsDTO registThumbnail(BbsDTO bbsDTO, MultipartHttpServletRequest files);
     BbsDTO view(BbsDTO bbsDTO);
     void modify(BbsDTO bbsDTO);
     void delete(BbsDTO bbsDTO);

@@ -1,5 +1,6 @@
 package org.fullstack4.teenflea.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,8 @@ public class BbsDTO {
     private String category2;
     private int read_cnt;
     private int reply_cnt;
-    private String thumbnail;
+    private String thumbnailDirectory;
+    private String thumbnailFileName;
     private String phoneNumber;
     private String email;
     private String addr1;

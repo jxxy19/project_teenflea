@@ -9,10 +9,10 @@
     <section class="item-details section">
       <div class="container">
         <div class="d-flex justify-content-between mb-2">
-          <div><button type="button" class="btn btn-outline-primary">목록</button></div>
+          <div><a href="/goods/list" type="button" class="btn btn-outline-primary">목록</a></div>
           <div class="d-flex gap-1">
-            <button type="button" class="btn btn-outline-primary">삭제</button>
-            <button type="button" class="btn btn-primary">수정</button>
+            <a th:href="|/goods/delete?bbsIdx=${bbsDTO.bbsIdx}|"type="button" class="btn btn-outline-primary">삭제</a>
+            <a th:href="|/goods/modify?bbsIdx=${bbsDTO.bbsIdx}|" type="button" class="btn btn-primary">수정</a>
           </div>
         </div>
         <div class="top-area">
@@ -22,16 +22,13 @@
                 <main id="gallery">
                   <div class="main-img">
                     <!-- 섬네일 -->
-                    <img class="img" src="/assets/images/item-details/test.jpg" id="current" alt="#" />
+                    <img class="img" th:src="|${bbsDTO.thumbnailDirectory}/${bbsDTO.thumbnailFileName}|" id="current" alt="#" />
                   </div>
                     <!-- 파일리스트 -->
                   <div class="img-inner">
-                        <div class="goods-slider">
-                          <img class="img h-fixed" src="/assets/images/item-details/test.jpg" title="1" alt="#" />
-                          <img class="img h-fixed" src="/assets/images/item-details/test1.jpg" title="2" alt="#" />
-                          <img class="img h-fixed" src="/assets/images/item-details/test2.jpg" title="3" alt="#" />
-                          <img class="img h-fixed " src="/assets/images/item-details/test3.jpg" title="4" alt="#" />
-                        </div>
+                    <div class="goods-slider">
+                      <img th:if="${bbsFileDTOList.size()>0}" th:each="dto:${bbsFileDTOList}" class="img h-fixed" th:src="|${dto.directory}/${dto.fileName}|" title="1" alt="#" />
+                    </div>
                   </div>
                 </main>
               </div>
@@ -47,14 +44,14 @@
                   <div class="contact-info">
                     <ul>
                       <li>
-                        <a th:href="|tel:+${bbsDTO.phoneNumber}|" class="call">
+                        <a th:href="|tel:${bbsDTO.phoneNumber}|" class="call">
                           <i class="lni lni-phone-set"></i>
                           <strong>연락하기</strong>
                           <span class="ft-smaller">걱정No! 안심번호로 연락됩니다.</span>
                         </a>
                       </li>
                       <li>
-                        <a th:href="|mailto:[[${bbsDTO.email}]]|" class="mail">
+                        <a th:href="|mailto:${bbsDTO.email}|" class="mail">
                           <i class="lni lni-envelope"></i>
                         </a>
                       </li>
@@ -64,7 +61,7 @@
                     <h4>공유하기</h4>
                     <ul>
                       <li>
-                        <a onclick="this." href="" class="link"><i class="lni lni-link"></i></a>
+                        <a onclick="copyLink(document.documentURI);" class="link"><i class="lni lni-link"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -93,7 +90,7 @@
                   <h3>Location</h3>
                   <div class="mapouter">
                     <div class="gmap_canvas">
-                      <iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=마리오아울렛2관&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br />
+                      <iframe width="100%" height="300" id="gmap_canvas" th:src="|https://maps.google.com/maps?q=${bbsDTO.addr1}&t=&z=13&ie=UTF8&iwloc=&output=embed|" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br />
                       <style>
                         .mapouter {
                           position: relative;

@@ -5,8 +5,12 @@ function goToThisLink(str, element) {
 }
 
 function goToThisLink2(url) {
-    console.log(url);
     location.href = url;
+}
+
+function copyLink(e){
+    alert("링크가 복사되었습니다.");
+    navigator.clipboard.writeText(e);
 }
 
 

@@ -31,13 +31,13 @@
                             <div class="col-12">
                               <div class="form-group">
                                 <label>연락처 <strong class="text-danger">*</strong></label>
-                                <input name="phoneNumber" type="tel" maxlength="100">
+                                <input name="phoneNumber" type="tel" maxlength="100" th:value="${session.memberDTO.phoneNumber}">
                               </div>
                             </div>
                             <div class="col-12">
                               <div class="form-group">
                                 <label>이메일 <strong class="text-danger">*</strong></label>
-                                <input name="email" type="email" maxlength="100">
+                                <input name="email" type="email" maxlength="100" th:value="${session.memberDTO.email}">
                               </div>
                             </div>
                             <div class="col-12">
@@ -47,16 +47,16 @@
                                   <div class="mb-3">
                                     <div class="form-group">
                                       <div class="input-group">
-                                        <input type="text" name="zipCode" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2"  onclick="sample4_execDaumPostcode()" readonly>
+                                        <input th:value="${session.memberDTO.zipCode}" type="text" name="zipCode" data-name="우편번호" class="form-control w-auto" placeholder="우편번호" id="sample4_postcode" aria-label="Recipient's username" aria-describedby="button-addon2"  onclick="sample4_execDaumPostcode()" readonly>
                                         <button class="btn btn-outline-primary"  type="button" id="button-addon2" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <input type="text" name="addr1" class="form-control" data-name="주소" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+                                    <input th:value="${session.memberDTO.addr1}" type="text" name="addr1" class="form-control" data-name="주소" id="sample4_roadAddress" placeholder="도로명주소" readonly>
                                   </div>
                                   <div class="form-group">
-                                    <input type="text" name="addr2" data-name="상세주소"  class="form-control" id="sample4_detailAddress"  placeholder="상세주소">
+                                    <input th:value="${session.memberDTO.addr2}" type="text" name="addr2" data-name="상세주소"  class="form-control" id="sample4_detailAddress"  placeholder="상세주소">
                                   </div>
                                   <span id="guide" style="color:#999;display:none"></span>
                                 </div>
@@ -103,7 +103,7 @@
                               <label class="regist-label">썸네일 첨부파일</label>
                               <div class="">
                                 <div class="form-group">
-                                  <input type="file" class="form-control p-1 h-auto" name="thumbnail" id="file2" accept=image/*>
+                                  <input type="file" class="form-control p-1 h-auto" name="file2" id="file2" accept=image/*>
                                 </div>
                               </div>
                             </div>

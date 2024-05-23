@@ -38,10 +38,12 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     @Override
     public BbsDTO view(BbsDTO bbsDTO) {
-        log.info("bbsDTO.getBbsIdx() ; " +bbsDTO.getBbsIdx());
         Optional<BbsEntity> result = bbsRepository.findById(bbsDTO.getBbsIdx());
         BbsEntity bbsEntity =result.orElse(null);
-        return modelMapper.map(bbsEntity, BbsDTO.class);
+        BbsDTO resultBbsDTO = modelMapper.map(bbsEntity, BbsDTO.class);
+        resultBbsDTO.setThumbnailDirectory(resultBbsDTO.getThumbnailDirectory()!=null?resultBbsDTO.getThumbnailDirectory().replace("D:\\java4\\teenflea\\src\\main\\resources\\static\\upload","/upload"):"/assets/images");
+        resultBbsDTO.setThumbnailFileName(resultBbsDTO.getThumbnailFileName()==null?"default.png":resultBbsDTO.getThumbnailFileName());
+        return resultBbsDTO;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class BbsServiceImpl implements BbsServiceIf{
             addr1 = pageRequestDTO.getAddr1().substring(0, 2);
         }
         if(addr1 != null || category2 != null){
-            result = bbsRepository.findAllByCategory2ContainsAndAddr1ContainsAndTitleContains(pageable,category2,addr1,search_word);
+            result = bbsRepository.findAllByCategory2ContainsAndAddr1ContainsAndTitleContainsOrderByBbsIdx(pageable,category2,addr1,search_word);
         }
         else if(pageRequestDTO.getSearch_word()!=null && !pageRequestDTO.getSearch_word().isEmpty()) {
             result = bbsRepository.findAllByCategory1AndTitleContainsOrContentContainsAndCategory1ContainsOrUserIdContainsAndCategory1ContainsOrderByBbsIdxDesc(
@@ -85,6 +87,8 @@ public class BbsServiceImpl implements BbsServiceIf{
         List<BbsDTO> dtoList = result.stream()
                 .map(board->modelMapper.map(board,BbsDTO.class))
                 .collect(Collectors.toList());
+        dtoList.stream().forEach(e -> e.setThumbnailDirectory(e.getThumbnailDirectory()!=null?e.getThumbnailDirectory().replace("D:\\java4\\teenflea\\src\\main\\resources\\static\\upload","/upload"):"/assets/images"));
+        dtoList.stream().forEach(e -> e.setThumbnailFileName(e.getThumbnailFileName()==null?"default.png":e.getThumbnailFileName()));
         return PageResponseDTO.<BbsDTO>withAll().pageRequestDTO(pageRequestDTO)
                 .dtoList(dtoList).total_count((int) result.getTotalElements()).build();
     }
@@ -103,6 +107,21 @@ public class BbsServiceImpl implements BbsServiceIf{
                 bbsFileRepository.save(bbsFileEntity);
             }
         }
+    }
+
+    @Transactional
+    @Override
+    public BbsDTO registThumbnail(BbsDTO bbsDTO, MultipartHttpServletRequest files) {
+        String saveDirectory = "D:\\java4\\teenflea\\src\\main\\resources\\static\\upload";
+        List<String> filenames = null;
+        filenames = commonFileUtil.thumbnailUploads(files,saveDirectory);;
+        if(filenames!=null) {
+            for (String filename : filenames) {
+                bbsDTO.setThumbnailFileName(filename);
+                bbsDTO.setThumbnailDirectory(saveDirectory);
+            }
+        }
+        return bbsDTO;
     }
     @Transactional
     @Override
@@ -129,6 +148,8 @@ public class BbsServiceImpl implements BbsServiceIf{
         List<BbsFileDTO> dtoList = result.stream()
                 .map(board->modelMapper.map(board,BbsFileDTO.class))
                 .collect(Collectors.toList());
+        dtoList.stream().forEach(e -> e.setDirectory(e.getDirectory()!=null?e.getDirectory().replace("D:\\java4\\teenflea\\src\\main\\resources\\static\\upload","/upload"):"/assets/images"));
+        dtoList.stream().forEach(e -> e.setFileName(e.getFileName()==null?"default.png":e.getFileName()));
         return dtoList;
     }
 

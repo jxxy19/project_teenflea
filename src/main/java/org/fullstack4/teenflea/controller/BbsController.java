@@ -123,6 +123,9 @@ public class BbsController {
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
         bbsDTO.setUserId(memberDTO.getUserId());
+        if(files!=null) {
+            bbsDTO = bbsServiceIf.registThumbnail(bbsDTO,files);
+        }
         int resultidx = bbsServiceIf.regist(bbsDTO);
         if(files!=null) {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(resultidx).userId(bbsDTO.getUserId()).build();
@@ -132,9 +135,11 @@ public class BbsController {
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         if(originalURL.contains("board")) {
             return "redirect:/board/view?bbsIdx="+resultidx;
+        }else if(originalURL.contains("notice")){
+            return "redirect:/notice/view?bbsIdx="+resultidx;
         }
         else {
-            return "redirect:/notice/view?bbsIdx="+resultidx;
+            return "redirect:/goods/view?bbsIdx="+resultidx;
         }
     }
 
@@ -177,14 +182,16 @@ public class BbsController {
 
     @Transactional
     @GetMapping("/delete")
-    public String delete(BbsDTO bbsDTO){
+    public String delete(BbsDTO bbsDTO, HttpServletRequest request){
         bbsServiceIf.delete(bbsDTO);
         bbsServiceIf.deleteFileAll(bbsDTO.getBbsIdx());
         bbsServiceIf.deleteReplyAll(bbsDTO.getBbsIdx());
-        if(bbsDTO.getCategory1().equals("board")){
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("board")) {
             return "redirect:/board/list";
         }
-        else if(bbsDTO.getCategory1().equals("notice")){
+        else if(originalURL.contains("notice")){
             return "redirect:/notice/list";
         }
         else{

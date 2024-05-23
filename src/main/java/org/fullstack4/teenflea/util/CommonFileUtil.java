@@ -19,7 +19,36 @@ public class CommonFileUtil {
     public List<String> fileuploads(MultipartHttpServletRequest files, String uploadFolder) {
         List<String> filenames = new ArrayList<>();
         List<MultipartFile> list = files.getFiles("file");
-        if(files.getFile("file").getSize()<=0){
+        if(files.getFile("file")==null || files.getFile("file").getSize()<=0){
+            return null;
+        }
+        for (MultipartFile file : list) {
+            String fileRealName = file.getOriginalFilename();
+            long size = file.getSize();
+            String fileExt = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
+
+            UUID uuid = UUID.randomUUID();
+            String[] uuids = uuid.toString().split("-");
+            String newName = uuids[0] + fileRealName;
+
+            File saveFile = new File(uploadFolder + "\\" + newName);
+            try {
+                file.transferTo(saveFile);
+                filenames.add(newName);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return filenames;
+
+    }
+
+    public List<String> thumbnailUploads(MultipartHttpServletRequest files, String uploadFolder) {
+        List<String> filenames = new ArrayList<>();
+        List<MultipartFile> list = files.getFiles("file2");
+        if(files.getFile("file2")==null || files.getFile("file2").getSize()<=0){
             return null;
         }
         for (MultipartFile file : list) {

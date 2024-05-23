@@ -88,7 +88,7 @@
                             <!-- Start Single Item -->
                             <div class="single-item-grid">
                               <div class="image">
-                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><img class="w-100" src="/assets/images/items-grid/img1.jpg" alt="#" /></a>
+                                <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|"><img class="w-100" th:src="|${dto.thumbnailDirectory}/${dto.thumbnailFileName}|" alt="#" /></a>
                               </div>
                               <div class="content">
                                 <a th:href="|/goods/view?bbsIdx=${dto.getBbsIdx()}|" class="tag">[[${dto.category2}]]</a>
