@@ -2,6 +2,7 @@ package org.fullstack4.teenflea.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -45,6 +46,8 @@ public class MemberEntity extends BaseEntity {
     @LastModifiedDate
     @Column(name="leave_date",insertable = false ,updatable = false,nullable = true) //탈퇴일자
     private LocalDateTime leaveDate;
+    @Column(length = 10,nullable = true)
+    private String role;
 
     public void modify(String pwd,String email,String phone_number,String addr1,String addr2,String zip_code,String user_state){
 
