@@ -205,7 +205,6 @@ public class BbsServiceImpl implements BbsServiceIf{
 
     @Override
     public void modifyReply(BbsReplyDTO bbsReplyDTO) {
-        log.info("getReplyIdx: " +bbsReplyDTO.getReplyIdx());
         Optional<BbsReplyEntity> result = bbsReplyRepository.findById(bbsReplyDTO.getReplyIdx());
         BbsReplyEntity bbsReplyEntity =result.orElse(null);
         if (bbsReplyEntity != null) {

@@ -39,8 +39,6 @@ public class PageResponseDTO<E> {
 
     @Builder(builderMethodName = "withAll")
     public PageResponseDTO(PageRequestDTO pageRequestDTO, List<E> dtoList, int total_count){
-        log.info("=================================");
-        log.info("PageResponseDTO Start");
         this.total_count = total_count;
         this.page = pageRequestDTO.getPage();
         this.page_size=pageRequestDTO.getPage_size();
@@ -64,14 +62,6 @@ public class PageResponseDTO<E> {
         this.reg_date_end = pageRequestDTO.getReg_date_end();
         this.linkParams = pageRequestDTO.getLinkParams();
 
-        log.info("pageRequestDTO : " + pageRequestDTO);
-        log.info("dtoList : " + dtoList);
-        log.info("total_count : " + total_count);
-        log.info("prev_page_flag : " + prev_page_flag);
-        log.info("next_page_flag : " + next_page_flag);
-        log.info("linkParams : " + linkParams);
-        log.info("PageResponseDTO END");
-        log.info("=================================");
     }
     public int getTotal_page(){ return (this.total_count>0?(int)Math.ceil(this.total_count/(double)this.page_size):1);}
     public int getPage_skip_count(){ return (this.page-1)*this.page_size;}

@@ -46,7 +46,6 @@ public class MemberController {
             return "/member/regist";
         }
         int result = memberServiceIf.regist(memberDTO);
-        System.out.println("result : " + result );
         if(result > 0 ){
            redirectAttributes.addFlashAttribute("info","alert(`가입이 완료되었습니다.`);");
             return "redirect:/login/login";
@@ -66,10 +65,8 @@ public class MemberController {
     @ResponseBody
     public ResponseEntity<?> duplecheckGET(@RequestParam("userId") String userId,HttpServletRequest request,HttpServletResponse response,
                               Model model) {
-        System.out.println("usrId idcheck getcontroller : " + userId);
         Boolean result = false;
         result = memberServiceIf.idCheck(userId);
-        System.out.println("result controller : " + result) ;
 
         //아이디 중복으로 있으면 (true)
         if(result){
@@ -101,10 +98,7 @@ public class MemberController {
     public String modifyPOST(@Valid MemberDTO memberDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes,HttpServletRequest request){
 
 
-        System.out.println("memberDTO : " + memberDTO);
         if(bindingResult.hasErrors()){
-            System.out.println("bindingResult.getAllErrors() " + bindingResult.getAllErrors());
-            log.info("bindingResult Errors : " +memberDTO);
             redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
             redirectAttributes.addFlashAttribute("info","alert(`회원 정보 수정 실패 올바른 값을 입력해 주세요.`);");
             return "redirect:/member/modify";
@@ -128,12 +122,7 @@ public class MemberController {
         HttpSession session = request.getSession();
         MemberDTO dto = (MemberDTO)session.getAttribute("memberDTO");
         String userId = dto.getUserId();
-        System.out.println("user_id " +userId);
-        log.info("============================");
-        log.info("MemberController deletePOST");
-        log.info("============================");
         int result = memberServiceIf.delete(userId);
-        System.out.println("result controller : " + result);
         if(result > 0 ){
             request.getSession().invalidate();
             return "redirect:/login/logout";

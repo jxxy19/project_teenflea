@@ -60,6 +60,5 @@ public class MemberServiceTests {
     public void testView(){
         String user_id ="test";
         MemberDTO memberDTO = memberServiceIf.view(user_id);
-        System.out.println("memberDTO : " + memberDTO);
     }
 }

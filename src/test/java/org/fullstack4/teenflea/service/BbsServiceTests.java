@@ -42,13 +42,11 @@ public class BbsServiceTests {
         pageRequestDTO.setCategory1("자유게시판");
         pageRequestDTO.setPage(2);
         PageResponseDTO<BbsDTO> bbsDTOList = bbsServiceIf.list(pageRequestDTO);
-        System.out.println("list test= " +bbsDTOList);
     }
 
     @Test
     public void testView(){
         BbsDTO bbsDTO = BbsDTO.builder().bbsIdx(2).build();
-        System.out.println("view test= " +bbsServiceIf.view(bbsDTO).toString());
     }
     @Test
     public void testRegistReply(){
@@ -68,11 +66,9 @@ public class BbsServiceTests {
         pageRequestDTO.setCategory1("자유게시판");
         pageRequestDTO.setPage(2);
         List<BbsReplyDTO> bbsDTOList = bbsServiceIf.listReply(pageRequestDTO,2);
-        System.out.println("replylist test= " +bbsDTOList);
     }
     @Test
     public void testViewReply(){
         BbsDTO bbsDTO = BbsDTO.builder().bbsIdx(2).build();
-        System.out.println("view test= " +bbsServiceIf.view(bbsDTO).toString());
     }
 }

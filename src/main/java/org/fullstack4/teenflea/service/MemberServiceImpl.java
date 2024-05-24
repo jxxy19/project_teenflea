@@ -52,7 +52,6 @@ public class MemberServiceImpl implements MemberServiceIf{
     public int delete(String userId) {
         Optional<MemberEntity> result = memberRepository.findByUserId(userId);
         MemberEntity member = result.orElse(null);
-        System.out.println("service Imple member " + member);
         member.delete("N");
         memberRepository.save(member);
 
@@ -62,7 +61,6 @@ public class MemberServiceImpl implements MemberServiceIf{
     @Override
     public Boolean idCheck(String userId) {
         boolean result = memberRepository.existsByUserId(userId);
-        System.out.println("idcheck result값 : " + result);
 
         return result;
     }
