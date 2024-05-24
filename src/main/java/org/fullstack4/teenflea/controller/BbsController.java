@@ -104,6 +104,11 @@ public class BbsController {
     public String regist(Model model, HttpServletRequest request){
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        HttpSession session = request.getSession();
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
+        if(originalURL.contains("notice") && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         if(originalURL.contains("board")) {
             model.addAttribute("menu", "자유게시판");
             model.addAttribute("category1", "board");
@@ -122,6 +127,11 @@ public class BbsController {
     public String registPost(BbsDTO bbsDTO, MultipartHttpServletRequest files, HttpServletRequest request){
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberDTO");
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+        if(originalURL.contains("notice") && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         bbsDTO.setUserId(memberDTO.getUserId());
         if(files!=null) {
             bbsDTO = bbsServiceIf.registThumbnail(bbsDTO,files);
@@ -131,8 +141,7 @@ public class BbsController {
             BbsFileDTO bbsFileDTO = BbsFileDTO.builder().bbsIdx(resultidx).userId(bbsDTO.getUserId()).build();
             bbsServiceIf.registFile(bbsFileDTO, files);
         }
-        UrlPathHelper urlPathHelper = new UrlPathHelper();
-        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+
         if(bbsDTO.getCategory1().equals("자유게시판")) {
             return "redirect:/board/view?bbsIdx="+resultidx;
         }else if(bbsDTO.getCategory1().equals("공지사항")){
@@ -146,16 +155,20 @@ public class BbsController {
     @GetMapping("/modify")
     public String modifyGet(BbsDTO bbsDTO, PageRequestDTO pageRequestDTO, Model model, HttpServletRequest request){
         BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
         if(!memberDTO.getUserId().equals(viewDTO.getUserId()) && memberDTO.getRole().equals("user")){
             return "redirect:/";
         }
+        if(originalURL.contains("notice") && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         List<BbsFileDTO> fileDTOList = bbsServiceIf.listFile(pageRequestDTO, bbsDTO.getBbsIdx());
         model.addAttribute("bbsDTO",viewDTO);
         model.addAttribute("bbsFileDTOList",fileDTOList);
-        UrlPathHelper urlPathHelper = new UrlPathHelper();
-        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+
         if(originalURL.contains("board")) {
             model.addAttribute("menu", "자유게시판");
             model.addAttribute("category1", "board");
@@ -175,6 +188,9 @@ public class BbsController {
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
         if(!memberDTO.getUserId().equals(bbsDTO.getUserId()) && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
+        if(bbsDTO.getCategory1().contains("공지사항") && memberDTO.getRole().equals("user")){
             return "redirect:/";
         }
         if(files!=null) {
@@ -201,18 +217,22 @@ public class BbsController {
     @Transactional
     @GetMapping("/delete")
     public String delete(BbsDTO bbsDTO, HttpServletRequest request){
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
         BbsDTO viewDTO = bbsServiceIf.view(bbsDTO);
         HttpSession session = request.getSession();
         MemberDTO memberDTO = (MemberDTO) session.getAttribute( "memberDTO");
         if(!memberDTO.getUserId().equals(viewDTO.getUserId()) && memberDTO.getRole().equals("user")){
             return "redirect:/";
         }
+        if(originalURL.contains("notice") && memberDTO.getRole().equals("user")){
+            return "redirect:/";
+        }
         bbsServiceIf.deleteFileAll(bbsDTO.getBbsIdx());
         bbsServiceIf.deleteThumbnail(bbsDTO.getBbsIdx());
         bbsServiceIf.deleteReplyAll(bbsDTO.getBbsIdx());
         bbsServiceIf.delete(bbsDTO);
-        UrlPathHelper urlPathHelper = new UrlPathHelper();
-        String originalURL = urlPathHelper.getOriginatingRequestUri(request);
+
         if(originalURL.contains("board")) {
             return "redirect:/board/list";
         }
