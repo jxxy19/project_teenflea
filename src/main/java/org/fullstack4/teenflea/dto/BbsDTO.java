@@ -2,6 +2,7 @@ package org.fullstack4.teenflea.dto;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,7 @@ public class BbsDTO {
     private String title;
     @NotEmpty
     private String content;
+    @PositiveOrZero
     private int price;
     @NotEmpty
     private String category1;
@@ -36,8 +38,6 @@ public class BbsDTO {
     private String addr1;
     private String addr2;
     private String zipCode;
-
-
     private LocalDateTime regDate;
     private LocalDateTime modifyDate;
 }
