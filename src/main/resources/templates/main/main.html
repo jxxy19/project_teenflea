@@ -211,7 +211,8 @@
                         <!-- Start Single Grid -->
                         <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
                             <div class="image">
-                                <a href="item-details.html" class="thumbnail"><img th:src="|${dto.thumbnailDirectory}/${dto.thumbnailFileName}|" alt="#"></a>
+
+                                <a th:href="@{'/goods/view?bbsIdx='+${dto.bbsIdx}}" class="thumbnail"><img th:src="|${dto.thumbnailDirectory}/${dto.thumbnailFileName}|" alt="#" height="350px"></a>
                             </div>
                             <div class="content">
                                 <div class="top-content">
